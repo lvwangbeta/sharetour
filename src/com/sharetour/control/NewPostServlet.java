@@ -1,25 +1,19 @@
 package com.sharetour.control;
 
 import java.io.IOException;
-<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-=======
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
 import com.sharetour.db.ConnectionPool;
 
-=======
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
 /**
  * Servlet implementation class NewPostServlet
  */
@@ -39,7 +33,6 @@ public class NewPostServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
 		request.setCharacterEncoding("utf-8");
 		String content = request.getParameter("content");
 		String title   = request.getParameter("title");
@@ -105,8 +98,6 @@ public class NewPostServlet extends HttpServlet {
 		}
 		response.sendRedirect("/index.jsp");
 		return ;
-=======
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
 	}
 
 	/**
@@ -114,10 +105,6 @@ public class NewPostServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-		doGet(request, response);
-=======
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
 	}
 
 }

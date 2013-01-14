@@ -11,22 +11,17 @@ public class Article {
 	private int    rate;				//评级
 	private int    visit;				//访问量
 	private List<String> tags;			//标签
-<<<<<<< HEAD
 	private String cover;				//封面图片连接
 	
 	public Article()
 	{
 		
 	}
-=======
-	
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
 	public Article(String title, String content)
 	{
 		this.title = title;
 		this.content = content;
 	}
-<<<<<<< HEAD
 	public void setCover(String cover)
 	{
 		this.cover = cover;
@@ -35,8 +30,6 @@ public class Article {
 	{
 		return cover;
 	}
-=======
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
 	public void setId(long id)
 	{
 		this.id = id;

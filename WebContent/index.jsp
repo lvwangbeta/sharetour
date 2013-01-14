@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<<<<<<< HEAD
+
 <%@ page import="java.util.*" %>
 <%@ page import="com.sharetour.model.*" %>
 <%@ page import="com.sharetour.db.ConnectionPool" %>
 <%@ page import="com.sharetour.service.PostListDAO" %>
-=======
 <%@ page import="com.sharetour.model.*" %>
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,17 +14,13 @@
 <title>Tour</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-<<<<<<< HEAD
 <link rel="stylesheet" href="css/elastislide.css">
-=======
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
 <style type="text/css">
 <style type="text/css">
   body {
     padding-top: 60px;
     padding-bottom: 40px;
   }
-<<<<<<< HEAD
   .box {
     border: 5px solid #fff;
     cursor: pointer;
@@ -43,21 +37,17 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script src="js/modernizr.custom.17475.js"></script>
-=======
 </style>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
 <script type="text/javascript" src="js/tour.js"></script>
 
 </head>
 <body>
-<<<<<<< HEAD
-=======
+
 <%
 System.out.println(java.lang.System.getenv("VCAP_SERVICES"));
 %>
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
     <div class="navbar navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
@@ -104,7 +94,6 @@ System.out.println(java.lang.System.getenv("VCAP_SERVICES"));
     </div>
 
     <div class="container">
-<<<<<<< HEAD
       <!-- head gallery -->
       <ul id="carousel" class="elastislide-list">
 <%
@@ -125,7 +114,6 @@ System.out.println(java.lang.System.getenv("VCAP_SERVICES"));
       
       <div class="row-fluid">
       <!-- other hot post -->
-=======
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h1>Hello, world!</h1>
@@ -135,7 +123,6 @@ System.out.println(java.lang.System.getenv("VCAP_SERVICES"));
 
       <!-- Example row of columns -->
       <div class="row-fluid">
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
       	<div class="span8">
 	        <div>
 	          <h2>Heading</h2>
@@ -153,10 +140,7 @@ System.out.println(java.lang.System.getenv("VCAP_SERVICES"));
 	          <p><a class="btn" href="#">View details &raquo;</a></p>
 	        </div>     		
       	</div>
-<<<<<<< HEAD
       	<!-- tag list -->
-=======
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
       	<div class="span4">
       		<div>
       			<button class="btn btn-large btn-primary offset2" type="button">写游记</button>
@@ -171,7 +155,6 @@ System.out.println(java.lang.System.getenv("VCAP_SERVICES"));
       	</div>
 
       </div>
-<<<<<<< HEAD
 	  <script type="text/javascript" src="js/jquery.js"></script>
 	  <script type="text/javascript" src="js/jquerypp.custom.js"></script>
 	  <script type="text/javascript" src="js/jquery.elastislide.js"></script>
@@ -180,9 +163,6 @@ System.out.println(java.lang.System.getenv("VCAP_SERVICES"));
 	    $( '#carousel' ).elastislide();
 	      
 	  </script>
-=======
-
->>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
       <hr>
 
       <footer>
