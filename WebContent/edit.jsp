@@ -76,7 +76,11 @@ System.out.println(java.lang.System.getenv("VCAP_SERVICES"));
         <div class="span4">
           <p>hello slide left</p>      
         </div>
+<<<<<<< HEAD
         <form action="newpost" method="post">
+=======
+        <form action="" method="post">
+>>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
           <div>
             <table>
               <tr>
@@ -91,9 +95,15 @@ System.out.println(java.lang.System.getenv("VCAP_SERVICES"));
               <tr>
                 <td>
                   <label for="">内容(必填)</label>
+<<<<<<< HEAD
                   <textarea class="ckeditor" name="content" id="content">hello</textarea>
                   <script type="text/javascript">  
                       CKEDITOR.replace('content',{filebrowserImageUploadUrl : 'imgupload',width:800,height:400 });  
+=======
+                  <textarea class="ckeditor" name="editor" id="editor">hello</textarea>
+                  <script type="text/javascript">  
+                      CKEDITOR.replace('editor',{filebrowserImageUploadUrl : 'imgupload',width:800,height:400 });  
+>>>>>>> a0d7ab5f17f4ebcd58db42942b92165c52e75dbe
                   </script> 
                 </td>
               </tr>
