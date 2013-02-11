@@ -9,6 +9,6 @@ ShareTour(享途网)是一个社交化的旅游经历分享平台，将旅游经
 ShareTour(享途网)搭建在开源PaaS平台Cloud Foundry之上，前端采用Bootstrap框架和jQuery，后端采用基本的  
 J2EE技术Servlet/JSP，数据库使用MySQL，Mongo。  
 
-website link: [http://sharetour.cloudfoundry.com/]:http://sharetour.cloudfoundry.com/    
+website link: [http://sharetour.cloudfoundry.com/]: http://sharetour.cloudfoundry.com/    
 
 因为前端使用了Bootstrap和jQuery插件，建议使用Chrome浏览器。  
