@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import javax.sql.DataSource;
@@ -12,7 +14,7 @@ import org.apache.commons.dbcp.*;
 
 public class ConnectionPool {
 	private static DataSource DS;
-	private static ConnectionPool instance;
+	private volatile static ConnectionPool instance;
 	private static String url;
 	private static String username;
 	private static String password;
@@ -24,15 +26,15 @@ public class ConnectionPool {
 	
 	/*
 	 * setPoolFromPram()
-	 * ¸ù¾İÓÃ»§ÊäÈë³õÊ¼»¯Êı¾İ¿âÁ¬½Ó±äÁ¿
-	 * @param url:Êı¾İ¿âÁ¬½Óurl
-	 * @param username:ÓÃ»§Ãû
-	 * @param password:ÃÜÂë
-	 * @param diver:Êı¾İ¿âÇı¶¯
-	 * @param initialSize£º³õÊ¼»¯Á¬½Ó³Ø´óĞ¡
-	 * @param maxActive£º×î´ó¼¤»îÁ´½ÓÊı
-	 * @param minIdle: ×î´ó¿ÕÏĞ
-	 * @param maxWait:×î´óµÈ´ıÁ¬½ÓÊı
+	 * ä»ç”¨æˆ·ä¼ å…¥å‚æ•°è®¾ç½®æ•°æ®åº“è¿æ¥æ± 
+	 * @param url
+	 * @param username
+	 * @param password
+	 * @param diver
+	 * @param initialSize
+	 * @param maxActive
+	 * @param minIdle
+	 * @param maxWait
 	 */
 	public static void setPoolFromParam(String purl, String pusername, String ppassword, String pdriver,
 			int pinitialSize, int pmaxActive, int pmaxIdle, int pmaxWait)
@@ -48,8 +50,8 @@ public class ConnectionPool {
 	}
 	/*
 	 * setPoolFromProperty()
-	 * @param filePath£ºÅäÖÃÎÄ¼şÎ»ÖÃ
-	 * ´ÓÅäÖÃÎÄ¼ş³õÊ¼»¯Êı¾İ¿âÁ¬½Ó±äÁ¿
+	 * ä»propertyæ–‡ä»¶è®¾ç½®æ•°æ®åº“è¿æ¥æ± 
+	 * @param filePath
 	 */
 	public static void setPoolFromProperty(String filePath)
 	{
@@ -94,7 +96,7 @@ public class ConnectionPool {
 	
 	/*
 	 * getInstance()
-	 * Singleton ·µ»ØÊı¾İ¿âÁ¬½Ó³ØµÄÎ¨Ò»ÊµÀı
+	 * Singletonä¿è¯è¿æ¥æ± å”¯ä¸€
 	 */
 	public static ConnectionPool getInstance()
 	{
@@ -102,8 +104,8 @@ public class ConnectionPool {
 		{
 			synchronized(ConnectionPool.class)
 			{
-				if(instance == null)  //check again±£Ö¤È·ÊµinstanceÎª¿Õ
-				{					  //ÒòÎªÓĞ¿ÉÄÜ¼ÓËøÊ±ºòinstanceÇ¡ºÃ±»ÆäËûÊµÀı³õÊ¼»¯
+				if(instance == null)
+				{  
 					instance = new ConnectionPool();
 				}
 			}
@@ -125,5 +127,48 @@ public class ConnectionPool {
 			}
 		}
 		return con;
+	}
+	
+	public static void CloseCon(Connection con, PreparedStatement pstm, ResultSet res)
+	{
+		if(con != null)
+		{
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally
+			{
+				con = null;
+			}
+		}
+		if(pstm != null)
+		{
+			try {
+				pstm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally
+			{
+				pstm = null;
+			}
+		}
+		if(res != null)
+		{
+			try {
+				res.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally
+			{
+				res = null;
+			}
+		}
 	}
 }
