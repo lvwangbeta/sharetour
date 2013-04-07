@@ -18,9 +18,15 @@ public abstract class POJO implements Serializable{
 	private long id = 0;			
 	private QueryHelper helper;
 	
-	public String tablename = "Unknown table"; 				
+	private String tablename = "Unknown table"; 				
 	public void setId(long id){this.id = id;}
 	public long getId(){return id;}
+	
+	public POJO(String tablename)
+	{
+		setTablename(tablename);
+	}
+	
 	/*
 	 * POJO类及其子类要想访问数据库，必须为其设置一个
 	 * QueryHelper对象，以保证数据库连接一致以及
@@ -39,7 +45,10 @@ public abstract class POJO implements Serializable{
 	{
 		return tablename;
 	}
-	public abstract void setTablename(String tablename);
+	public void setTablename(String tablename)
+	{
+		this.tablename = tablename;
+	}
 	
 	
 	/*
