@@ -5,8 +5,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.sharetour.model.*;
-import com.sharetour.service.*;
+
+import com.sharetour.util.Action;
+import com.sharetour.util.ActionFactory;
 /**
  * Servlet implementation class LoginServlet
  */
@@ -26,30 +27,14 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		if((username == null || username.length() == 0) 
-			|| (password == null || password.length() == 0))
-		{
-			response.sendRedirect("index");
-			return;
+		Action loginaction = ActionFactory.getAction("login");
+		String view = loginaction.execute(request);
+		if(view == "login"){
+			response.sendRedirect("/");
 		}
-		LoginDAO login = new LoginDAO(new User(username, password, null));
-		
-		User user = login.find();
-		if(user != null)		// account right
-		{
-			request.getSession().setAttribute("user", user);
-			response.sendRedirect("index");
-			return;
-		}
-		else
-		{
-			response.sendRedirect("index");
-			return ;
-		}		
+		else if(view == "home"){
+			response.sendRedirect("/");
+		}	
 	}
 
 	/**

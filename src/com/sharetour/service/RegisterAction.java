@@ -9,11 +9,6 @@ import com.sharetour.util.Action;
 
 public class RegisterAction implements Action{
 	
-	private static final String TIP 		 = "tip";
-	private static final String USERNAMEEXIST = "用户名已存在";
-	private static final String CONFIRMERROR = "";
-	private static final String EMAILVALIDATE= "邮箱地址不合法";
-	private static final String EMAILEXIST	 = "该邮箱有注册";
 	
 	@Override
 	public String execute(HttpServletRequest request) {

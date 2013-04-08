@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.sharetour.db.ConnectionPool;
+import com.sharetour.model.UserInfo;
+import com.sharetour.util.QueryHelper;
 
 /*
  * 用户信息服务类
@@ -51,6 +53,18 @@ public class UserService {
 	 */
 	public static boolean checkEmailExist(String email){
 		return false;
+	}
+	
+	/*
+	 * 登录信息检测
+	 */
+	public static UserInfo loginCheck(String username, String password){
+		QueryHelper helper = new QueryHelper();
+		UserInfo userinfo = helper.get(
+				  UserInfo.class, username,
+				  "select * from users where username=? and password=?", 
+				  new Object[]{username, password});
+		return userinfo;
 	}
 	
 }
