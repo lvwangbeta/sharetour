@@ -36,7 +36,7 @@ public class LikeServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		User user = (User)request.getSession().getAttribute("user");
+		UserInfo user = (UserInfo)request.getSession().getAttribute("user");
 		// not login
 		if(user == null)
 		{

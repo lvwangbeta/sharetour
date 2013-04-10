@@ -1,22 +1,12 @@
 package com.sharetour.control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.sharetour.db.ConnectionPool;
-import com.sharetour.model.User;
+import com.sharetour.util.Action;
+import com.sharetour.util.ActionFactory;
 
 /**
  * Servlet implementation class NewPostServlet
@@ -35,18 +25,26 @@ public class NewPostServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		Action newpostaction = ActionFactory.getAction("newpost");
+		String view = newpostaction.execute(request);
+		if(view == "success"){
+			response.sendRedirect("/u/space");
+		}
+		else if(view == "error"){
+			response.sendRedirect("/u/space");
+		}
+		
+		
+		/*
 		request.setCharacterEncoding("utf-8");
 		String content = request.getParameter("content");
 		String title   = request.getParameter("title");
 		String summary = request.getParameter("summary");
 		String tags	   = request.getParameter("tags");
-		String cover   = null; //日志封面
+		String cover   = null; //锟斤拷志锟斤拷锟斤拷
 		
-		/*
-		 * test data
-		 */
+
 		System.out.println(content);
 		System.out.println(title + "\n" + tags);
 		
@@ -63,9 +61,7 @@ public class NewPostServlet extends HttpServlet {
 		}
 		
 		String[] tagsArray = tags.split(" ");
-		/*
-		 * 提取img元素作为文章的封面
-		 */
+
 		Pattern pattern;
 		Matcher matcher;
 		String imgRex = "<img.*src=(.*?)[^>]*?>";
@@ -106,26 +102,19 @@ public class NewPostServlet extends HttpServlet {
 				return;
 			}
 			
-			/*
-			 * 在tags表及PostTagRelation表中做相应记录
-			 */
+
 			con.setAutoCommit(false);
 			for(int i=0; i<tagsArray.length; i++)
 			{
 				System.out.println(tagsArray[i]+"==");
-				/*
-				 * 插入tag并返回tid
-				 */
-				//1 检测tag是否存在
 				pstm = con.prepareStatement("select id from tags where tag=?");
 				pstm.setString(1, tagsArray[i]);
 				res = pstm.executeQuery();
-				//如果tag已经存在
+
 				if(res.next())
 				{
 					tid = res.getInt("id");
 				}
-				//tag不存在
 				else
 				{
 					pstm = con.prepareStatement("insert into tags(tag) values(?)",
@@ -145,9 +134,6 @@ public class NewPostServlet extends HttpServlet {
 				}
 				
 		
-				/*
-				 * 用返回的tid和pid构建PostTagRelation关系
-				 */
 				pstm = con.prepareStatement("insert into PostTagRelation(pid, tid) values(?,?)");
 				pstm.setInt(1, pid);
 				pstm.setInt(2, tid);
@@ -185,11 +171,9 @@ public class NewPostServlet extends HttpServlet {
 			}				
 		}
 
-		/*
-		 * 跳转到个人主页
-		 */
 		response.sendRedirect("u/space");
 		return ;
+		*/
 	}
 
 	/**

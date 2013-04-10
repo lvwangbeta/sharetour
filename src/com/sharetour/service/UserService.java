@@ -1,9 +1,14 @@
 package com.sharetour.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import sun.misc.BASE64Encoder;
 
 import com.sharetour.db.ConnectionPool;
 import com.sharetour.model.UserInfo;
@@ -56,6 +61,24 @@ public class UserService {
 	}
 	
 	/*
+	 * 密码加密
+	 */
+	public static String EncoderByMD5(String password)
+	{
+		try {
+			MessageDigest md5 = MessageDigest.getInstance("MD5");
+			BASE64Encoder base64 = new BASE64Encoder();
+			String encodedpwd = base64.encode(md5.digest(password.getBytes("utf-8")));
+			return encodedpwd;
+		} catch (NoSuchAlgorithmException e) {
+			return password;
+		} catch (UnsupportedEncodingException e) {
+			return password;
+		}
+		
+	}
+	
+	/*
 	 * 登录信息检测
 	 */
 	public static UserInfo loginCheck(String username, String password){
@@ -64,6 +87,7 @@ public class UserService {
 				  UserInfo.class, username,
 				  "select * from users where username=? and password=?", 
 				  new Object[]{username, password});
+		userinfo.setPassword("");
 		return userinfo;
 	}
 	

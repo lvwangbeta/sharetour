@@ -5,11 +5,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.sharetour.model.UserInfo;
-
-import com.sharetour.model.User;
-import com.sharetour.service.RegisterDAO;
 import com.sharetour.util.Action;
 import com.sharetour.util.ActionFactory;
 

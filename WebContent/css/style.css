@@ -1,0 +1,106 @@
+.posts{
+	border: 1px solid #d7d7d7;
+	-webkit-box-shadow: inset 5px 5px 0px #fafafa, inset -5px -5px 0px #fafafa, 0px 0px 5px #d7d7d7;
+	box-shadow: inset 5px 5px 0px #fafafa, inset -5px -5px 0px #fafafa, 0px 0px 5px #d7d7d7;
+
+}
+.singlepost{
+	padding: 20px;
+	border: 1px solid #d7d7d7;
+	-webkit-box-shadow: inset 5px 5px 0px #fafafa, inset -5px -5px 0px #fafafa, 0px 0px 5px #d7d7d7;
+	box-shadow: inset 5px 5px 0px #fafafa, inset -5px -5px 0px #fafafa, 0px 0px 5px #d7d7d7;	
+}
+.post{
+	padding: 20px;
+	border-bottom: 1px solid #ddd;
+}
+
+
+.side, .box{
+	border: 1px solid #d7d7d7;
+	-webkit-box-shadow: inset 5px 5px 0px #fafafa, inset -5px -5px 0px #fafafa, 0px 0px 5px #d7d7d7;
+	box-shadow: inset 5px 5px 0px #fafafa, inset -5px -5px 0px #fafafa, 0px 0px 5px #d7d7d7;
+	padding: 10px;
+}
+
+.title{
+	text-align: center;
+	font: 24px bold;
+	margin-bottom: 20px;
+	margin-top: 15px;
+}
+.content{
+
+}
+
+/*comments */
+.comments-area{
+	margin-top: 30px;
+}
+.comments-list{
+	margin: 30px 0 0 0;
+}
+.comments-list li{
+	list-style-type: none;
+}
+.comments-list li div{
+	background: white;
+	border: 1px solid #d7d7d7;
+	-webkit-box-shadow: 0px 0px 5px #d7d7d7;
+	box-shadow: 0px 0px 5px #d7d7d7;
+	/*padding: 1.5em 2em;*/
+	padding: 15px 20px 5px 20px;
+	margin-bottom: 15px;
+}
+#commentform input{
+	width: 40%;
+	height: 30px;
+	-webkit-box-shadow: 0px 0px 5px #d7d7d7;
+	box-shadow: 0px 0px 5px #d7d7d7;
+	padding: 5px;
+}
+#commentform textarea{
+	width: 98%;
+	display: block;
+	-webkit-box-shadow: 0px 0px 5px #d7d7d7;
+	box-shadow: 0px 0px 5px #d7d7d7;
+	padding: 5px;
+}
+
+
+
+.social_buttons{
+	margin-top: 80px;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.form-signin {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto ;
+
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+  display: block;
+}
+
+.fixedside{
+	position: fixed;
+}
+
+
+
+
+
+

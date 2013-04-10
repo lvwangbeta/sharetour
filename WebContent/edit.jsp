@@ -132,10 +132,7 @@
             </div>          
           </form>               
         </div>
-
       </div>
-
-
     </div> <!-- /container -->
 </body>
 </html>

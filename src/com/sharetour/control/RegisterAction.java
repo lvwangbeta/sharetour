@@ -1,10 +1,11 @@
-package com.sharetour.service;
+package com.sharetour.control;
 
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.sharetour.model.UserInfo;
+import com.sharetour.service.UserService;
 import com.sharetour.util.Action;
 
 public class RegisterAction implements Action{
