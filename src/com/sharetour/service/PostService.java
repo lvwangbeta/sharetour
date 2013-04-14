@@ -17,12 +17,15 @@ public class PostService {
 		this.postdao = new PostDAO(this.post);
 	}
 	public Post getPost(){
-		return post.Get();		
+		return postdao.getPost();	
 	}
 	public boolean savePost(){
 		return postdao.createNewPost();
 	}
 	public List<PostComment> getPostComment(){
 		return postdao.getPostComment();
+	}
+	public static List<Post> getPostList(int page, int limit){
+		return new PostDAO().getPostList(page, limit);
 	}
 }

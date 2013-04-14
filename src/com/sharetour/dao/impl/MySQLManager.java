@@ -9,7 +9,7 @@ import com.sharetour.db.ConnectionPool;
 
 public class MySQLManager implements DBManager{
 	
-	private Connection connection;
+	protected Connection connection;
 	public MySQLManager(){
 		connection = ConnectionPool.getInstance().getConnection();
 	}
@@ -77,9 +77,7 @@ public class MySQLManager implements DBManager{
 			this.connection.rollback();
 		}finally{
 			this.connection.setAutoCommit(true);
-		}
-		
-			
+		}			
 	}
 
 }

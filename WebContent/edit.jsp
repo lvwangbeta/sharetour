@@ -24,7 +24,7 @@
 </head>
 <body>
 <%
-	User user = (User)session.getAttribute("user");
+	UserInfo user = (UserInfo)session.getAttribute("user");
 	if(user == null)
 	{
 		response.sendRedirect("/index");
@@ -101,12 +101,6 @@
                   <td>
                     <label for="">标题(必填)</label>
                     <input class="input-xxlarge" id="title" type="text" name="title">
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label for="">摘要(必填)</label>
-                    <textarea name="summary" id="summary" class="span6" rows="5" placeholder="150字以内"></textarea>
                   </td>
                 </tr>
                 <tr>

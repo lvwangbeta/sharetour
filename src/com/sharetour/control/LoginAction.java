@@ -26,9 +26,7 @@ public class LoginAction implements Action{
 		else{
 			request.getSession().setAttribute("user", user);
 			return "home";
-		}
-		
-		
+		}		
 	}
 
 }

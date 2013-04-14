@@ -17,7 +17,7 @@ public class Post extends POJO {
 	private int likes;
 	private int visit;
 	private String tags;
-	
+	private String cover;		//封面图片地址
 	public Post()
 	{
 		super("posts");
@@ -93,6 +93,18 @@ public class Post extends POJO {
 	{
 		return likes;
 	}
+	public int getCategory() {
+		return category;
+	}
+	public void setCategory(int category) {
+		this.category = category;
+	}
+	public String getCover() {
+		return cover;
+	}
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
 	@Override
 	public Map<String, Object> ListInsertableFields() 
 	{
@@ -106,11 +118,6 @@ public class Post extends POJO {
 		map.put("tags", getTags());
 		return map;
 	}
-	public int getCategory() {
-		return category;
-	}
-	public void setCategory(int category) {
-		this.category = category;
-	}
+
 
 }

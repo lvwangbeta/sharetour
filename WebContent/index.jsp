@@ -4,8 +4,8 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.sharetour.model.*" %>
 <%@ page import="com.sharetour.db.ConnectionPool" %>
-<%@ page import="com.sharetour.service.PostListDAO" %>
-<%@ page import="com.sharetour.service.TagDAO" %>
+<%@ page import="com.sharetour.service.HotPostService" %>
+<%@ page import="com.sharetour.service.TagService" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,17 +108,20 @@
       <!-- head gallery -->
       <ul id="carousel" class="elastislide-list">
 <%
-		List<Article> hotlist = new PostListDAO().getHot();
-		Iterator<Article> it = null;
+		List<Post> hotlist = new HotPostService().getHotPost();
+		Iterator<Post> it = null;
 		if(hotlist != null)
-		{
-			
+		{			
 			it = hotlist.iterator();
 			for(int i = 0; i < 6 && it.hasNext(); i++)
 			{
-				Article article = it.next();
+				Post post = it.next();
 %>
-				<li><a href="/journal/<%=article.getId() %>"><%=article.getCover()%></a></li>
+				<li>
+					<a href="/journal/<%=post.getId() %>">
+					<%=post.getCover()%>
+					</a>
+				</li>
 <%
 			}
 		}
@@ -134,8 +137,8 @@
       		{
       			while(it.hasNext())
       			{    				
-      				Article article = it.next();
-      				String cover = article.getCover();
+      				Post post = it.next();
+      				String cover = post.getCover();
       				if(cover == null || cover.length() == 0)
       					continue;
       	%>
@@ -145,15 +148,15 @@
                       <%=cover%>
                   </div>
                   <div class="span6">
-                    <a href="/journal/<%=article.getId() %>"><h4><%=article.getTitle() %></h4></a>
-                    <p><%=article.getSummary() %></p>                               
+                    <a href="/journal/<%=post.getId() %>"><h4><%=post.getTitle() %></h4></a>
+                    <p><%=post.getSummary() %></p>                               
                   </div>                
-                  <div class="span2" align="center" id="<%=article.getId() %>">
+                  <div class="span2" align="center" id="<%=post.getId() %>">
                   	<br><br><br>
                     <span>
                     	<button class="btn btn-danger like">like</button>
                     </span>
-                    <span><%=article.getLikes() %></span>
+                    <span><%=post.getLikes() %></span>
                   </div>
               </div>          
             </div>
@@ -170,26 +173,23 @@
               <li><a href="edit"><button class="btn btn-large btn-primary" type="button" id="np">写游记</button></a></li><br>
               <legend>热门标签</legend>
 <%
-			List<Tag> taglist = new TagDAO().getHotTag();
+			List<PostTag> taglist = TagService.getHotTag();
 			if(taglist != null)
 			{
-				Iterator<Tag> tagit = taglist.iterator();
-				Tag tag = null;
+				Iterator<PostTag> tagit = taglist.iterator();
+				PostTag tag = null;
 				while(tagit.hasNext())
 				{
 					tag = tagit.next();
 %>
-					<li><a href="/tag/<%=tag.getTag() %>"><button class="btn btn-warning"><%=tag.getTag() %></button></a></li><br>
+					<li><a href="/tag/<%=tag.getTagname() %>"><button class="btn btn-warning"><%=tag.getTablename() %></button></a></li><br>
 <%					
 				}
 			}
 %>
-              
             </ul>
       		</div>
-
       	</div>
-
       </div>
 	  <script type="text/javascript" src="/js/jquery.js"></script>
 	  <script type="text/javascript" src="/js/jquerypp.custom.js"></script>

@@ -2,10 +2,8 @@
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.*" %>
-<%@ page import="com.sharetour.model.Article" %>
-<%@ page import="com.sharetour.model.Comment" %>
-<%@ page import="com.sharetour.service.PostListDAO" %>
-<%@ page import="com.sharetour.service.CommentDAO" %>
+<%@ page import="com.sharetour.model.*" %>
+<%@ page import="com.sharetour.service.PostService" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,8 +96,8 @@
 	String url = request.getRequestURI();
 	int index = url.lastIndexOf("/");
 	String pid = url.substring(index+1);
-	
-	Article article = new PostListDAO().getPost(Integer.parseInt(pid));
+	PostService postservice = new PostService(new Post(Long.parseLong(pid)));
+	Post post = postservice.getPost();
 %>
 <div class="container">
 	<div class="row-fluid">
@@ -107,25 +105,25 @@
 		<div class="span8 box">  
 			<div class="span12 post">    
 <%
-	if(article != null)
+	if(post != null)
 	{	
 %>
 	             <br><br>
 	             <div class="title">
-	                <p class="lead" align="center"><%=article.getTitle() %></p>
+	                <p class="lead" align="center"><%=post.getTitle() %></p>
 	             </div>
 	             <div class="content">
-	              	<%=article.getContent() %>
+	              	<%=post.getContent() %>
 	             </div>
 <%
 	}
 %>
 			</div>
 <%
-	List<Comment> clist = new CommentDAO().getComments(Integer.parseInt(pid));
+	List<PostComment> clist = postservice.getPostComment();
 	if(clist != null)
 	{
-		Iterator<Comment> cit = clist.iterator();
+		Iterator<PostComment> cit = clist.iterator();
 %>
       <br><br>
       <legend>评论</legend>
@@ -147,7 +145,7 @@
 <%
 			while(cit.hasNext())
 			{
-				Comment comment = cit.next();
+				PostComment comment = cit.next();
 %>
 			<div>
 	            <div class="head-img span1">
@@ -155,8 +153,8 @@
 	            </div>
 
 				<div class="span11">
-					<p><%=comment.getUsername() %>评论：</p>
-					<p><%=comment.getComment() %></p>
+					<p><%=comment.getName() %>评论：</p>
+					<p><%=comment.getContent() %></p>
 				</div>
 			</div>
 			<br>
@@ -167,7 +165,8 @@
 <%		
 	}
 %>
-		</div>
+		</div> 
+		<!-- end span8 box -->
 		<div class="span3">
 			<br>
 			<div class="well">

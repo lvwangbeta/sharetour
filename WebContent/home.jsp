@@ -2,7 +2,8 @@
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.sharetour.model.*" %>
-<%@ page import="com.sharetour.service.PostListDAO" %>
+<%@ page import="com.sharetour.service.PostService" %>
+<%@ page import="org.apache.commons.lang.StringUtils" %>
 <%@ page import="java.util.*" %>
 <html>
 <head>
@@ -34,7 +35,7 @@
 </head>
 <body>
 <%
-	User user = (User)session.getAttribute("user");
+	UserInfo user = (UserInfo)session.getAttribute("user");
 	if(user == null)
 	{
 		response.sendRedirect("/index");
@@ -113,20 +114,20 @@
           <div id="postslist">
             <table class="table">
 <%
-	List<Article> postslist = new PostListDAO().getPostList(user);
+	List<Post> postslist = PostService.getPostList(0, 10);
     if(postslist != null)
     {
-    	Iterator<Article> it = postslist.iterator();
+    	Iterator<Post> it = postslist.iterator();
     	while(it.hasNext())
     	{
-    		Article article = it.next();
+    		Post post = it.next();
 %>
-	            <tr id="<%=article.getId() %>">
+	            <tr id="<%=post.getId() %>">
 	              <td>
 	                <div class="posttitle">
-	                  <p><a href="/journal/<%=article.getId() %>"><%=article.getTitle() %></a></p> 
+	                  <p><a href="/journal/<%=post.getId() %>"><%=post.getTitle() %></a></p> 
 <%
-					String[] tags = article.getTags();
+					String[] tags = StringUtils.split(post.getTags(), " ");
 					for(int i=0; i<tags.length; i++)
 					{
 %>
@@ -138,7 +139,7 @@
 	              </td>
 	              <td class="span2">
 	                <div class="likes">
-                  	  <span class="badge badge-important"><%=article.getLikes() %></span>
+                  	  <span class="badge badge-important"><%=post.getLikes() %></span>
                   	  <span>likes</span>	
 	                </div>
 	              </td>

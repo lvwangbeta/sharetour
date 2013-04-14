@@ -59,7 +59,8 @@ public abstract class POJO implements Serializable{
 	public <T extends POJO> T Get(long id)
 	{
 		String sql = "SELECT * FROM " + getTablename() + " WHERE id=?";
-		return (T) helper.get(getClass(), id, sql, new Object[]{id});
+		T obj = (T) helper.get(getClass(), id, sql, new Object[]{id});
+		return obj;
 	}
 	
 	/*
@@ -127,8 +128,6 @@ public abstract class POJO implements Serializable{
 		ResultSet res = null;
 		
 		try {
-			if(helper == null)
-				setQueryHelper(new QueryHelper(ConnectionPool.getInstance().getConnection()));
 			con = helper.getConnection();
 			//pstm = con.prepareStatement(sql.toString());
 			pstm = con.prepareStatement(sql.toString(), 
@@ -145,6 +144,12 @@ public abstract class POJO implements Serializable{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			try {
+				con.close();
+			} catch (SQLException e) {
+				con = null;
+			}
 		}
 		return id;		
 	}
@@ -158,8 +163,6 @@ public abstract class POJO implements Serializable{
 		PreparedStatement pstm = null;
 		
 		try {
-			if(helper == null)
-				setQueryHelper(new QueryHelper(ConnectionPool.getInstance().getConnection()));
 			con = helper.getConnection();
 			pstm = con.prepareStatement(sql);
 			pstm.executeUpdate();
@@ -179,8 +182,6 @@ public abstract class POJO implements Serializable{
 			Connection con = null;
 			PreparedStatement pstm = null;	
 			try {
-				if(helper == null)
-					setQueryHelper(new QueryHelper(ConnectionPool.getInstance().getConnection()));
 				con = helper.getConnection();
 				pstm = con.prepareStatement("DELETE FROM " + getTablename() + " WHERE id=?");
 				System.out.println("delete from "+getTablename()+"where id="+getId());
@@ -203,11 +204,19 @@ public abstract class POJO implements Serializable{
 	public List<? extends POJO> List(int page, int size)
 	{
 		String sql = "SELECT * FROM " + getTablename()+" ORDER BY id DESC ";
-		if(helper == null)
-			setQueryHelper(new QueryHelper(ConnectionPool.getInstance().getConnection()));
 		return helper.query_slice(getClass(), sql, page, size);
 	}
-	
+
+	/*
+	 * 分页显示数据,但可以设置order属性
+	 * @param page
+	 * @param size
+	 */
+	public List<? extends POJO> List(int page, int size, String order)
+	{
+		String sql = "SELECT * FROM " + getTablename()+" ORDER BY " + order + " DESC ";
+		return helper.query_slice(getClass(), sql, page, size);
+	}	
 	
 	/*
 	 * 获得总记录条目数
@@ -219,8 +228,6 @@ public abstract class POJO implements Serializable{
 		ResultSet res = null;
 		int count = 0;
 		try {
-			if(helper == null)
-				setQueryHelper(new QueryHelper(ConnectionPool.getInstance().getConnection()));
 			con = helper.getConnection();
 			pstm = con.prepareStatement("SELECT COUNT(*) FROM " + getTablename());
 			res = pstm.executeQuery();

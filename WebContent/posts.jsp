@@ -2,8 +2,9 @@
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.*" %>
-<%@ page import="com.sharetour.service.TagDAO" %>
-<%@ page import="com.sharetour.model.Article" %>
+<%@ page import="com.sharetour.service.TagService" %>
+<%@ page import="com.sharetour.model.PostTag" %>
+<%@ page import="com.sharetour.model.Post" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,24 +102,25 @@
 %>
 	<p class="lead">最新游记<button class="btn btn-warning"><%=tag %></button></p>
 <%
-	
-	List<Article> postlist = new TagDAO().getTagPost(tag);
-	Article article = null;
+	PostTag posttag = new PostTag();
+	posttag.setTagname(tag);
+	List<Post> postlist = new TagService(posttag).getPostsRelatedToTag();
 	if(postlist != null)
 	{
-		Iterator<Article> it = postlist.iterator();
+		Post post = null;
+		Iterator<Post> it = postlist.iterator();
 		while(it.hasNext())
 		{
-			article = it.next();
+			post = it.next();
 		
 %>
 
 	        	<tr>
 	        		<td class="sapn8">
-	        			<a href="/journal/<%=article.getId() %>"><%=article.getTitle() %></a>
+	        			<a href="/journal/<%=post.getId() %>"><%=post.getTitle() %></a>
 	        		</td>
 	        		<td class="span4">
-	        			<span><%=article.getLikes() %>&nbsp;</span>
+	        			<span><%=post.getLikes() %>&nbsp;</span>
 	        			<span><button class="btn btn-danger">likes</button></span> 
 	        		</td>
 	        	</tr>
