@@ -28,10 +28,10 @@ public class NewPostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		Action newpostaction = ActionFactory.getAction("newpost");
 		String view = newpostaction.execute(request);
-		if(view == "success"){
+		if("success".equals(view)){
 			response.sendRedirect("/u/space");
 		}
-		else if(view == "error"){
+		else if("error".equals(view)){
 			response.sendRedirect("/u/space");
 		}
 	}

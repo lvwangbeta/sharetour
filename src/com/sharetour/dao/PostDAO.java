@@ -1,18 +1,20 @@
 package com.sharetour.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import com.sharetour.dao.impl.MySQLManager;
+import org.apache.commons.lang.StringUtils;
 import com.sharetour.model.Post;
 import com.sharetour.model.PostComment;
-import com.sharetour.service.cmd.CreateNewPost;
-import com.sharetour.service.cmd.PostTagCommand;
-import com.sharetour.service.cmd.PostTagRelationCommand;
+import com.sharetour.model.Relation;
 import com.sharetour.util.QueryHelper;
-import com.sharetour.db.ConnectionPool;
 
 
 public class PostDAO {
-		
+	private final static String SEPARATOR = " ";	
 	private Post post;
 	public PostDAO(){
 		
@@ -22,16 +24,75 @@ public class PostDAO {
 	}	
 	public boolean createNewPost(){
 		
-		DBManager manager = new MySQLManager(ConnectionPool.getInstance().getConnection());
-		DAOCommand newpostcmd = new CreateNewPost(this.post);
-		DAOCommand posttagcmd = new PostTagCommand(this.post.getTags());
-		long pid = (Long) manager.execute(newpostcmd);
-		//System.out.print(pid);
-		@SuppressWarnings("unchecked")
-		List<Long> tids = (List<Long>) manager.execute(posttagcmd);
-		DAOCommand relationcmd = new PostTagRelationCommand(pid, tids);
-		manager.executeAndClose(relationcmd);
+		QueryHelper helper = new QueryHelper();
+		post.setQueryHelper(helper);
+		long pid = post.Save();
+		if(pid == 0){
+			return false;
+		}
+		List<Long> tids = savePostTag(helper, post.getTags());
+		if(tids == null || tids.size() == 0){
+			return false;
+		}
+		savePostTagRelation(helper, pid, tids);
+		helper.closeConnection();
 		return true;
+	}
+	
+	public void savePostTagRelation(QueryHelper helper, long pid, List<Long> tids){
+		Relation relation = new Relation();
+		relation.setQueryHelper(helper);
+		relation.setPid(pid);
+		for(long tid: tids)
+		{
+			relation.setTid(tid);
+			relation.Save();
+		}
+	}
+	
+	public List<Long> savePostTag(QueryHelper helper, String ptags){
+		Connection connection = helper.getConnection();
+		String[] tags = StringUtils.split(ptags, SEPARATOR);
+		if(tags == null || tags.length == 0)
+			return null;
+		//insert new entry and update count number column of old entry
+		StringBuilder sql = new StringBuilder(
+				"insert into posts_tags(tagname) values(?) on duplicate key update postcount=postcount+1");
+		int len = tags.length;
+		PreparedStatement pstm = null;
+		ResultSet res = null;
+		try {
+			pstm = connection.prepareStatement(sql.toString());
+			for(int i=0; i<len; i++)
+			{
+				pstm.setString(1, tags[i]);
+				pstm.addBatch();
+			}			
+			pstm.executeBatch();
+			//select tag id 
+			sql = new StringBuilder("select id from posts_tags where tagname in (");
+			for(int i=0; i<len; i++)
+			{		
+				sql.append("'");
+				sql.append(tags[i]);
+				sql.append("'");
+				if(i<len-1)
+					sql.append(",");
+			}
+			sql.append(")");	
+			pstm = connection.prepareStatement(sql.toString(), 
+					PreparedStatement.RETURN_GENERATED_KEYS);		
+			res = pstm.executeQuery();
+			List<Long> list = new ArrayList<Long>();
+			while(res.next())
+			{
+				list.add(res.getLong(1));
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;		
 	}
 	
 	public Post getPost(){
@@ -72,5 +133,15 @@ public class PostDAO {
 		helper.closeConnection();
 		return list;
 	}
+	/*
+	 * 根据authorid获得其所有posts
+	 */
+	public List<Post> getPostsOfAuthor(int authorid){
+		QueryHelper helper = new QueryHelper();
+		List<Post> list = helper.executeQuery(Post.class, "select * from posts where authorid=?", authorid);
+		helper.closeConnection();
+		return list;
+	}
+	
 	
 }

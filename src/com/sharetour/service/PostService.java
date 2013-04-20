@@ -19,6 +19,7 @@ public class PostService {
 	public Post getPost(){
 		return postdao.getPost();	
 	}
+	
 	public boolean savePost(){
 		return postdao.createNewPost();
 	}
@@ -27,5 +28,26 @@ public class PostService {
 	}
 	public static List<Post> getPostList(int page, int limit){
 		return new PostDAO().getPostList(page, limit);
+	}
+	/*
+	 * 根据用户名获得用户ID
+	 */
+	public static int getAuthorid(String username){
+		return UserService.getAuthorid(username);
+	}	
+	/*
+	 * 获得作者的posts
+	 */
+	public static List<Post> getPostsOfAuthor(int authorid){
+		return new PostDAO().getPostsOfAuthor(authorid);
+	}
+	public boolean checkEmpty(){
+		if( (post.getTitle() == null || post.getTitle().length() == 0)
+			|| (post.getContent() == null || post.getContent().length() == 0)	
+			)
+		{
+			return false;
+		}
+		return true;
 	}
 }

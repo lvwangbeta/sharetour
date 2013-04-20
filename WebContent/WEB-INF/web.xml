@@ -12,6 +12,41 @@
   <listener>
     <listener-class>com.sharetour.listener.MyServletContextListener</listener-class>
   </listener>
+  
+  <filter>
+    <display-name>URLMappingFilter</display-name>
+    <filter-name>URLMappingFilter</filter-name>
+    <filter-class>com.sharetour.util.URLMappingFilter</filter-class>
+    <init-param>
+      <param-name>domain</param-name>
+      <param-value></param-value>
+    </init-param>
+    <init-param>
+      <param-name>ignore</param-name>
+      <param-value>/action/,/uploads/,/img/,/css/,/js/</param-value>
+    </init-param>
+    <init-param>
+      <param-name>ignoreExts</param-name>
+      <param-value>ico,css,js,jpg,gif,png,bmp,doc,xls,pdf,txt,html,htm,zip,rar</param-value>
+    </init-param>
+    <init-param>
+      <param-name>pageLocation</param-name>
+      <param-value>/</param-value>
+    </init-param>
+    <init-param>
+      <param-name>www</param-name>
+      <param-value>/www</param-value>
+    </init-param>
+    <init-param>
+      <param-name>m</param-name>
+      <param-value>/wap</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>URLMappingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>  
+  
   <servlet>
     <description></description>
     <display-name>LoginServlet</display-name>
@@ -20,7 +55,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/login</url-pattern>
+    <url-pattern>/action/login</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -30,7 +65,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/register</url-pattern>
+    <url-pattern>/action/register</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -40,7 +75,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>NewPostServlet</servlet-name>
-    <url-pattern>/newpost</url-pattern>
+    <url-pattern>/action/newpost</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -54,7 +89,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ImgUploadServlet</servlet-name>
-    <url-pattern>/imgupload</url-pattern>
+    <url-pattern>/action/imgupload</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -64,32 +99,9 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ImgDownServlet</servlet-name>
-    <url-pattern>/imgs</url-pattern>
+    <url-pattern>/action/imgs</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>UserSpace</servlet-name>
-    <jsp-file>/home.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UserSpace</servlet-name>
-    <url-pattern>/u/space</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>index</servlet-name>
-    <jsp-file>/index.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>index</servlet-name>
-    <url-pattern>/index</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>edit</servlet-name>
-    <jsp-file>/edit.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>edit</servlet-name>
-    <url-pattern>/edit</url-pattern>
-  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>MongoManager</display-name>
@@ -98,23 +110,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>MongoManager</servlet-name>
-    <url-pattern>/mm</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>journal</servlet-name>
-    <jsp-file>/journal.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>journal</servlet-name>
-    <url-pattern>/journal/*</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>postoftag</servlet-name>
-    <jsp-file>/posts.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>postoftag</servlet-name>
-    <url-pattern>/tag/*</url-pattern>
+    <url-pattern>/action/mm</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -124,7 +120,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CommentServlet</servlet-name>
-    <url-pattern>/comment</url-pattern>
+    <url-pattern>/action/comment</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -134,24 +130,9 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
-    <url-pattern>/logout</url-pattern>
+    <url-pattern>/action/logout</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>about</servlet-name>
-    <jsp-file>/about.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>about</servlet-name>
-    <url-pattern>/about</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>registerpage</servlet-name>
-    <jsp-file>/register.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>registerpage</servlet-name>
-    <url-pattern>/registerpage</url-pattern>
-  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>LikeServlet</display-name>
@@ -160,7 +141,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>LikeServlet</servlet-name>
-    <url-pattern>/like</url-pattern>
+    <url-pattern>/action/like</url-pattern>
   </servlet-mapping>
 
 </web-app>

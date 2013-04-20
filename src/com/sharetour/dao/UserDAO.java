@@ -42,7 +42,7 @@ public class UserDAO {
 		return null;
 	}
 	/*
-	 * 登陆检测
+	 * 用户信息查找
 	 */
 	public UserInfo find(String username, String password){
 		QueryHelper helper = new QueryHelper();
@@ -54,5 +54,28 @@ public class UserDAO {
 			userinfo.setPassword("");
 		helper.closeConnection();
 		return userinfo;
+	}
+	
+	public int getAuthorid(String username){
+		QueryHelper helper = new QueryHelper();
+		UserInfo userinfo = helper.get(UserInfo.class, 
+				username, 
+				"select * from users where username=?", 
+				username);
+		return (int)userinfo.getId();
+	}
+	
+	/*
+	 * 保存新用户
+	 */
+	public boolean registerNewUser(UserInfo user){
+		QueryHelper helper = new QueryHelper();
+		user.setQueryHelper(helper);
+		if(user.Save() > 0){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }

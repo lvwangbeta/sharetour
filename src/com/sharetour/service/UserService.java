@@ -17,12 +17,37 @@ public class UserService {
 	public UserService(){
 		userdao = new UserDAO();
 	}
+	
+	/*
+	 * field empty check
+	 */
+	public static boolean emptyCheck(String username, String password,String confirm,
+			String email, String gender){
+		if( (username == null || username.length() == 0)
+			|| (password == null || username.length() == 0)
+			|| (confirm == null || confirm.length() == 0)
+			|| (email== null || email.length() == 0)
+			|| (gender == null || gender.length() == 0)
+		  ){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
+	public static boolean confirmPassword(String password, String confirm){
+		if(password.equals(confirm)){
+			return true;
+		}
+		return false;
+	}
 	/*
 	 * 检测用户名是否重复
 	 * exist return true
 	 * not exist return false
 	 */
-	public static boolean checkUsername(String username){
+	public static boolean checkUsernameExist(String username){
 		
 		if(new UserDAO().checkUsername(username) == null){
 			return false;
@@ -34,7 +59,7 @@ public class UserService {
 	 * 检测邮箱格式是否合法
 	 */
 	public static boolean emailValidate(String email){
-		return false;
+		return true;
 	}
 	
 	/*
@@ -42,6 +67,22 @@ public class UserService {
 	 */
 	public static boolean checkEmailExist(String email){
 		return false;
+	}
+	
+	/*
+	 * gender check
+	 * if not validate return false
+	 */
+	public static boolean checkGenderValidate(String gender){
+		if(gender == null || gender.length() == 0){
+			return false;
+		}
+		else{
+			if(gender.equals("0") || gender.equals("1")){
+				return true;
+			}
+			return false;
+		}
 	}
 	
 	/*
@@ -68,4 +109,18 @@ public class UserService {
 		return new UserDAO().find(username, EncoderByMD5(password));
 	}
 	
+	/*
+	 * 注册新用户
+	 */
+	public static boolean Register(UserInfo user){
+		user.setPassword(EncoderByMD5(user.getPassword()));
+		return new UserDAO().registerNewUser(user);
+	}
+	
+	/*
+	 * 根据用户名获得ID
+	 */
+	public static int getAuthorid(String username){
+		return new UserDAO().getAuthorid(username);
+	}
 }

@@ -29,10 +29,10 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Action loginaction = ActionFactory.getAction("login");
 		String view = loginaction.execute(request);
-		if(view == "login"){
+		if("login".equals(view)){
 			response.sendRedirect("/");
 		}
-		else if(view == "home"){
+		else if("home".equals(view)){
 			response.sendRedirect("/");
 		}	
 	}

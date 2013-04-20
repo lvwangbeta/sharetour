@@ -5,9 +5,6 @@ import java.sql.*;
 import java.util.Map;
 import java.util.List;
 
-import com.sharetour.db.ConnectionPool;
-
-
 /*
  * POJO类是实体关系的基类
  * 完成数据库相关操作
@@ -71,7 +68,6 @@ public abstract class POJO implements Serializable{
 	{
 		String sql = "SELECT * FROM " + getTablename() + " WHERE id=?";
 		T obj =  (T) helper.get(getClass(),id, sql, new Object[]{id});
-		obj.setTablename(this.getTablename());
 		return obj;
 	}
 	
@@ -144,12 +140,6 @@ public abstract class POJO implements Serializable{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
-			try {
-				con.close();
-			} catch (SQLException e) {
-				con = null;
-			}
 		}
 		return id;		
 	}

@@ -9,7 +9,7 @@ public class Post extends POJO {
 
 	private static final long serialVersionUID = 1L;
 	private long authorid;
-	private int category;		//博客类别(e.g 工作,随笔)
+	//private int category;		//博客类别(e.g 工作,随笔)
 	private String title;
 	private String content;
 	private String summary;
@@ -93,12 +93,14 @@ public class Post extends POJO {
 	{
 		return likes;
 	}
+	/*
 	public int getCategory() {
 		return category;
 	}
 	public void setCategory(int category) {
 		this.category = category;
 	}
+	*/
 	public String getCover() {
 		return cover;
 	}
@@ -111,7 +113,7 @@ public class Post extends POJO {
 		//set params
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("authorid", getAuthorid());
-		map.put("category", getCategory());
+		//map.put("category", getCategory());
 		map.put("title", getTitle());
 		map.put("content", getContent());
 		map.put("summary", getSummary());
