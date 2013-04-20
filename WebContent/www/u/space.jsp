@@ -120,7 +120,7 @@
       	<div class="span7">
       		<%for(Post post:postlist){ %>
       		<div>
-      			<h1><%=post.getTitle() %></h1>
+      			<h1><a href="/post/<%=post.getId() %>"><%=post.getTitle() %></a></h1>
       			<p><%=post.getSummary() %></p>
 	          	<div>
 	              <span class="badge badge-success">Posted <%=format.format(post.getCtime()) %></span>
