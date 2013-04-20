@@ -52,12 +52,13 @@ public class TagDAO {
 							  Post.class,
 							  "posts_relatedto_"+posttag.getTagname(), 
 							  "select posts.id, posts.authorid, posts.title, " +
-							  "posts.summary, posts.tags, posts.visited " +
+							  "posts.summary, posts.tags, posts.visit, posts.ctime " +
 							  "from posts,relations,posts_tags where " +
 							  "posts.id=relations.pid " +
-							  "and realations.tid=posts_tags.id and posts_tags.tagname="+posttag.getTablename(), 
+							  "and relations.tid=posts_tags.id and posts_tags.tagname=?", 
 							  page, 
-							  1000
+							  1000,
+							  posttag.getTagname()
 							  );
 		helper.closeConnection();
 		return list;		

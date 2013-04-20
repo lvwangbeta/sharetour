@@ -17,11 +17,21 @@ public class TagService {
 	}
 	
 	/*
+	 * @param tag
+	 * 获得与tag相关的Post
+	 * @return List<Post>
+	 */
+	public List<Post> getPostsRelatedToTag(){
+		return tagdao.getPostsRelatedToTag();
+	}	
+	
+	/*
 	 * 采用默认的page limit参数
 	 */
 	public static List<PostTag> getHotTag(){
 		return new TagDAO().getHotTag();	
 	}
+	
 	/*
 	 * 可以设置page limit以增加缓存存储
 	 */
@@ -29,13 +39,6 @@ public class TagService {
 		return new TagDAO().getHotTag(page, limit);
 	}
 	
-	/*
-	 * @param tag
-	 * 获得与tag相关的Post
-	 * @return List<Post>
-	 */
-	public List<Post> getPostsRelatedToTag(){
-		return tagdao.getPostsRelatedToTag();
-	}
+
 	
 }

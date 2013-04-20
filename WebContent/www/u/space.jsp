@@ -126,7 +126,7 @@
 	              <span class="badge badge-success">Posted <%=format.format(post.getCtime()) %></span>
 	              <div class="pull-right">
 	              <%for(String tag:StringUtils.split(post.getTags(), " ")){ %>
-	              	<span class="label"><%=tag %></span> 
+	              	<span class="label"><a href="/tag/<%=tag%>"><%=tag %></a></span> 
 	              <%} %>
 	              </div>
 	          	</div> 
