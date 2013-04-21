@@ -6,6 +6,7 @@
 <%@ page import="com.sharetour.model.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% 
+	request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("p1");
 	if(id == null || id.length() == 0)
 		response.sendRedirect("/");

@@ -79,6 +79,8 @@ public class URLMappingFilter implements Filter {
 
 		HttpServletRequest request = (HttpServletRequest)req;
 		HttpServletResponse response = (HttpServletResponse)resp;
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		String uri = request.getServletPath();
 		String query = request.getQueryString();
 		String paths[] = StringUtils.split(uri, '/');

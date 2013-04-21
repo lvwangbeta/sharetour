@@ -7,8 +7,9 @@
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-	request.setCharacterEncoding("utf-8");
+	
 	String tag = request.getParameter("p1");
+	tag = new String(tag.getBytes("ISO-8859-1"), "UTF-8");
 	if(tag == null || tag.length() == 0){
 		response.sendRedirect("/");
 	}

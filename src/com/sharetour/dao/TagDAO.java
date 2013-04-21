@@ -60,6 +60,7 @@ public class TagDAO {
 							  1000,
 							  posttag.getTagname()
 							  );
+		System.out.println(posttag.getTagname());
 		helper.closeConnection();
 		return list;		
 	}
