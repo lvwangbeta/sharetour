@@ -5,6 +5,7 @@
 <%@ page import="com.sharetour.service.HotPostService" %>
 <%@ page import="com.sharetour.service.TagService" %>
 <%@ page import="com.sharetour.model.*" %>
+<%@ page import="org.apache.commons.lang.StringUtils" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +28,7 @@
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -35,24 +36,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="/">享途</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="nav-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
             </ul>
             <c:choose>
             	<c:when test="${sessionScope.user == null }">
@@ -71,6 +59,7 @@
 		                  <li><a href="#">${sessionScope.user.email }</a></li>
 		                  <li><a href="#">${sessionScope.user.birth }</a></li>
 		                  <li><a href="#">${sessionScope.user.gender }</a></li>
+                  		  <li><a href="#">info <span class="badge badge-important">6</span></a></li>		                  
 		                  <li class="divider"></li>
 		                  <li class="nav-header">Nav header</li>
 		                  <li><a href="/action/logout">退出</a></li>
@@ -90,51 +79,122 @@
         <div class="span8">
           <div class="posts">
             <div class="post">
-              <h2><a href="/post/2">Heading</a></h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
+              <div class="row">
+                <div class="span8">
+                  <div class="row">
+                    <div class="span8">
+                    	<div class="posttitle">
+                      		<h4><strong><a href="#">Title of the post</a></strong></h4>
+                      	</div>
+                    </div>                   
+                  </div>
+                  <!-- end row level2 -->
+                  <div class="row">
+                    <div class="span2">
+                    	<div class="preimg">
+	                      <a href="#" class="thumbnail">
+	                          <img src="/img/pre.jpg" alt="">
+	                      </a>                    	
+                    	</div>
+
+                    </div>
+                    <div class="span6">     
+                      <p>
+                        <i class="icon-user"></i> by <a href="#">Mark</a> 
+                        | <i class="icon-calendar"></i> Sept 16th, 2012
+                        | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+                      </p> 
+                      <p>
+                        Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari conclusionemque, ad nobis propriae quaerendum sea.
+                      </p>
+                      <div class="row">
+                        <div class="span4">
+                          <p>
+                            <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
+                            <a href="#"><span class="label label-warning">Bootstrap</span></a> 
+                            <a href="#"><span class="label label-warning">UI</span></a> 
+                            <a href="#"><span class="label label-warning">growth</span></a>
+                          </p>                                                  
+                        </div>
+                        <div class="span2">
+                            <a href="#"><span class="label label-important">6 like</span></a> 
+                            <a href="#"><span class="label label-success">35 share</span></a>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- end row level 2 -->
+                </div>
+                <!-- end span8 -->
+              </div>  
+            <!-- end row level1 -->
             </div>
-            <!-- <hr class="divider"> -->
-            <div class="post">
-              <h2><a href="#">Heading</a></h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-            <div class="post">
-              <h2><a href="#">Heading</a></h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>  
+            <!-- end post -->
+            
             <%
             List<Post> postlist = new HotPostService().getHotPost();
             Iterator<Post> it = postlist.iterator();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             while(it.hasNext()){
+            	 Post post = it.next();	
             %>
-            <div class="post">
-			   <%
-			    Post post = it.next();		    
-    			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-    		   %>
-              <h3><strong><a href="/post/<%=post.getId()%>"><%=post.getTitle() %></a></strong></h3>
-              <p>
-    		   <%=post.getSummary() %>                        
-              </p>
-              <p><a class="btn" href="#">Read more</a></p>
-              <p>
-                <i class="icon-user"></i> by <a href="#">John</a> 
-                | <i class="icon-calendar"></i> <%=format.format(post.getCtime()) %>
-                | <i class="icon-comment"></i> <a href="#">3 Comments</a>
-                | <i class="icon-share"></i> <a href="#">39 Shares</a>
-                | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
-                <a href="#"><span class="label label-info">Bootstrap</span></a> 
-                <a href="#"><span class="label label-info">UI</span></a> 
-                <a href="#"><span class="label label-info">growth</span></a>
-              </p>                 
-            </div>     <!-- end post -->            
-            <%
-            }
-            %>    
+            <div class="post">         
+              <div class="row">
+                <div class="span8">
+                  <div class="row">
+                    <div class="span8">
+                    	<div class="posttitle">
+                      		<h4><strong><a href="/post/<%=post.getId()%>"><%=post.getTitle() %></a></strong></h4>
+                      	</div>
+                    </div>                   
+                  </div>
+                  <!-- end row level2 -->
+                  <div class="row">
+                    <div class="span2">
+                    	<div class="preimg">
+	                      <a href="#" class="thumbnail">
+	                          <img src="../img/pre.jpg" alt="">
+	                      </a>
+	                    </div>
+                    </div>
+                    <div class="span6">     
+                      <p>
+		                <i class="icon-user"></i> by <a href="#">John</a> 
+		                | <i class="icon-calendar"></i> <%=format.format(post.getCtime()) %>
+		                | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+                      </p> 
+		              <p>
+		    		   <%=post.getSummary() %>                        
+		              </p>
+                      <div class="row">
+                        <div class="span4">
+                          <p>
+			                <i class="icon-tags"></i> 
+			                	Tags : 
+			                <%for(String tag:StringUtils.split(post.getTags(), ' ')) {%>
+			                	<a href="/tag/<%=tag%>"><span class="label label-warning"><%=tag %></span></a>
+			                <%} %> 
+                          </p>                                                  
+                        </div>
+                        <div class="span2">
+                            <a href="#"><span class="label label-important">6 like</span></a> 
+                            <a href="#"><span class="label label-success">35 share</span></a>
+                        </div>
 
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- end row level 2 -->
+                </div>
+                <!-- end span8 -->
+              </div>  
+            <!-- end row level1 -->
+            </div>
+            <!-- end post -->     
+            <%} %>       
           </div> <!-- end posts -->
          
         </div> <!-- end span8 posts -->
