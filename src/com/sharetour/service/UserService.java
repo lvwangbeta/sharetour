@@ -109,6 +109,7 @@ public class UserService {
 		return new UserDAO().find(username, EncoderByMD5(password));
 	}
 	
+	
 	/*
 	 * 注册新用户
 	 */

@@ -88,6 +88,10 @@
 	padding: 5px;
 }
 
+.warningblock{
+	display: none;
+}
+
 
 
 .social_buttons{

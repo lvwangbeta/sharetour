@@ -91,16 +91,30 @@
 					<div class="title"><%=post.getTitle()%></div>
 					<div class="content"><%=post.getContent() %></div>
     			</div>
-    			<div class="comments-area" id="comments">
-    				<h3>5 commets to this article</h3>
-					<ol class="comments-list">
+    			<div class="comments-area" id="comments"> 
+					<div id="commentdiv">
+						<h3>Comment</h3>
+						<form action="/action/comment" id="commentform" method="post">
+							<input type="hidden" name="postid" id="postid" value="<%=post.getId() %>" />
+							<input type="hidden" name="username" id="username" value="${sessionScope.user.username }" />
+							<p>
+								<textarea name="content" id="content" cols="30" rows="8"></textarea>
+							</p>
+							<div class="alert alert-error warningblock" id="tip">
+							</div>								
+							<p>
+								<button type="submit" class="btn btn-primary" id="submit">评论</button>
+							</p>									
+						</form>
+					</div> 	
+					<ol class="comments-list" id="comments-list">
 					<%if(comments != null) {%>
 						<c:forEach var="comment" items="<%=comments %>">
 							<li>
 								<div>
 									<p>
-										<span><a href="#">${comment.name}</a></span>
-										<span>${comment.ctime }</span>
+										<i class="icon-user"></i> <a href="#">${comment.name}</a> 
+										&nbsp;<i class="icon-calendar"></i> ${comment.ctime }
 									</p>
 									<p>
 										${comment.content }
@@ -109,27 +123,7 @@
 							</li>												
 						</c:forEach>
 					<%} %>
-					</ol>   
-					<div id="commentdiv">
-						<h3>Comment</h3>
-						<form action="/action/comment" id="commentform">
-							<input type="hidden" name="postid" value="<%=post.getId() %>" />
-							<p>
-								<input type="text" name="author" id="author" class="inline" />
-								<label for="author" class="inline">author *</label>
-							</p>
-							<p>
-								<input type="text" name="email" id="email" />
-								<label for="email">email *</label>
-							</p>
-							<p>
-								<textarea name="content" id="content" cols="30" rows="10"></textarea>
-							</p>
-							<p>
-								<input type="submit" class="btn btn-primary" />
-							</p>									
-						</form>
-					</div> 				
+					</ol>  			
   			</div>
     		</div> <!-- end span8 -->
     		<!-- side bar -->
@@ -151,5 +145,6 @@
     </div> <!-- end container -->
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/comment.js"></script>
 	</body>
 </html>
