@@ -179,8 +179,8 @@
                           </p>                                                  
                         </div>
                         <div class="span2">
-                            <a href="#"><span class="label label-important">6 like</span></a> 
-                            <a href="#"><span class="label label-success">35 share</span></a>
+                            <a href="#"><span class="liketag">6 like</span></a> 
+                            <a href="#"><span class="sharetag">35 share</span></a>
                         </div>
 
                       </div>

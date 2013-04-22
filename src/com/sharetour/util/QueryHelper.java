@@ -141,6 +141,43 @@ public class QueryHelper {
 		}
 		return effected;
 	}
+	
+	/*
+	 * save by sql
+	 */
+	public long save(String sql, Object...objects){
+		throw new UnsupportedOperationException("method not ready");
+	}
+	
+	
+	/*
+	 * update by sql
+	 */
+	public int update(String sql, Object...objects ){
+		int n = 0;
+		QueryRunner query = new QueryRunner();
+		try {
+			if(objects == null){
+				n = query.update(connection, sql);
+			}
+			else{
+				n = query.update(connection, sql, objects);
+			}
+			
+		} catch (SQLException e) {
+			n = 0;
+		}
+		return n;
+	}
+	
+	/*
+	 * delete by sql
+	 */
+	public int delete(String sql, Object...objects){
+		return update(sql, objects);
+	}
+	
+	
 	/*
 	 * 关闭数据库连接
 	 */

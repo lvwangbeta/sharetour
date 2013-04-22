@@ -147,19 +147,9 @@ public abstract class POJO implements Serializable{
 	 * 根据map中的 属性更新数据库
 	 * 暂时还是执行sql语句吧
 	 */
-	public void Update(String sql)
+	public void Update(String sql, Object...objects)
 	{
-		Connection con = null;
-		PreparedStatement pstm = null;
-		
-		try {
-			con = helper.getConnection();
-			pstm = con.prepareStatement(sql);
-			pstm.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		helper.update(sql, objects);	
 	}
 	
 	/*
@@ -168,19 +158,8 @@ public abstract class POJO implements Serializable{
 	public void Delete()
 	{
 		if(getId() > 0)
-		{
-			Connection con = null;
-			PreparedStatement pstm = null;	
-			try {
-				con = helper.getConnection();
-				pstm = con.prepareStatement("DELETE FROM " + getTablename() + " WHERE id=?");
-				System.out.println("delete from "+getTablename()+"where id="+getId());
-				pstm.setLong(1, getId());
-				pstm.executeUpdate();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		{			
+			helper.delete("DELETE FROM " + getTablename() + " WHERE id=?", getId());
 		}
 		else
 			return;

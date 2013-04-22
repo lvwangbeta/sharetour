@@ -19,6 +19,7 @@ public class ActionFactory {
 		actions.put("login", new LoginAction());
 		actions.put("newpost", new NewPostAction());
 		actions.put("comment", new CommentAction());
+		actions.put("like", new CommentAction());
 	}
 	public static Action getAction(String action){
 		return actions.get(action);
