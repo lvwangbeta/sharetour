@@ -4,6 +4,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.sharetour.service.HotPostService" %>
 <%@ page import="com.sharetour.service.TagService" %>
+<%@ page import="com.sharetour.service.PostLikeService" %>
 <%@ page import="com.sharetour.model.*" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -137,6 +138,8 @@
             List<Post> postlist = new HotPostService().getHotPost();
             Iterator<Post> it = postlist.iterator();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        	UserInfo user = (UserInfo)session.getAttribute("user");
+        	PostLikeService postlikeservice = new PostLikeService();
             while(it.hasNext()){
             	 Post post = it.next();	
             %>
@@ -179,8 +182,23 @@
                           </p>                                                  
                         </div>
                         <div class="span2">
-                            <a href="#"><span class="liketag">6 like</span></a> 
-                            <a href="#"><span class="sharetag">35 share</span></a>
+                            <a href="/action/like?postid=<%=post.getId() %>"  
+                            <%
+                            	if(user != null && 
+                            	postlikeservice.checkPostLike(user.getId(), post.getId())){
+                            %>
+                            	class="liketag liked">	
+                            <%
+                            	}
+                            	else{
+                            %>
+                            	class="liketag">
+                            <%
+                            	}
+                            %>
+                            	<span>6 like</span>
+                            </a> 
+                            <a href="#"  class="sharetag"><span>35 share</span></a>
                         </div>
 
                       </div>
@@ -227,6 +245,7 @@
     </div> <!-- /container -->
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
   </body>
 </html>
 

@@ -38,6 +38,9 @@ public class LikeServlet extends HttpServlet {
 		else if("nologin".equals(view)){
 			out.write("nologin");
 		}
+		else{
+			out.write("error");
+		}
 		out.close();
 		
 	}

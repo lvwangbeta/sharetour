@@ -142,18 +142,18 @@
 .sharetag{
 	background-color: #A9CC66;
 }
-.liketag:hover, .sharetag:hover{
-    
+.liketag:hover, .sharetag:hover{   
     -webkit-transition: all .2s linear;
     -moz-transition: all .2s linear;
     -o-transition: all .2s linear;
     transition: all .2s linear;
     color: #fff !important;
     text-shadow: none;	
+    text-decoration: none;
 }
-.liketag:hover{
+.liketag:hover, .liked{
 	background-color: #b94a48;
 }
-.sharetag:hover{
+.sharetag:hover, .shared{
 	background: #468847;
 }

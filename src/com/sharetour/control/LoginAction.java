@@ -15,6 +15,7 @@ public class LoginAction implements Action{
 		} catch (UnsupportedEncodingException e) {
 			System.out.println("encode error");
 		}
+		//System.out.println(java.lang.System.getenv("VCAP_SERVICES"));		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		UserInfo user = UserService.loginCheck(username, password);

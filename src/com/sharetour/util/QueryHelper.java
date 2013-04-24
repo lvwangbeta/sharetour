@@ -47,6 +47,7 @@ public class QueryHelper {
 		return null;
 	}
 	
+	
 	/*
 	 * 分页查询
 	 * 

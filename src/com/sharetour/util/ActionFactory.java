@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.sharetour.control.CommentAction;
+import com.sharetour.control.LikeAction;
 import com.sharetour.control.LoginAction;
 import com.sharetour.control.NewPostAction;
 import com.sharetour.control.RegisterAction;
@@ -19,7 +20,7 @@ public class ActionFactory {
 		actions.put("login", new LoginAction());
 		actions.put("newpost", new NewPostAction());
 		actions.put("comment", new CommentAction());
-		actions.put("like", new CommentAction());
+		actions.put("like", new LikeAction());
 	}
 	public static Action getAction(String action){
 		return actions.get(action);
