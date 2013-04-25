@@ -3,6 +3,8 @@ package com.sharetour.service;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import sun.misc.BASE64Encoder;
 import com.sharetour.dao.UserDAO;
 import com.sharetour.model.UserInfo;
@@ -12,8 +14,9 @@ import com.sharetour.model.UserInfo;
  * 完成注册信息检测，登录信息检测任务
  */
 public class UserService {
-	
 	private UserDAO userdao;
+	private static Log log = LogFactory.getLog(UserService.class);
+	
 	public UserService(){
 		userdao = new UserDAO();
 	}
@@ -106,6 +109,7 @@ public class UserService {
 	 * 登录信息检测
 	 */
 	public static UserInfo loginCheck(String username, String password){
+		log.info(username+" login");
 		return new UserDAO().find(username, EncoderByMD5(password));
 	}
 	
@@ -115,6 +119,7 @@ public class UserService {
 	 */
 	public static boolean Register(UserInfo user){
 		user.setPassword(EncoderByMD5(user.getPassword()));
+		log.info("register new user:"+user.getUsername());
 		return new UserDAO().registerNewUser(user);
 	}
 	

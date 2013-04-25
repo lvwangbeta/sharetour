@@ -12,7 +12,6 @@ public class EhCacheProvider implements CacheProvider{
 	
 	@Override
 	public Cache getCache(String cache_name) {
-		// TODO Auto-generated method stub
 		Cache cache_m = cacheMap.get(cache_name);
 		if(cache_m == null)
 		{
@@ -36,7 +35,6 @@ public class EhCacheProvider implements CacheProvider{
 
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
 		manager = CacheManager.create();
 		cacheMap = new HashMap<String, Cache>();
 	}

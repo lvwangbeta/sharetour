@@ -12,14 +12,12 @@ public class EhCache implements Cache{
 	}
 	@Override
 	public void put(Object key, Object value) {
-		// TODO Auto-generated method stub
 		Element element = new Element(key, value);
 		cache.put(element);
 	}
 
 	@Override
 	public Object get(Object key) {
-		// TODO Auto-generated method stub
 		Element element = cache.get(key);
 		if(element != null)
 		{
@@ -29,7 +27,6 @@ public class EhCache implements Cache{
 	}
 	@Override
 	public void remove(Object key) {
-		// TODO Auto-generated method stub
 		cache.remove(key);
 	}
 
