@@ -10,12 +10,12 @@
 	String id = request.getParameter("p1");
 	if(id == null || id.length() == 0)
 		response.sendRedirect("/");
-	PostService postservice = new PostService(new Post(Long.parseLong(id)));
-	Post post = postservice.getPost();
+	PostService postservice = new PostService();
+	Post post = postservice.getPostById(Long.parseLong(id));
 	if(post == null)
 		response.sendRedirect("/"); 
 	String postid = id;
-	List<PostComment> comments = postservice.getPostComment();
+	List<PostComment> comments = postservice.getCommentsByPostId(Long.parseLong(id));
 %> 
 
 <!DOCTYPE html>

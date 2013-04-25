@@ -115,20 +115,31 @@ public class PostDAO {
 	 	helper.closeConnection();
 	 	return comments;
 	}
-	@SuppressWarnings("unchecked")
-	public List<Post> getHotPost(int limit, String order){
+	/*
+	 * @param page 起始页
+	 * @param limit 页面容量
+	 * @param order 结果集按order排序
+	 */
+	public List<Post> getPostList(int page, int limit, String order){
 		QueryHelper helper = new QueryHelper();
 		Post p = new Post();
 		p.setQueryHelper(helper);
-		List<Post> list =  (List<Post>) p.List(1, limit, order);
+		@SuppressWarnings("unchecked")
+		List<Post> list = (List<Post>) p.List(page, limit, order);
 		helper.closeConnection();
 		return list;
 	}
-	@SuppressWarnings("unchecked")
+	
+	
+	/*
+	 * @param page 起始页
+	 * @param limit 页面容量
+	 */
 	public List<Post> getPostList(int page, int limit){
 		QueryHelper helper = new QueryHelper();
 		Post p = new Post();
 		p.setQueryHelper(helper);
+		@SuppressWarnings("unchecked")
 		List<Post> list = (List<Post>) p.List(page, limit);
 		helper.closeConnection();
 		return list;
@@ -136,7 +147,7 @@ public class PostDAO {
 	/*
 	 * 根据authorid获得其所有posts
 	 */
-	public List<Post> getPostsOfAuthor(int authorid){
+	public List<Post> getPostsOfAuthor(Long authorid){
 		QueryHelper helper = new QueryHelper();
 		List<Post> list = helper.executeQuery(Post.class, "select * from posts where authorid=?", authorid);
 		helper.closeConnection();

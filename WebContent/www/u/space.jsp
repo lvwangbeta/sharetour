@@ -102,7 +102,7 @@
           <!-- end left-side -->          
         </div>
         <%
-        	List<Post> postlist = PostService.getPostsOfAuthor((int)user.getId());
+        	List<Post> postlist = new PostService().getPostsOfAuthor(user.getId());
         	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         %>
       	<div class="span7">

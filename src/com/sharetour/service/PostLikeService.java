@@ -1,5 +1,6 @@
 package com.sharetour.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import com.sharetour.cache.CacheHelper;
@@ -16,6 +17,9 @@ public class PostLikeService {
 		if(postactiondao.postLike(relation)){
 			List<PostUserRelation> list = (List<PostUserRelation>) CacheHelper.
 					getCacheData(PostUserRelation.class.getSimpleName(), relation.getUid());
+			if(list == null){
+				list = new LinkedList<PostUserRelation>();
+			}
 			list.add(relation);
 			return true;
 		}
@@ -30,14 +34,16 @@ public class PostLikeService {
 		if(postactiondao.undoPostLike(relation)){
 			List<PostUserRelation> list = (List<PostUserRelation>) CacheHelper.
 					getCacheData(PostUserRelation.class.getSimpleName(), relation.getUid());
-			for(int i=0; i<list.size(); i++){
-				PostUserRelation rel = list.get(i);
-				if(rel.getPid() == relation.getPid()){
-					list.remove(i);
-					break;
+			if(list != null){
+				for(int i=0; i<list.size(); i++){
+					PostUserRelation rel = list.get(i);
+					if(rel.getPid() == relation.getPid()){
+						list.remove(i);
+						break;
+					}
 				}
+				return true;				
 			}
-			return true;
 		}
 		return false;
 	}

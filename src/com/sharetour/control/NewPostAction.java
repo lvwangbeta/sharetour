@@ -30,14 +30,14 @@ public class NewPostAction implements Action{
 		post.setTags(tags);	
 		post.setSummary(new PostSummaryService().getSummary(content));
 		post.setCover(new CoverService().getCover(content));
-		PostService service = new PostService(post);
+		PostService service = new PostService();
 		/*
 		 * check title content, field not empty
 		 */		
-		if(!service.checkEmpty()){
+		if(!service.checkEmpty(post)){
 			return ERROR;
 		}		
-		if(service.savePost()){
+		if(service.savePost(post)){
 			return SUCCESS;
 		}
 		else{
