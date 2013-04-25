@@ -14,11 +14,6 @@ public class QueryHelper {
 	
 	private Connection connection;
 	
-	/*
-	 * 如不不提供连接
-	 * 则自动从连接池中获取
-	 * 不过不提倡这样
-	 */
 	public QueryHelper()
 	{
 		this.connection = ConnectionPool.getInstance().getConnection();
