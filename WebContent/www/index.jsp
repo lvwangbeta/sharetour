@@ -196,7 +196,8 @@
                             <%
                             	}
                             %>
-                            	<span>6 like</span>
+                            	<span class="likecount"><%=postlikeservice.getPostLikeCount(post.getId()) %></span>
+                            	<span>&nbsp;like</span>
                             </a> 
                             <a href="#"  class="sharetag"><span>35 share</span></a>
                         </div>

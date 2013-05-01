@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-
 import com.sharetour.db.ConnectionPool;
 import com.sharetour.model.PostUserRelation;
 import com.sharetour.util.QueryHelper;
@@ -64,11 +63,25 @@ public class PostActionDAO {
 	
 	/*
 	 * 根据用户id查找其like的post
+	 * @param uid
+	 * @return 
 	 */
 	public List<PostUserRelation> findLikePostsByUid(Long uid){
 		QueryHelper helper = new QueryHelper();
 		List<PostUserRelation> list = helper.executeQuery(PostUserRelation.class, 
 				"select * from post_user_relation where uid=? and lik='like'", uid);
+		helper.closeConnection();
+		return list;
+	}
+	/*
+	 * 根据post id查找所有like这篇文章的user
+	 * @param pid
+	 * @return
+	 */
+	public List<PostUserRelation> findUsersLikePostByPid(Long pid){
+		QueryHelper helper = new QueryHelper();
+		List<PostUserRelation> list = helper.executeQuery(PostUserRelation.class, 
+				"select * from post_user_relation where pid=? and lik='like'", pid);
 		helper.closeConnection();
 		return list;
 	}
