@@ -111,7 +111,7 @@
       			<h4><a href="/post/<%=post.getId() %>"><%=post.getTitle() %></a></h4>
       			<p><%=post.getSummary() %></p>
 	          	<div>
-	              <span class="badge badge-success">Posted <%=format.format(post.getCtime()) %></span>
+	              <span class="badge badge-success">Posted <%=format.format(post.getCtime().getTime()) %></span>
 	              <div class="pull-right">
 	              <%for(String tag:StringUtils.split(post.getTags(), " ")){ %>
 	              	<a href="/tag/<%=tag%>"><span class="label label-warning"><%=tag %></span></a>

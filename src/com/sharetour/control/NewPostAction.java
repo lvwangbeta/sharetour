@@ -1,6 +1,8 @@
 package com.sharetour.control;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import com.sharetour.model.Post;
 import com.sharetour.model.UserInfo;
@@ -27,6 +29,7 @@ public class NewPostAction implements Action{
 		post.setAuthorid(user.getId());
 		post.setTitle(title);
 		post.setContent(content);
+		post.setCtime(new Date());
 		post.setTags(tags);	
 		post.setSummary(new PostSummaryService().getSummary(content));
 		post.setCover(new CoverService().getCover(content));

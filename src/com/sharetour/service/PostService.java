@@ -67,6 +67,8 @@ public class PostService {
 	}
 	/*
 	 * 保存新post，并放入缓存
+	 * 缓存结构:(map)
+	 * authorid---->Post list
 	 * @param post
 	 * @return 
 	 */
@@ -83,11 +85,9 @@ public class PostService {
 				CacheHelper.put(POST_CACHE_NAME, USER_POSTS, posts_map);
 			}
 			plist = posts_map.get(post.getAuthorid());
-			if(plist == null){
-				plist = new LinkedList<Post>();
-				posts_map.put(post.getAuthorid(), plist);
+			if(plist != null){
+				plist.add(post);
 			}
-			plist.add(post);
 			log.info("put new post to cache");
 			return true;
 		}
