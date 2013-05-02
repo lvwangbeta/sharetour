@@ -16,7 +16,10 @@ public class PostLikeService {
 	private static final String POST_USER_RELATION_CACHE = PostUserRelation.class.getSimpleName();
 	private static final String POST_LIKE_KEY = "users_who_like_the_post";
 	private static Log log = LogFactory.getLog(PostUserRelation.class);
-	
+	private PostActionDAO postactiondao;
+	public PostLikeService(){
+		this.postactiondao = new PostActionDAO();
+	}
 	
 	/*
 	 * set post like
@@ -30,7 +33,6 @@ public class PostLikeService {
 	@SuppressWarnings("unchecked")
 	public boolean savePostLike(PostUserRelation relation){
 		log.info(relation.getUid()+ " like "+ relation.getPid());
-		PostActionDAO postactiondao = new PostActionDAO();
 		if(postactiondao.postLike(relation)){
 			Map<Long, List<PostUserRelation>> relmap = (Map<Long, List<PostUserRelation>>)CacheHelper.
 					getCacheData(POST_USER_RELATION_CACHE, POST_LIKE_KEY);
@@ -59,7 +61,6 @@ public class PostLikeService {
 	@SuppressWarnings("unchecked")
 	public boolean undoPostLike(PostUserRelation relation){
 		log.info(relation.getUid() + "undo like" + relation.getPid());
-		PostActionDAO postactiondao = new PostActionDAO();
 		if(postactiondao.undoPostLike(relation)){
 			Map<Long, List<PostUserRelation>> relmap = (Map<Long, List<PostUserRelation>>)CacheHelper.
 					getCacheData(POST_USER_RELATION_CACHE, POST_LIKE_KEY);
@@ -101,7 +102,6 @@ public class PostLikeService {
 		}
 		List<PostUserRelation> list = relmap.get(pid);
 		if(list == null){
-			PostActionDAO postactiondao = new PostActionDAO();
 			list = postactiondao.findUsersLikePostByPid(pid);
 			if(list == null){
 				list = new LinkedList<PostUserRelation>();
@@ -117,7 +117,7 @@ public class PostLikeService {
 	}
 	
 	/*
-	 * 
+	 * 获得这篇post的like数
 	 */
 	public int getPostLikeCount(Long pid){
 		@SuppressWarnings("unchecked")
@@ -129,7 +129,6 @@ public class PostLikeService {
 		}
 		List<PostUserRelation> list = relmap.get(pid);
 		if(list == null){
-			PostActionDAO postactiondao = new PostActionDAO();
 			list = postactiondao.findUsersLikePostByPid(pid);
 			if(list == null){
 				list = new LinkedList<PostUserRelation>();
