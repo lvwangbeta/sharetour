@@ -154,5 +154,40 @@ public class PostDAO {
 		return list;
 	}
 	
+	public List<Post> getHotPostOfThisWeek(int page, int limit){
+		QueryHelper helper = new QueryHelper();
+		List<Post> list = helper.query_slice(
+				Post.class, 
+				"select id, title, summary, ctime, authorid, likes, visit, cover, tags " +
+				"from posts " +
+				"where floor(datediff(ctime, '1900-01-01')/7)=floor(datediff(now(), '1900-01-01')/7) " +
+				"order by likes desc",
+				page, limit);
+		helper.closeConnection();
+		return list;
+		
+	}
+	
+	
+	/*
+	 * 获得year-month的热门post列表
+	 * @param year
+	 * @param month
+	 * @param page
+	 * @param limit
+	 */
+	public List<Post> getHotPostOfMonth(int year, int month, int page, int limit){
+		QueryHelper helper = new QueryHelper();
+		List<Post> list = helper.query_slice(
+				Post.class, 
+				"select id, title, summary, ctime, authorid, likes, visit, cover, tags " +
+				"from posts " +
+				"where year(ctime)=? and month(ctime)=? order by likes desc ",
+				page, limit, year, month);
+		helper.closeConnection();
+		return list;
+	}
 
+	
+	
 }

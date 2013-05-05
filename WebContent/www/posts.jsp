@@ -102,19 +102,15 @@
 %>
 	<p class="lead">最新游记<button class="btn btn-warning"><%=tag %></button></p>
 <%
-	PostTag posttag = new PostTag();
-	posttag.setTagname(tag);
-	List<Post> postlist = new TagService(posttag).getPostsRelatedToTag();
+	List<Post> postlist = new TagService().getPostsRelatedToTag(tag);
 	if(postlist != null)
 	{
 		Post post = null;
 		Iterator<Post> it = postlist.iterator();
 		while(it.hasNext())
 		{
-			post = it.next();
-		
+			post = it.next();	
 %>
-
 	        	<tr>
 	        		<td class="sapn8">
 	        			<a href="/journal/<%=post.getId() %>"><%=post.getTitle() %></a>

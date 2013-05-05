@@ -74,179 +74,317 @@
         </div>
       </div>
     </div> <!-- end nav bar -->
-
     <div class="container">
       <div class="row">
         <div class="span8">
-          <div class="posts">
+          <!-- begin gallery billboard -->
+          <div class="gallery billboard">
+            <ul class="rslides">
+              <li>
+                <img src="/img/7.jpg" alt="">
+                <p class="caption">This is a caption</p>
+              </li>
+              <li>
+                <img src="/img/8.jpg" alt="">
+                <p class="caption">This is another caption</p>
+              </li>
+              <li>
+                <img src="/img/9.jpg" alt="">
+                <p class="caption">This is another caption</p>
+              </li>
+            </ul>                   
+          </div>
+          <!-- end gallery billboard --> 
+          
+          <!-- begin hot post gallery -->
+          <div>
+            <ul class="thumbnails">
+              <li class="hpbox">
+                <div class="thumbnail">
+                  <img src="../img/pre.jpg" alt="">
+                  <h3>Thumbnail label</h3>
+                  <p>Thumbnail caption...</p>
+                </div>
+              </li>
+              <li class="hpbox">
+                <div class="thumbnail">
+                  <img src="../img/pre.jpg" alt="">
+                  <h3>Thumbnail label</h3>
+                  <p>Thumbnail caption...</p>
+                </div>
+              </li>          
+              <li class="hpbox">
+                <div class="thumbnail">
+                  <img src="../img/pre.jpg" alt="">
+                  <h3>Thumbnail label</h3>
+                  <p>Thumbnail caption...</p>
+                </div>
+              </li>          
+              <li class="hpbox">
+                <div class="thumbnail">
+                  <img src="../img/pre.jpg" alt="">
+                  <h3>Thumbnail label</h3>
+                  <p>Thumbnail caption...</p>
+                </div>
+              </li>  
+              <li class="hpbox">
+                <div class="thumbnail">
+                  <img src="../img/pre.jpg" alt="">
+                  <h3>Thumbnail label</h3>
+                  <p>Thumbnail caption...</p>
+                </div>
+              </li>          
+              <li class="hpbox">
+                <div class="thumbnail">
+                  <img src="../img/pre.jpg" alt="">
+                  <h3>Thumbnail label</h3>
+                  <p>Thumbnail caption...</p>
+                </div>
+              </li>                        
+            </ul>            
+          </div>  
+          <!-- end hotposts gallery -->    
+		      <!-- begin btn group leader -->
+          <p class="lead">Bare minimum radio button tabs example:</p>
+          <div id="tab" class="btn-group" data-toggle="buttons-radio">
+            <a href="#hotposts" class="btn active" data-toggle="tab">热门游记</a>
+            <a href="#newposts" class="btn" data-toggle="tab">最新游记</a>
+            <a href="#requests" class="btn" data-toggle="tab">Requests</a>
+          </div>
+          <!-- end btn group leader -->          
+     
+          <!-- begin hotposts tab-content -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="hotposts">
             <div class="post">
-              <div class="row">
-                <div class="span8">
-                  <div class="row">
-                    <div class="span8">
-                    	<div class="posttitle">
-                      		<h4><strong><a href="#">Title of the post</a></strong></h4>
-                      	</div>
-                    </div>                   
-                  </div>
-                  <!-- end row level2 -->
-                  <div class="row">
-                    <div class="span2">
-                    	<div class="preimg">
-	                      <a href="#" class="thumbnail">
-	                          <img src="/img/pre.jpg" alt="">
-	                      </a>                    	
-                    	</div>
-
+                <div class="row">
+                  <div class="span8">
+                    <div class="row">
+                      <div class="span8">
+                        <div class="posttitle">
+                            <h4><strong><a href="#">Title of the post</a></strong></h4>
+                          </div>
+                      </div>                   
                     </div>
-                    <div class="span6">     
-                      <p>
-                        <i class="icon-user"></i> by <a href="#">Mark</a> 
-                        | <i class="icon-calendar"></i> Sept 16th, 2012
-                        | <i class="icon-comment"></i> <a href="#">3 Comments</a>
-                      </p> 
-                      <p>
-                        Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari conclusionemque, ad nobis propriae quaerendum sea.
-                      </p>
-                      <div class="row">
-                        <div class="span4">
-                          <p>
-                            <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
-                            <a href="#"><span class="label label-warning">Bootstrap</span></a> 
-                            <a href="#"><span class="label label-warning">UI</span></a> 
-                            <a href="#"><span class="label label-warning">growth</span></a>
-                          </p>                                                  
-                        </div>
-                        <div class="span2">
-                            <a href="#"><span class="label label-important">6 like</span></a> 
-                            <a href="#"><span class="label label-success">35 share</span></a>
+                    <!-- end row level2 -->
+                    <div class="row">
+                      <div class="span2">
+                        <div class="preimg">
+                          <a href="#" class="thumbnail">
+                              <img src="/img/pre.jpg" alt="">
+                          </a>                      
                         </div>
 
                       </div>
+                      <div class="span6">     
+                        <p>
+                          <i class="icon-user"></i> by <a href="#">Mark</a> 
+                          | <i class="icon-calendar"></i> Sept 16th, 2012
+                          | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+                        </p> 
+                        <p>
+                          Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari conclusionemque, ad nobis propriae quaerendum sea.
+                        </p>
+                        <div class="row">
+                          <div class="span4">
+                            <p>
+                              <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
+                              <a href="#"><span class="label label-warning">Bootstrap</span></a> 
+                              <a href="#"><span class="label label-warning">UI</span></a> 
+                              <a href="#"><span class="label label-warning">growth</span></a>
+                            </p>                                                  
+                          </div>
+                          <div class="span2">
+                              <a href="#"><span class="label label-important">6 like</span></a> 
+                              <a href="#"><span class="label label-success">35 share</span></a>
+                          </div>
 
-                    </div>
-                  </div>
-                  <!-- end row level 2 -->
-                </div>
-                <!-- end span8 -->
-              </div>  
-            <!-- end row level1 -->
-            </div>
-            <!-- end post -->
-            
-            <%
-            List<Post> postlist = new HotPostService().getHotPost();
-            Iterator<Post> it = postlist.iterator();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        	UserInfo user = (UserInfo)session.getAttribute("user");
-        	PostLikeService postlikeservice = new PostLikeService();
-            while(it.hasNext()){
-            	 Post post = it.next();	
-            %>
-            <div class="post">         
-              <div class="row">
-                <div class="span8">
-                  <div class="row">
-                    <div class="span8">
-                    	<div class="posttitle">
-                      		<h4><strong><a href="/post/<%=post.getId()%>"><%=post.getTitle() %></a></strong></h4>
-                      	</div>
-                    </div>                   
-                  </div>
-                  <!-- end row level2 -->
-                  <div class="row">
-                    <div class="span2">
-                    	<div class="preimg">
-	                      <a href="#" class="thumbnail">
-	                          <img src="../img/pre.jpg" alt="">
-	                      </a>
-	                    </div>
-                    </div>
-                    <div class="span6">     
-                      <p>
-		                <i class="icon-user"></i> by <a href="#">John</a> 
-		                | <i class="icon-calendar"></i> <%=format.format(post.getCtime()) %>
-		                | <i class="icon-comment"></i> <a href="#">3 Comments</a>
-                      </p> 
-		              <p>
-		    		   <%=post.getSummary() %>                        
-		              </p>
-                      <div class="row">
-                        <div class="span4">
-                          <p>
-			                <i class="icon-tags"></i> 
-			                	Tags : 
-			                <%for(String tag:StringUtils.split(post.getTags(), ' ')) {%>
-			                	<a href="/tag/<%=tag%>"><span class="label label-warning"><%=tag %></span></a>
-			                <%} %> 
-                          </p>                                                  
-                        </div>
-                        <div class="span2">
-                            <a href="/action/like?postid=<%=post.getId() %>"  
-                            <%
-                            	if(user != null && 
-                            	postlikeservice.checkPostLike(user.getId(), post.getId())){
-                            %>
-                            	class="liketag liked">	
-                            <%
-                            	}
-                            	else{
-                            %>
-                            	class="liketag">
-                            <%
-                            	}
-                            %>
-                            	<span class="likecount"><%=postlikeservice.getPostLikeCount(post.getId()) %></span>
-                            	<span>&nbsp;like</span>
-                            </a> 
-                            <a href="#"  class="sharetag"><span>35 share</span></a>
                         </div>
 
                       </div>
-
                     </div>
+                    <!-- end row level 2 -->
                   </div>
-                  <!-- end row level 2 -->
-                </div>
-                <!-- end span8 -->
-              </div>  
-            <!-- end row level1 -->
+                  <!-- end span8 -->
+                </div>  
+              <!-- end row level1 -->
+              </div>
+              <!-- end sample post -->
+              <%
+              HotPostService hotpostservice = new HotPostService();
+              List<Post> postlist = hotpostservice.getHotPost();
+              Iterator<Post> it = postlist.iterator();
+              SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+              UserInfo user = (UserInfo)session.getAttribute("user");
+              PostLikeService postlikeservice = new PostLikeService();
+              while(it.hasNext()){
+                 Post post = it.next(); 
+              %>
+              <div class="post">         
+                <div class="row">
+                  <div class="span8">
+                    <div class="row">
+                      <div class="span8">
+                        <div class="posttitle">
+                            <h4><strong><a href="/post/<%=post.getId()%>"><%=post.getTitle() %></a></strong></h4>
+                          </div>
+                      </div>                   
+                    </div>
+                    <!-- end row level2 -->
+                    <div class="row">
+                      <div class="span2">
+                        <div class="preimg">
+                          <a href="#" class="thumbnail">
+                              <img src="../img/pre.jpg" alt="">
+                          </a>
+                        </div>
+                      </div>
+                      <div class="span6">     
+                        <p>
+                      <i class="icon-user"></i> by <a href="#">John</a> 
+                      | <i class="icon-calendar"></i> <%=format.format(post.getCtime()) %>
+                      | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+                        </p> 
+                    <p>
+                	<%=post.getSummary() %>                        
+                    </p>
+                        <div class="row">
+                          <div class="span4">
+                            <p>
+                        <i class="icon-tags"></i> 
+                          Tags : 
+                        <%for(String tag:StringUtils.split(post.getTags(), ' ')) {%>
+                          <a href="/tag/<%=tag%>"><span class="label label-warning"><%=tag %></span></a>
+                        <%} %> 
+                            </p>                                                  
+                          </div>
+                          <div class="span2">
+                              <a href="/action/like?postid=<%=post.getId() %>"  
+                              <%
+                                if(user != null && 
+                                postlikeservice.checkPostLike(user.getId(), post.getId())){
+                              %>
+                                class="liketag liked">  
+                              <%
+                                }
+                                else{
+                              %>
+                                class="liketag">
+                              <%
+                                }
+                              %>
+                                <span class="likecount"><%=postlikeservice.getPostLikeCount(post.getId()) %></span>
+                                <span>&nbsp;like</span>
+                              </a> 
+                              <a href="#"  class="sharetag"><span>35 share</span></a>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+                    <!-- end row level 2 -->
+                  </div>
+                  <!-- end span8 -->
+                </div>  
+              <!-- end row level1 -->
+              </div>
+              <!-- end post -->     
+              <%} %>                            
             </div>
-            <!-- end post -->     
-            <%} %>       
-          </div> <!-- end posts -->
-         
-        </div> <!-- end span8 posts -->
+            <!-- end hotposts -->
+          </div>
+          <!-- begin hotposts tab-content -->
+        </div>
+        <!-- end span8  -->
+          
         <div class="span4">
-          <div class="side">
-            <div>
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div> 
-            <% 
-            List<PostTag> hottags = TagService.getHotTag();
-            if(hottags != null)
-            {
-            %>  
-            <div>
-            	<% for(PostTag tag: hottags) {%>
-            		<span class="label label-info"><%=tag.getTagname() %></span>  	
-            	<%} %>
+          <div class="hottags">
+      			<ul class="taglist">
+      				<li><a href="#" class="taglisttitle">HotTags</a></li>
+      	           <% 
+      	            List<PostTag> hottags = TagService.getHotTag();
+      	            if(hottags != null)
+      	            {
+      					for(PostTag tag: hottags) {%>				
+      	            <li><a href="/tag/<%=tag.getTagname() %>"><%=tag.getTagname()+"  "+ tag.getPostcount() %></a></li>			
+      					<%}
+      	            } %>  			
+      			</ul>
+          </div> 
+          <!-- end hottags -->    
+          
+          <!-- begin week and month hot post nav -->
+          <div class="tabbable">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#weekhotposts" data-toggle="tab">week</a></li>
+              <li><a href="#monthhotposts" data-toggle="tab">month</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="weekhotposts">
+              <%
+                List<Post> whotposts = hotpostservice.getHostPostOfThisWeek(1, 10);
+                if(whotposts != null && whotposts.size() != 0){
+					for(Post wp: whotposts) {
+                  		String summary = wp.getSummary();
+                %>
+                <div class="media">
+                  <a class="pull-left" href="/post/<%=wp.getId() %>">
+                    <img class="media-object" src="../img/head.jpg" style="width: 64px; height: 64px;">
+                  </a>
+                  <div class="media-body">
+                    <a href="/post/<%=wp.getId() %>"><%=wp.getTitle() %></a>
+                    <p><%=summary.length()>40?summary.substring(0, 40):summary %></p>
+                  </div>
+                </div>
+                <%} %>
+              <%} %>
+              </div>
+              <!-- end week hot posts -->
+              <div class="tab-pane" id="monthhotposts">
+              <%
+              	List<Post> mhotposts = hotpostservice.getHotPostOfMonth(1, 10);
+              	if(mhotposts != null && mhotposts.size() != 0){
+              		for(Post mp: mhotposts){
+              			String summary = mp.getSummary();
+              %>
+                <div class="media">
+                  <a class="pull-left" href="/post/<%=mp.getId() %>">
+                    <img class="media-object" src="../img/head.jpg" style="width: 64px; height: 64px;">
+                  </a>
+                  <div class="media-body">
+                    <a href="/post/<%=mp.getId() %>"><%=mp.getTitle() %></a>
+                    <p><%=summary.length()>40?summary.substring(0, 40):summary %></p>
+                  </div>
+                </div>              	
+              <%
+              		}
+              	}
+              %>
+              </div>
+              <!-- end month hot posts -->
             </div>
-            <%} %>                 
-          </div> <!-- end side -->
-        </div> <!-- end span4 -->
+          </div>
+        </div>
+        <!-- end span4 -->        
       </div>
-      <hr>
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
-
-    </div> <!-- /container -->
+      <!-- end row -->
+    </div>
+    <!-- end container  -->
+    
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/responsiveslides.min.js"></script>
     <script type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+     $(".rslides").responsiveSlides({
+          auto: false,
+          pager: false,
+          nav: true,
+          speed: 500,
+          namespace: "callbacks"
+        });
+    </script>      
   </body>
 </html>
 

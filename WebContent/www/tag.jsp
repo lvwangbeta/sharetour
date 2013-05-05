@@ -13,10 +13,8 @@
 	if(tag == null || tag.length() == 0){
 		response.sendRedirect("/");
 	}
-	PostTag posttag = new PostTag();
-	posttag.setTagname(tag);
-	TagService tagservice = new TagService(posttag);
-	List<Post> postlist = tagservice.getPostsRelatedToTag();
+	TagService tagservice = new TagService();
+	List<Post> postlist = tagservice.getPostsRelatedToTag(tag);
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 %>
 <!DOCTYPE html>
@@ -85,7 +83,7 @@
         </div>
       </div>
     </div> <!-- end nav bar -->
-
+    
     <div class="container">
       <div class="row">
         <div class="span8">
