@@ -101,22 +101,15 @@ public class QueryHelper {
 	 * @param {Object}   preparedStatement方法中的?位置参数
 	 * @return {T extends POJO}
 	 */
-	public <T> T get(Class<T> beanClass, Object key, String sql, Object...params)
+	public <T> T get(Class<T> beanClass, String sql, Object...params)
 	{
-		@SuppressWarnings("unchecked")
-		T obj = (T)CacheHelper.getCacheData(beanClass.getSimpleName(), key);
-		//not in the cache, get direct from DB and put in cache
-		if(obj == null)
-		{
-			try {
-				QueryRunner query = new QueryRunner();
-				obj = query.query(connection, sql, new BeanHandler<T>(beanClass), params);
-				CacheHelper.put(beanClass.getSimpleName(), key, obj);			
-				System.out.println("sql");
-			} catch (SQLException e) {
-				obj = null;
-			}			
-		}
+		T obj = null;
+		try {
+			QueryRunner query = new QueryRunner();
+			obj = query.query(connection, sql, new BeanHandler<T>(beanClass), params);		
+		} catch (SQLException e) {
+			obj = null;
+		}			
 		return obj;
 	}
 	

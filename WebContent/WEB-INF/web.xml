@@ -12,8 +12,6 @@
   <listener>
     <listener-class>com.sharetour.listener.MyServletContextListener</listener-class>
   </listener>
-
-
   <filter>
     <display-name>URLMappingFilter</display-name>
     <filter-name>URLMappingFilter</filter-name>
@@ -140,5 +138,15 @@
   <servlet-mapping>
     <servlet-name>CommentServlet</servlet-name>
     <url-pattern>/action/comment</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>subscribe</display-name>
+    <servlet-name>subscribe</servlet-name>
+    <servlet-class>com.sharetour.control.SubscribeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>subscribe</servlet-name>
+    <url-pattern>/action/subscribe</url-pattern>
   </servlet-mapping>
 </web-app>

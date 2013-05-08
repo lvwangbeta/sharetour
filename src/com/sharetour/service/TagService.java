@@ -1,12 +1,12 @@
 package com.sharetour.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import com.sharetour.cache.CacheHelper;
 import com.sharetour.dao.TagDAO;
 import com.sharetour.model.Post;
@@ -23,6 +23,33 @@ public class TagService {
 	
 	public TagService(){
 		this.tagdao = new TagDAO();
+	}
+	
+	/*
+	 * 根据tagname获得tid
+	 */
+	public Long getTagId(String tagname){
+		log.info("getting tag id by:"+tagname);
+		PostTag tag = tagdao.getTagId(tagname);
+		if(tag != null){
+			return tag.getId();
+		}
+		else{
+			return 0L;
+		}
+	}
+	
+	/*
+	 * 获得与tag set中的tag的id
+	 */
+	public List<Long> getTagsId(Set<String> tags){
+		log.info("getting tags id list");
+		List<PostTag> tlist = tagdao.getTagsId(tags);
+		List<Long> tidlist = new ArrayList<Long>();
+		for(PostTag tag: tlist){
+			tidlist.add(tag.getId());
+		}
+		return tidlist;
 	}
 	
 	/*

@@ -11,6 +11,7 @@ public interface Action {
 	static final String PWDERROR	 = "用户名或密码错误";
 	static final String SUCCESS		 = "success";
 	static final String ERROR		 = "error";
+	static final String DECODEERROR  = "decode_error";
 	static final String NOLOGIN		 = "nologin";
 	public String execute(HttpServletRequest request);
 }

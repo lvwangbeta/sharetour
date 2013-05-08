@@ -56,7 +56,7 @@ public abstract class POJO implements Serializable{
 	public <T extends POJO> T Get(long id)
 	{
 		String sql = "SELECT * FROM " + getTablename() + " WHERE id=?";
-		T obj = (T) helper.get(getClass(), id, sql, new Object[]{id});
+		T obj = (T) helper.get(getClass(), sql, new Object[]{id});
 		return obj;
 	}
 	
@@ -67,7 +67,7 @@ public abstract class POJO implements Serializable{
 	public <T extends POJO> T Get()
 	{
 		String sql = "SELECT * FROM " + getTablename() + " WHERE id=?";
-		T obj =  (T) helper.get(getClass(),id, sql, new Object[]{id});
+		T obj =  (T) helper.get(getClass(), sql, new Object[]{id});
 		return obj;
 	}
 	

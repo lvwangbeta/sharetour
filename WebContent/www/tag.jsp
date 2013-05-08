@@ -107,7 +107,9 @@
       		<%} %>         
         </div> <!-- end span8 posts -->
         <div class="span4">
-
+			<div>
+				<a href="/action/subscribe?action=sub&tagname=<%=tag%>"><%=tag%></a>
+			</div>
         </div> <!-- end span4 -->
       </div>
       <hr>

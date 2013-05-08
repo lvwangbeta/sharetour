@@ -8,6 +8,7 @@ import com.sharetour.control.LikeAction;
 import com.sharetour.control.LoginAction;
 import com.sharetour.control.NewPostAction;
 import com.sharetour.control.RegisterAction;
+import com.sharetour.control.SubscriptionAction;
 
 /*
  * 获得Servlet对应的动作处理类
@@ -21,6 +22,7 @@ public class ActionFactory {
 		actions.put("newpost", new NewPostAction());
 		actions.put("comment", new CommentAction());
 		actions.put("like", new LikeAction());
+		actions.put("subscribe", new SubscriptionAction());
 	}
 	public static Action getAction(String action){
 		return actions.get(action);
