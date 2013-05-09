@@ -47,7 +47,7 @@ public class UserDAO {
 	public UserInfo find(String username, String password){
 		QueryHelper helper = new QueryHelper();
 		UserInfo userinfo = helper.get(
-				  UserInfo.class, username,
+				  UserInfo.class,
 				  "select * from users where username=? and password=?", 
 				  new Object[]{username, password});
 		if(userinfo != null)

@@ -3,12 +3,13 @@
  */
 
 package com.sharetour.model;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import com.sharetour.util.POJO;
 
-public class UserInfo extends POJO{
+public class UserInfo extends POJO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String username;

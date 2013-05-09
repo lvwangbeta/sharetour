@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ShareTour</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="index">
+    <meta name="author" content="gavin">
+
+    <!-- Le styles -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      a.tag{
+        text-decoration: none;
+      }
+      .tag{
+        font-size: 12px !important;
+        padding: 2px 10px 3px 10px;
+        background-color: #ededed;
+        margin: 0 3px 6px 0;
+        border-radius: 2px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        display: inline-block;
+        color: #999999;
+      }
+      .tag:hover{
+        background-color: #16A1E7;
+        -webkit-transition: all .2s linear;
+        -moz-transition: all .2s linear;
+        -o-transition: all .2s linear;
+        transition: all .2s linear;
+        color: #fff !important;
+        text-shadow: none;
+      }
+    </style>
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/">äşŤé</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div> <!-- end nav bar -->
+
+    <div class="container">
+      <div class="row">
+        <div class="span8">
+          <div class="gallery billboard">
+            <ul class="rslides">
+              <li>
+                <img src="../img/7.jpg" alt="">
+                <p class="caption">This is a caption</p>
+              </li>
+              <li>
+                <img src="../img/8.jpg" alt="">
+                <p class="caption">This is another caption</p>
+              </li>
+              <li>
+                <img src="../img/9.jpg" alt="">
+                <p class="caption">This is another caption</p>
+              </li>
+            </ul>                   
+          </div>
+          <!-- end gallery -->
+          <div>
+            <ul class="thumbnails">
+              <li class="hpbox">
+                <div class="thumbnail">
+                  <img src="../img/pre.jpg" alt="">
+                  <h3>Thumbnail label</h3>
+                  <p>Thumbnail caption...</p>
+                </div>
+              </li>
+              <li class="hpbox">
+                <div class="thumbnail">
+                  <img src="../img/pre.jpg" alt="">
+                  <h3>Thumbnail label</h3>
+                  <p>Thumbnail caption...</p>
+                </div>
+              </li>          
+              <li class="hpbox">
+                <div class="thumbnail">
+                  <img src="../img/pre.jpg" alt="">
+                  <h3>Thumbnail label</h3>
+                  <p>Thumbnail caption...</p>
+                </div>
+              </li>          
+              <li class="hpbox">
+                <div class="thumbnail">
+                  <img src="../img/pre.jpg" alt="">
+                  <h3>Thumbnail label</h3>
+                  <p>Thumbnail caption...</p>
+                </div>
+              </li>  
+              <li class="hpbox">
+                <div class="thumbnail">
+                  <img src="../img/pre.jpg" alt="">
+                  <h3>Thumbnail label</h3>
+                  <p>Thumbnail caption...</p>
+                </div>
+              </li>          
+              <li class="hpbox">
+                <div class="thumbnail">
+                  <img src="../img/pre.jpg" alt="">
+                  <h3>Thumbnail label</h3>
+                  <p>Thumbnail caption...</p>
+                </div>
+              </li>                        
+            </ul>            
+          </div>  
+          <!-- end hotposts -->  
+          <p class="lead">Bare minimum radio button tabs example:</p>
+          <div id="tab" class="btn-group" data-toggle="buttons-radio">
+            <a href="#hotposts" class="btn active" data-toggle="tab">热门游记</a>
+            <a href="#newposts" class="btn" data-toggle="tab">最新游记</a>
+            <a href="#requests" class="btn" data-toggle="tab">Requests</a>
+          </div>
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="hotposts">
+              <div class="post">
+                <div class="row">
+                  <div class="span8">
+                    <div class="row">
+                      <div class="span8">
+                        <div class="posttitle">
+                          <h4><strong><a href="#">Title of the post</a></strong></h4>
+                        </div>
+                      </div>                   
+                    </div>
+                    <!-- end row level2 -->
+                    <div class="row">
+                      <div class="span2">
+                        <div class="preimg">
+                          <a href="#" class="thumbnail">
+                              <img src="../img/pre.jpg" alt="">
+                          </a>                        
+                        </div>
+                      </div>
+                      <div class="span6">     
+                        <p>
+                          <i class="icon-user"></i> by <a href="#">Mark</a> 
+                          | <i class="icon-calendar"></i> Sept 16th, 2012
+                          | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+                        </p> 
+                        <p>
+                          Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari conclusionemque, ad nobis propriae quaerendum sea.
+                        </p>
+                        <div class="row">
+                          <div class="span4">
+                            <p>
+                              <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
+                              <a href="#"><span class="label label-warning">Bootstrap</span></a> 
+                              <a href="#"><span class="label label-warning">UI</span></a> 
+                              <a href="#"><span class="label label-warning">growth</span></a>
+                            </p>                                                  
+                          </div>
+                          <div class="span2">
+                              <a href="/action/like?postis=48" class="liketag">
+                                <span class="likecount">6</span>
+                                <span>&nbsp;like</span>
+                              </a> 
+                              <a href="#" class="sharetag"><span>35 share</span></a>
+                          </div>                        </div>                      </div>
+                    </div>
+                    <!-- end row level 2 -->
+                  </div>
+                  <!-- end span8 -->
+                </div>  
+              <!-- end row level1 -->
+              </div>            
+              <!-- end post -->
+              <div class="post">
+                <div class="row">
+                  <div class="span8">
+                    <div class="row">
+                      <div class="span8">
+                        <div class="posttitle">
+                          <h4><strong><a href="#">Title of the post</a></strong></h4>
+                        </div>
+                      </div>                   
+                    </div>
+                    <!-- end row level2 -->
+                    <div class="row">
+                      <div class="span2">
+                        <div class="preimg">
+                          <a href="#" class="thumbnail">
+                              <img src="../img/pre.jpg" alt="">
+                          </a>                        
+                        </div>
+                      </div>
+                      <div class="span6">     
+                        <p>
+                          <i class="icon-user"></i> by <a href="#">Mark</a> 
+                          | <i class="icon-calendar"></i> Sept 16th, 2012
+                          | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+                        </p> 
+                        <p>
+                          Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari conclusionemque, ad nobis propriae quaerendum sea.
+                        </p>
+                        <div class="row">
+                          <div class="span4">
+                            <p>
+                              <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
+                              <a href="#"><span class="label label-warning">Bootstrap</span></a> 
+                              <a href="#"><span class="label label-warning">UI</span></a> 
+                              <a href="#"><span class="label label-warning">growth</span></a>
+                            </p>                                                  
+                          </div>
+                          <div class="span2">
+                              <a href="/action/like?postis=48" class="liketag">
+                                <span class="likecount">6</span>
+                                <span>&nbsp;like</span>
+                              </a> 
+                              <a href="#" class="sharetag"><span>35 share</span></a>
+                          </div>                        
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end row level 2 -->
+                  </div>
+                  <!-- end span8 -->
+                </div>  
+              <!-- end row level1 -->
+              </div>
+              <!-- end post -->            
+            </div>    
+            <!-- end hotposts -->  
+
+            <div class="tab-pane" id="newposts">
+              <div class="post">
+                <div class="row">
+                  <div class="span8">
+                    <div class="row">
+                      <div class="span8">
+                        <div class="posttitle">
+                          <h4><strong><a href="#">Hello title test</a></strong></h4>
+                        </div>
+                      </div>                   
+                    </div>
+                    <!-- end row level2 -->
+                    <div class="row">
+                      <div class="span2">
+                        <div class="preimg">
+                          <a href="#" class="thumbnail">
+                              <img src="../img/pre.jpg" alt="">
+                          </a>                        
+                        </div>
+                      </div>
+                      <div class="span6">     
+                        <p>
+                          <i class="icon-user"></i> by <a href="#">Mark</a> 
+                          | <i class="icon-calendar"></i> Sept 16th, 2012
+                          | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+                        </p> 
+                        <p>
+                          Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari conclusionemque, ad nobis propriae quaerendum sea.
+                        </p>
+                        <div class="row">
+                          <div class="span4">
+                            <p>
+                              <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
+                              <a href="#"><span class="label label-warning">Bootstrap</span></a> 
+                              <a href="#"><span class="label label-warning">UI</span></a> 
+                              <a href="#"><span class="label label-warning">growth</span></a>
+                            </p>                                                  
+                          </div>
+                          <div class="span2">
+                              <a href="/action/like?postis=48" class="liketag">
+                                <span class="likecount">6</span>
+                                <span>&nbsp;like</span>
+                              </a> 
+                              <a href="#" class="sharetag"><span>35 share</span></a>
+                          </div>                        </div>                      </div>
+                    </div>
+                    <!-- end row level 2 -->
+                  </div>
+                  <!-- end span8 -->
+                </div>  
+              <!-- end row level1 -->
+              </div> 
+            </div>
+            <!-- end new posts -->
+
+            <div class="tab-pane" id="requests">
+              Requests Content
+            </div>
+          </div>                
+        </div>
+        <div class="span4">
+          <div class="hottags">
+            <ul class="taglist">
+              <li><a href="#" class="taglisttitle">HotTags</a></li>
+              <li><a href="#">hello</a></li>
+              <li><a href="#">gavin world</a></li>
+              <li><a href="#">thistag</a></li>
+              <li><a href="#">caption</a></li>
+              <li><a href="#">another</a></li>
+              <li><a href="#">othertag</a></li>
+            </ul>
+          </div>
+          <!-- end hottags -->
+
+          <div class="tabbable"> <!-- Only required for left/right tabs -->
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#weekhotposts" data-toggle="tab">week</a></li>
+              <li><a href="#tab2" data-toggle="#monthhotposts">month</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="weekhotposts">
+                <div class="media">
+                  <a class="pull-left" href="#">
+                    <img class="media-object" src="../img/head.jpg" style="width: 64px; height: 64px;">
+                  </a>
+                  <div class="media-body">
+                    <p class="zhfont">
+                      了大自然和人的隔膜，把风和太阳逗引进来，使屋子里也关着一部分春天，让我们安坐了享受，无需再到外面去找。古代诗人像陶渊明对于窗子的这种精神，颇有会心。《归去来辞》有两句道：“倚南窗以寄傲，
+                    </p>
+                  </div>
+                </div>
+                <div class="media">
+                  <a class="pull-left" href="#">
+                    <img class="media-object" src="../img/head.jpg" style="width: 64px; height: 64px;">
+                  </a>
+                  <div class="media-body">
+                    <p>
+                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at
+                    </p>
+                  </div>
+                </div>    
+              </div>
+              <div class="tab-pane" id="monthhotposts">
+                <div class="media">
+                  <a class="pull-left" href="#">
+                    <img class="media-object" src="../img/head.jpg" style="width: 64px; height: 64px;">
+                  </a>
+                  <div class="media-body">
+                    <p>
+                      了大自然和人的隔膜，把风和太阳逗引进来，使屋子里也关着一部分春天，让我们安坐了享受，无需再到外面去找。古代诗人像陶渊明对于窗子的这种精神，颇有会心。《归去来辞》有两句道：“倚南窗以寄傲，
+                    </p>
+                  </div>
+                </div>
+                <div class="media">
+                  <a class="pull-left" href="#">
+                    <img class="media-object" src="../img/head.jpg" style="width: 64px; height: 64px;">
+                  </a>
+                  <div class="media-body">
+                    <p>
+                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at
+                    </p>
+                  </div>
+                </div>    
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end span4 -->
+      </div>
+    </div>
+    <!-- end  container -->
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/responsiveslides.min.js"></script>
+    <script type="text/javascript" src="../js/index.js"></script>
+    <script type="text/javascript">
+     $(".rslides").responsiveSlides({
+          auto: false,
+          pager: false,
+          nav: true,
+          speed: 500,
+          namespace: "callbacks"
+        });
+    </script>    
+  </body>
+</html>
+
