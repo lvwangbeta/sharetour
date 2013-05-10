@@ -21,6 +21,7 @@ public class MyServletContextListener implements ServletContextListener {
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
     public void contextInitialized(ServletContextEvent arg0) {
+    	
         // TODO Auto-generated method stub
     	ServletContext context = arg0.getServletContext();
     	ConnectionPool.setPoolFromParam("jdbc:mysql://172.30.48.29:3306/d830e97b407104c25a9535461208a9470", 

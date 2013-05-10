@@ -13,15 +13,15 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry exported="true" kind="lib" path="F:/CloudFoundry/sharetour/WebContent/WEB-INF/lib/commons-collections-3.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="F:/CloudFoundry/sharetour/WebContent/WEB-INF/lib/commons-dbcp-1.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="F:/CloudFoundry/sharetour/WebContent/WEB-INF/lib/commons-fileupload-1.2.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="F:/CloudFoundry/sharetour/WebContent/WEB-INF/lib/commons-io-2.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="F:/CloudFoundry/sharetour/WebContent/WEB-INF/lib/commons-pool-1.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="F:/CloudFoundry/sharetour/WebContent/WEB-INF/lib/jstl.jar"/>
-	<classpathentry exported="true" kind="lib" path="F:/CloudFoundry/sharetour/WebContent/WEB-INF/lib/mongo-2.10.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="F:/CloudFoundry/sharetour/WebContent/WEB-INF/lib/mysql-connector-java-5.1.13.jar"/>
-	<classpathentry exported="true" kind="lib" path="F:/CloudFoundry/sharetour/WebContent/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="lib" path="F:/workspace/sharetour/WebContent/WEB-INF/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="F:/workspace/sharetour/WebContent/WEB-INF/lib/commons-dbcp-1.4.jar"/>
+	<classpathentry kind="lib" path="F:/workspace/sharetour/WebContent/WEB-INF/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="F:/workspace/sharetour/WebContent/WEB-INF/lib/commons-io-2.2.jar"/>
+	<classpathentry kind="lib" path="F:/workspace/sharetour/WebContent/WEB-INF/lib/commons-pool-1.4.jar"/>
+	<classpathentry kind="lib" path="F:/workspace/sharetour/WebContent/WEB-INF/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="F:/workspace/sharetour/WebContent/WEB-INF/lib/mongo-2.10.1.jar"/>
+	<classpathentry kind="lib" path="F:/workspace/sharetour/WebContent/WEB-INF/lib/mysql-connector-java-5.1.13.jar"/>
+	<classpathentry kind="lib" path="F:/workspace/sharetour/WebContent/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="lib" path="F:/workspace/sharetour/WebContent/WEB-INF/lib/ehcache-core-2.6.5.jar"/>
 	<classpathentry kind="lib" path="F:/workspace/sharetour/WebContent/WEB-INF/lib/jsoup-1.7.2.jar"/>
 	<classpathentry kind="lib" path="F:/workspace/sharetour/WebContent/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
