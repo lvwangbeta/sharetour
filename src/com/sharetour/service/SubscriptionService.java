@@ -1,7 +1,7 @@
 package com.sharetour.service;
 
-import java.util.Collection;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.sharetour.dao.SubscriptionDAO;
@@ -49,7 +49,7 @@ public class SubscriptionService {
 	 * @param Long uid
 	 * @return
 	 */
-	public Collection<PostTag> getAllTagsOfUser(Long uid){
+	public List<PostTag> getAllTagsOfUser(Long uid){
 		return subdao.getAllTagsOfUser(uid);		
 	}
 	
@@ -58,7 +58,7 @@ public class SubscriptionService {
 	 * @param String tagname
 	 * @return 
 	 */
-	public Collection<UserInfo> getAllUsersOfTag(String tagname){
+	public List<UserInfo> getAllUsersOfTag(String tagname){
 		return subdao.getAllUsersOfTag(tagname);
 	}
 	
@@ -67,9 +67,23 @@ public class SubscriptionService {
 	 * @param Set<Posttag> tags
 	 * @return 
 	 */
-	public Collection<Post> getPostsOfTags(Set<String> tags){
-		Collection<Long> tids = new TagService().getTagsId(tags);
+	public List<Post> getPostsOfTags(List<String> tags){
+		List<Long> tids = new TagService().getTagsId(tags);
 		return subdao.getPostsOfTags(tids);
+	}
+	
+	/*
+	 * 获得某人订阅的所有文章
+	 * @param Long uid
+	 * @return
+	 */
+	public List<Post> getPostsOfSubByUser(Long uid){
+		List<PostTag> tlist = getAllTagsOfUser(uid);
+		List<String> tags = new ArrayList<String>();
+		for(PostTag tag:tlist){
+			tags.add(tag.getTagname());
+		}
+		return getPostsOfTags(tags);
 	}
 	
 	

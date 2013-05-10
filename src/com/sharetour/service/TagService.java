@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.sharetour.cache.CacheHelper;
@@ -42,7 +41,7 @@ public class TagService {
 	/*
 	 * 获得与tag set中的tag的id
 	 */
-	public List<Long> getTagsId(Set<String> tags){
+	public List<Long> getTagsId(List<String> tags){
 		log.info("getting tags id list");
 		List<PostTag> tlist = tagdao.getTagsId(tags);
 		List<Long> tidlist = new ArrayList<Long>();

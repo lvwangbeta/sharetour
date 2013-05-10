@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.sharetour.model.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="com.sharetour.service.PostService" %>
+<%@ page import="com.sharetour.service.SubscriptionService" %>
 <%@ page import="java.util.*" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%
@@ -69,81 +69,86 @@
     <!--  begin container  -->
     <div class="container">
       <div class="row">
-        <div class="span3 offset1">
-          <div class="left-side">
-            <div class="avatar">
-              <img src="../../img/head.jpg" class="img-rounded">
-            </div>
-            <div>
-              <ul class="nav nav-list">
-              <li class="active"><a href="#">首页</a></li>
-              <li><a href="#">Library</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Messages</a></li>
-            </ul>
-            </div>  
-            <div>
-              <ul class="nav nav-list">
-              <li class="active"><a href="#">首页</a></li>
-              <li><a href="#">Library</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Messages</a></li>
-            </ul>
-            </div>  
-            <div>
-              <ul class="nav nav-list">
-              <li class="active"><a href="#">首页</a></li>
-              <li><a href="#">Library</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Messages</a></li>
-            </ul>
-            </div>        
-          </div>
-          <!-- end left-side -->          
-        </div>
+
         <%
-        	List<Post> postlist = new PostService().getPostsOfAuthor(user.getId());
+        	SubscriptionService sub = new SubscriptionService(); 
+        	List<Post> postlist = sub.getPostsOfSubByUser(user.getId());
         	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         %>
-      	<div class="span7">
+      	<div class="span8">
       		<%for(Post post:postlist){ %>
-      		<div>
-      			<h4><a href="/post/<%=post.getId() %>"><%=post.getTitle() %></a></h4>
-      			<p><%=post.getSummary() %></p>
-	          	<div>
-	              <span class="badge badge-success">Posted <%=format.format(post.getCtime().getTime()) %></span>
-	              <div class="pull-right">
-	              <%for(String tag:StringUtils.split(post.getTags(), " ")){ %>
-	              	<a href="/tag/<%=tag%>"><span class="label label-warning"><%=tag %></span></a>
-	              <%} %>
+      		<div class="media">
+	            <div class="row">
+	              <div class="span1">
+	                <a class="pull-left" href="/u/">
+	                  <img class="media-object" src="../../img/head.jpg" style="height:64px;width=64px;">
+	                </a>                 
 	              </div>
-	          	</div> 
-	          	<hr>
+	              <!-- end span1 -->
+	              <div class="span7">
+	                <div class="media-body">
+	                    <div class="thumbnail">
+	                      <div>
+	                        <h4><a href="/post/<%=post.getId() %>"><%=post.getTitle() %></a></h4>
+	                      </div>
+	                      <img src="../../img/7.jpg">
+	                      <div class="caption">
+	                        <p><%=post.getSummary() %></p>
+	                        <%for(String tag:StringUtils.split(post.getTags(), " ")){ %>
+		              			<a href="/tag/<%=tag%>"><span class="label label-warning"><%=tag %></span></a>
+		              		<%} %>
+	                      </div>
+	                    </div>              
+	                </div>                 
+	              </div>
+	              <!-- end span7  -->
+	            </div>
+				<!-- end row -->
       		</div>
+      		<!-- end media -->
       		<%} %>
-	        <div>
-	          <h1>Alice in Wonderland, part dos</h1>
-	          <p>'You ought to be ashamed of yourself for asking such a simple question,' added the Gryphon; and then they both sat silent and looked at poor Alice, who felt ready to sink into the earth. At last the Gryphon said to the Mock Turtle, 'Drive on, old fellow! Don't be all day about it!' and he went on in these words:
-	          'Yes, we went to school in the sea, though you mayn't believe it—'
-	          'I never said I didn't!' interrupted Alice.
-	          'You did,' said the Mock Turtle.</p>
-	          <div>
-	              <span class="badge badge-success">Posted 2012-08-02 20:47:04</span><div class="pull-right"><span class="label">alice</span> <span class="label">story</span> <span class="label">blog</span> <span class="label">personal</span></div>
-	          </div>
-	          <hr> 
-	        </div>
-	        <div>
-	          <h1>Revolution has begun!</h1>
-	          <p>'I am bound to Tahiti for more men.'
-	              'Very good. Let me board you a moment—I come in peace.' With that he leaped from the canoe, swam to the boat; and climbing the gunwale, stood face to face with the captain.
-	              'Cross your arms, sir; throw back your head. Now, repeat after me. As soon as Steelkilt leaves me, I swear to beach this boat on yonder island, and remain there six days. If I do not, may lightning strike me!'A pretty scholar,' laughed the Lakeman. 'Adios, Senor!' and leaping into the sea, he swam back to his comrades.</p>
-	          <div>
-	              <span class="badge badge-success">Posted 2012-08-02 20:47:04</span><div class="pull-right"><span class="label">alice</span> <span class="label">story</span> <span class="label">blog</span> <span class="label">personal</span></div>
-	          </div>     
-	          <hr>
-	        </div>
       	</div>
-      	<!-- end span8 post list -->
+      	<!-- end span8  -->
+      	
+        <div class="span4">
+          <div class="accordion">
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#subTags">
+                  	我订阅的标签
+                </a>
+              </div>
+              <div id="subTags" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                  <%
+                  	List<PostTag> tlist = sub.getAllTagsOfUser(user.getId());
+                  	if(tlist != null && tlist.size() != 0){
+                  %>
+                  	<ul class="unstyled">
+                  		<%for(PostTag tag:tlist) {%>
+                  		<li><a href="/tag/<%=tag.getTagname() %>"><%=tag.getTagname() %></a> </li>
+                  		<%} %>
+                  	</ul>
+                  <%}%>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#following">
+                  	我的关注
+                </a>
+              </div>
+              <div id="following" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- end side bar -->
+        </div>
+        <!-- end span4 -->      	
       </div>
       <!-- end row -->
     </div>

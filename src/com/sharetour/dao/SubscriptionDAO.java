@@ -2,6 +2,7 @@ package com.sharetour.dao;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import com.sharetour.model.Post;
 import com.sharetour.model.PostTag;
@@ -39,9 +40,9 @@ public class SubscriptionDAO {
 		return status;
 	}
 	
-	public Collection<PostTag> getAllTagsOfUser(Long uid){
+	public List<PostTag> getAllTagsOfUser(Long uid){
 		QueryHelper helper = new QueryHelper();
-		Collection<PostTag> tags = helper.executeQuery(PostTag.class, 
+		List<PostTag> tags = helper.executeQuery(PostTag.class, 
 								   "select tagname " +
 								   "from subscription left join posts_tags " +
 								   "on subscription.tid=posts_tags.id " +
@@ -52,9 +53,9 @@ public class SubscriptionDAO {
 	}
 	
 	
-	public Collection<UserInfo> getAllUsersOfTag(String tagname){
+	public List<UserInfo> getAllUsersOfTag(String tagname){
 		QueryHelper helper = new QueryHelper();
-		Collection<UserInfo> users = helper.executeQuery(UserInfo.class, 
+		List<UserInfo> users = helper.executeQuery(UserInfo.class, 
 									 "select users.id, username " +
 									 "from subscription, users, posts_tags " +
 									 "where subscription.uid=users.id " +
@@ -65,7 +66,7 @@ public class SubscriptionDAO {
 		return users;
 	}
 	
-	public Collection<Post> getPostsOfTags(Collection<Long> tids){
+	public List<Post> getPostsOfTags(Collection<Long> tids){
 		QueryHelper helper = new QueryHelper();
 		StringBuffer buffer = new StringBuffer("select posts.id, authorid, title, summary, " +
 							  "tags, ctime, likes, visit from posts, relations " +
@@ -75,10 +76,12 @@ public class SubscriptionDAO {
 			if(i != 0){
 				buffer.append(",");
 			}
+			buffer.append("'");
 			buffer.append(it.next());
+			buffer.append("'");
 		}
-		buffer.append(")");
-		Collection<Post> posts = helper.executeQuery(Post.class, buffer.toString());
+		buffer.append(");");
+		List<Post> posts = helper.executeQuery(Post.class, buffer.toString());
 		helper.closeConnection();
 		return posts;
 	}

@@ -2,7 +2,10 @@ package com.sharetour.dao;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.sharetour.model.Post;
 import com.sharetour.model.PostTag;
 import com.sharetour.util.QueryHelper;
@@ -10,7 +13,8 @@ import com.sharetour.util.QueryHelper;
 public class TagDAO {
 	private final static String KEY = "hottags";
 	private final static String TABLE = "posts_tags";
-
+	private static Log log = LogFactory.getLog(TagDAO.class);
+	
 	public PostTag getTagId(String tagname){
 		QueryHelper helper = new QueryHelper();
 		PostTag tag = helper.get(PostTag.class, 
@@ -21,7 +25,8 @@ public class TagDAO {
 		return tag;
 	}
 	
-	public List<PostTag> getTagsId(Set<String> tags){
+	public List<PostTag> getTagsId(List<String> tags){
+		log.info("getting tagsid");
 		QueryHelper helper = new QueryHelper();
 		StringBuffer buffer = new StringBuffer("select id from posts_tags where tagname in (");
 		Iterator<String> it = tags.iterator();
@@ -29,9 +34,12 @@ public class TagDAO {
 			if(i != 0){
 				buffer.append(",");
 			}
+			buffer.append("'");
 			buffer.append(it.next());
+			buffer.append("'");
 		}
 		buffer.append(")");
+		log.info(buffer.toString());
 		List<PostTag> tlist = helper.executeQuery(PostTag.class, buffer.toString());
 		helper.closeConnection();
 		return tlist;
