@@ -58,8 +58,7 @@ public class UserDAO {
 	
 	public int getAuthorid(String username){
 		QueryHelper helper = new QueryHelper();
-		UserInfo userinfo = helper.get(UserInfo.class, 
-				username, 
+		UserInfo userinfo = helper.get(UserInfo.class,
 				"select * from users where username=?", 
 				username);
 		helper.closeConnection();
