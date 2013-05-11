@@ -3,11 +3,11 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.*" %>
 <%@ page import="com.sharetour.service.TagService" %>
+<%@ page import="com.sharetour.service.SubscriptionService" %>
 <%@ page import="com.sharetour.model.*" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-	
+<%	
 	String tag = request.getParameter("p1");
 	tag = new String(tag.getBytes("ISO-8859-1"), "UTF-8");
 	if(tag == null || tag.length() == 0){
@@ -91,26 +91,64 @@
       		if(postlist != null)
       			for(Post post:postlist){ 
       		%>
-      		<div>
-      			<h4><a href="/post/<%=post.getId() %>"><%=post.getTitle() %></a></h4>
-      			<p><%=post.getSummary() %></p>
-	          	<div>
-	              <span class="badge badge-success">Posted <%=format.format(post.getCtime()) %></span>
-	              <div class="pull-right">
-	              <%for(String Tag:StringUtils.split(post.getTags(), " ")){ %>
-	              	<span class="label label-warning"><%=Tag %></span> 
-	              <%} %>
+      		<div class="media">
+	            <div class="row">
+	              <div class="span1">
+	                <a class="pull-left" href="/u/">
+	                  <img class="media-object" src="../../img/head.jpg" style="height:64px;width=64px;">
+	                </a>                 
 	              </div>
-	          	</div> 
-	          	<hr>
+	              <!-- end span1 -->
+	              <div class="span7">
+	                <div class="media-body">
+	                    <div class="thumbnail">
+	                      <div>
+	                        <h4><a href="/post/<%=post.getId() %>"><%=post.getTitle() %></a></h4>
+	                      </div>
+	                      <img src="../../img/7.jpg">
+	                      <div class="caption">
+	                        <p><%=post.getSummary() %></p>
+	                        <%for(String t:StringUtils.split(post.getTags(), " ")){ %>
+		              			<a href="/tag/<%=t%>"><span class="label label-warning"><%=t %></span></a>
+		              		<%} %>
+	                      </div>
+	                    </div>              
+	                </div>                 
+	              </div>
+	              <!-- end span7  -->
+	            </div>
+				<!-- end row -->
       		</div>
+      		<!-- end media -->
       		<%} %>         
         </div> <!-- end span8 posts -->
-        <div class="span4">
-			<div>
-				<a href="/action/subscribe?action=sub&tagname=<%=tag%>"><%=tag%></a>
-			</div>
-        </div> <!-- end span4 -->
+        <div class="span4">		
+          <%
+          	SubscriptionService subservice = new SubscriptionService();
+          %>	
+          <div class="accordion">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                  <div class="accordion-inner">
+                    <i class="icon-tag"></i>&nbsp;&nbsp;<%=tag %>
+                    <%if(session.getAttribute("user") == null) {%>
+                    <a href="/action/subscribe?action=sub&tagname=<%=tag%>" class="pull-right sub">订阅</a>
+                    <%} 
+                    else{
+                    	UserInfo user = (UserInfo)session.getAttribute("user");
+                    	if(subservice.checkSubStatus(user.getId(), tag)){%>
+                    	<a href="/action/subscribe?action=sub&tagname=<%=tag%>" class="pull-right sub">订阅</a>
+                    	<%}else{%>
+                    	<a href="/action/subscribe?action=undosub&tagname=<%=tag%>" class="pull-right sub">取消订阅</a>
+                    	<%} %>
+                    <%} %>                           
+                  </div>        
+                </div>	
+            </div>                  
+          </div>
+          <!-- end accordion -->			
+        </div> 
+        <!-- end span4 -->
       </div>
       <hr>
       <footer>

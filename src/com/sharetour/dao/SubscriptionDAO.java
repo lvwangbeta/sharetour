@@ -40,6 +40,19 @@ public class SubscriptionDAO {
 		return status;
 	}
 	
+	public Subscription findSubTagOfUser(Long uid, String tagname){
+		QueryHelper helper = new QueryHelper();
+		Subscription sub = helper.get(Subscription.class, 
+						   "select uid, tid " +
+						   "from subscription, posts_tags " +
+						   "where subscription.tid=posts_tags.id " +
+						   "and uid=? and tagname=?",
+						   uid, tagname);
+		helper.closeConnection();
+		return sub;
+	}
+	
+	
 	public List<PostTag> getAllTagsOfUser(Long uid){
 		QueryHelper helper = new QueryHelper();
 		List<PostTag> tags = helper.executeQuery(PostTag.class, 

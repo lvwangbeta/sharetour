@@ -54,6 +54,16 @@ public class SubscriptionService {
 	}
 	
 	/*
+	 * 检查用户关于某标签的订阅状态
+	 * @param Long uid
+	 * @param String tagname
+	 * @return 返回true表示已经订阅, false相反
+	 */
+	public boolean checkSubStatus(Long uid, String tagname){
+		return subdao.findSubTagOfUser(uid, tagname)==null?false:true;
+	}
+	
+	/*
 	 * 获得订阅某标签的所有人
 	 * @param String tagname
 	 * @return 

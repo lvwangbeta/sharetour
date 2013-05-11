@@ -57,12 +57,10 @@
 		              <li class="dropdown active">
 		                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username} <b class="caret"></b></a>
 		                <ul class="dropdown-menu">
-		                  <li><a href="#">${sessionScope.user.email }</a></li>
-		                  <li><a href="#">${sessionScope.user.birth }</a></li>
-		                  <li><a href="#">${sessionScope.user.gender }</a></li>
-                  		  <li><a href="#">info <span class="badge badge-important">6</span></a></li>		                  
+		                  <li><a href="/u/space">我的空间</a></li>
+		                  <li><a href="/newpost">写新游记</a></li>
+                  		  <li><a href="#">消息 <span class="badge badge-important">6</span></a></li>		                  
 		                  <li class="divider"></li>
-		                  <li class="nav-header">Nav header</li>
 		                  <li><a href="/action/logout">退出</a></li>
 		                </ul>
 		              </li>

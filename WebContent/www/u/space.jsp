@@ -76,7 +76,10 @@
         	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         %>
       	<div class="span8">
-      		<%for(Post post:postlist){ %>
+      		<%
+      		if(postlist != null && postlist.size() != 0)
+      			for(Post post:postlist){ 
+      		%>
       		<div class="media">
 	            <div class="row">
 	              <div class="span1">
@@ -115,7 +118,7 @@
             <div class="accordion-group">
               <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" href="#subTags">
-                  	我订阅的标签
+                  <i class="icon-tags"></i>&nbsp;&nbsp;	我订阅的标签
                 </a>
               </div>
               <div id="subTags" class="accordion-body collapse in">
@@ -126,7 +129,10 @@
                   %>
                   	<ul class="unstyled">
                   		<%for(PostTag tag:tlist) {%>
-                  		<li><a href="/tag/<%=tag.getTagname() %>"><%=tag.getTagname() %></a> </li>
+                  		<li>
+                  			<i class="icon-tag"></i>&nbsp;&nbsp;
+                  			<a href="/tag/<%=tag.getTagname() %>"><%=tag.getTagname() %></a> 
+                  		</li>
                   		<%} %>
                   	</ul>
                   <%}%>
@@ -136,7 +142,7 @@
             <div class="accordion-group">
               <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" href="#following">
-                  	我的关注
+                  <i class="icon-user"></i>&nbsp;&nbsp;我的关注
                 </a>
               </div>
               <div id="following" class="accordion-body collapse">
