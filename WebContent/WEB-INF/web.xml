@@ -9,9 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <listener>
-    <listener-class>com.sharetour.listener.MyServletContextListener</listener-class>
-  </listener>
   <filter>
     <display-name>URLMappingFilter</display-name>
     <filter-name>URLMappingFilter</filter-name>

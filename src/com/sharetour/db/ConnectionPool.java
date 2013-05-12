@@ -92,16 +92,18 @@ public class ConnectionPool {
 	}
 	private ConnectionPool()
 	{
-		/*
+		
 		setPoolFromParam("jdbc:mysql://172.30.48.29:3306/d830e97b407104c25a9535461208a9470", 
 						 "u74ktCJ81MdBT", "ppIEca9zHLkZm", 
 						 "com.mysql.jdbc.Driver", 
 						 5, 100, 30, 10000);
-		*/
+		
+		/*
 		setPoolFromParam("jdbc:mysql://localhost:3306/blog", 
 				"root", "123", 
 				"com.mysql.jdbc.Driver", 
 				5, 100, 30, 10000);
+		*/
 		InitDS();
 	}
 	
