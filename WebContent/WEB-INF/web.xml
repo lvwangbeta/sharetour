@@ -19,7 +19,7 @@
     </init-param>
     <init-param>
       <param-name>ignore</param-name>
-      <param-value>/action/,/uploads/,/img/,/css/,/js/</param-value>
+      <param-value>/action/,/uploads/,/img/,/css/,/js/,/imgs</param-value>
     </init-param>
     <init-param>
       <param-name>ignoreExts</param-name>
@@ -94,7 +94,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ImgDownServlet</servlet-name>
-    <url-pattern>/action/imgs</url-pattern>
+    <url-pattern>/imgs</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

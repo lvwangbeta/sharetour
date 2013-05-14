@@ -136,7 +136,7 @@
                     <%} 
                     else{
                     	UserInfo user = (UserInfo)session.getAttribute("user");
-                    	if(subservice.checkSubStatus(user.getId(), tag)){%>
+                    	if(!subservice.checkSubStatus(user.getId(), tag)){%>
                     	<a href="/action/subscribe?action=sub&tagname=<%=tag%>" class="pull-right sub">订阅</a>
                     	<%}else{%>
                     	<a href="/action/subscribe?action=undosub&tagname=<%=tag%>" class="pull-right sub">取消订阅</a>

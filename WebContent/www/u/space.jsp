@@ -69,13 +69,28 @@
     <!--  begin container  -->
     <div class="container">
       <div class="row">
-
         <%
         	SubscriptionService sub = new SubscriptionService(); 
         	List<Post> postlist = sub.getPostsOfSubByUser(user.getId());
         	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         %>
       	<div class="span8">
+      	 <div class="media">
+      	 	<div class="row">
+      	 		<div class="span1">
+      	 			<img class="media-object" src="../../img/head.jpg" style="height:64px;width=64px;">
+      	 		</div>
+      	 		<div class="span7">
+	                <div class="media-body">
+	                    <div class="thumbnail">
+
+	                    </div>              
+	                </div>      	 			
+      	 		</div>
+      	 	</div>
+      	 
+      	 </div>
+      	 <!-- end media  -->      	
       		<%
       		if(postlist != null && postlist.size() != 0)
       			for(Post post:postlist){ 

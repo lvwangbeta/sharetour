@@ -42,24 +42,19 @@ public class HotPostService{
 		@SuppressWarnings("unchecked")
 		Map<Integer, List<Post>> page_posts_map = (HashMap<Integer, List<Post>>) CacheHelper.
 		getCacheData(HOTPOST_CACHE_NAME, HOT_POST_KEY);
-		List<Post> list = null;
 		if(page_posts_map == null){
-			log.info("get hot post from db");
-			list = hpdao.getPostList(page, limit, ORDER);
+			log.info("hot post cache not in use");
 			page_posts_map = new HashMap<Integer, List<Post>>();
-			page_posts_map.put(page, list);
 			CacheHelper.put(HOTPOST_CACHE_NAME, HOT_POST_KEY, page_posts_map);
 		}
+		List<Post> list = page_posts_map.get(page);
+		if(list == null){
+			log.info("get hot post from db");
+			list = hpdao.getPostList(page, limit, ORDER);
+			page_posts_map.put(page, list);
+		}
 		else{
-			list = page_posts_map.get(page);
-			if(list == null){
-				log.info("get hot post from db");
-				list = hpdao.getPostList(page, limit, ORDER);
-				page_posts_map.put(page, list);
-			}
-			else{
 				log.info("get hot post from cache");
-			}
 		}
 		return list;
 	}

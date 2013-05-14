@@ -33,5 +33,6 @@
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/junit-4.11.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/thumbnailator-0.4.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

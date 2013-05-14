@@ -35,10 +35,10 @@ public class SubscribeServlet extends HttpServlet {
 		Action subaction = ActionFactory.getAction("subscribe");
 		String view = subaction.execute(request);
 		if("success".equals(view)){
-			out.write("success");
+			response.sendRedirect("/u/space");
 		}
 		else{
-			out.write("error");
+			response.sendRedirect("/u/space");
 		}
 		out.close();
 	}
