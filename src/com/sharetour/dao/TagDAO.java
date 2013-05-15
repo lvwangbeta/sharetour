@@ -48,13 +48,12 @@ public class TagDAO {
 	public static List<PostTag> getHotTag(int page, int limit){
 		QueryHelper helper = new QueryHelper();
 		List<PostTag> list = helper.
-			query_slice_cache(
-							  PostTag.class,
-							  KEY,
-							  "select tagname, postcount from " + TABLE + " order by postcount desc",
-							  page,
-							  limit
-							  );
+			query_slice(
+						PostTag.class,
+						"select tagname, postcount from " + TABLE + " order by postcount desc",
+						 page,
+						 limit
+						);
 		helper.closeConnection();
 		return list;		
 	}
@@ -62,18 +61,17 @@ public class TagDAO {
 	public List<Post> getPostsRelatedToTag(String tagname){
 		QueryHelper helper = new QueryHelper();
 		List<Post> list = helper.
-			query_slice_cache(
-							  Post.class,
-							  "posts_relatedto_"+tagname, 
-							  "select posts.id, posts.authorid, posts.title, " +
-							  "posts.summary, posts.tags, posts.visit, posts.ctime " +
-							  "from posts,relations,posts_tags where " +
-							  "posts.id=relations.pid " +
-							  "and relations.tid=posts_tags.id and posts_tags.tagname=?", 
-							  1, 
-							  1000,
-							  tagname
-							  );
+			query_slice(
+						 Post.class, 
+						 "select posts.id, posts.authorid, posts.title, " +
+						 "posts.summary, posts.tags, posts.visit, posts.ctime " +
+						 "from posts,relations,posts_tags where " +
+						 "posts.id=relations.pid " +
+						 "and relations.tid=posts_tags.id and posts_tags.tagname=?", 
+						 1, 
+						 1000,
+						 tagname
+						);
 		System.out.println(tagname);
 		helper.closeConnection();
 		return list;		

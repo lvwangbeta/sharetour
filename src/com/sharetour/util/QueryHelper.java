@@ -63,10 +63,8 @@ public class QueryHelper {
 			QueryRunner query = new QueryRunner();
 			return query.query(connection, sql, new BeanListHandler<T>(beanClass), params);		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 	
 	/*
