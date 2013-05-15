@@ -119,6 +119,7 @@ public abstract class POJO implements Serializable{
 			sql.append("?");
 		}
 		sql.append(")");
+				
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet res = null;
@@ -138,7 +139,6 @@ public abstract class POJO implements Serializable{
 			//get the pk of insert
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return id;		
