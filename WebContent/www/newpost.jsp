@@ -96,7 +96,9 @@
   	                <textarea class="ckeditor span8" name="content" id="content"></textarea>
   	                <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
   	                <script type="text/javascript">  
-  	                    CKEDITOR.replace('content',{ width:700,height:400 });  
+  	                    CKEDITOR.replace('content',
+  	                    		{ width:700,height:400,
+  	                    		  filebrowserImageUploadUrl : '/action/imgupload' } );  
   	                </script> 
   	              </td>
   	            </tr>

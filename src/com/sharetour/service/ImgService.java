@@ -20,7 +20,7 @@ public class ImgService {
 	*/
 	
 	/*
-	 * return img url
+	 * return img filename
 	 */
 	public String processUploadFile(FileItem item) throws Exception{
 		return imgdao.saveImg(item);

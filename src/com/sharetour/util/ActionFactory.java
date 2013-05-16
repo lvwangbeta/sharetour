@@ -2,7 +2,6 @@ package com.sharetour.util;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import com.sharetour.control.CommentAction;
 import com.sharetour.control.LikeAction;
 import com.sharetour.control.LoginAction;

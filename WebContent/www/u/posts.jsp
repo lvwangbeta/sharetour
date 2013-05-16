@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.sharetour.model.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.sharetour.service.PostService" %>
 <%@ page import="com.sharetour.service.SubscriptionService" %>
 <%@ page import="java.util.*" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
@@ -70,8 +71,8 @@
     <div class="container">
       <div class="row">
         <%
-        	SubscriptionService sub = new SubscriptionService(); 
-        	List<Post> postlist = sub.getPostsOfSubByUser(user.getId());
+        	PostService service = new PostService(); 
+        	List<Post> postlist = service.getPostsOfAuthor(user.getId());
         	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         %>
       	<div class="span8">
@@ -136,7 +137,7 @@
           
             <div class="accordion-group">
               <div class="accordion-heading">
-                <a class="accordion-toggle" href="/u/posts">
+                <a class="accordion-toggle" href="#">
                   <i class="icon-user"></i>&nbsp;&nbsp;我的游记
                 </a>
               </div>
@@ -152,7 +153,7 @@
               <div id="subTags" class="accordion-body collapse in">
                 <div class="accordion-inner">
                   <%
-                  	List<PostTag> tlist = sub.getAllTagsOfUser(user.getId());
+                  	List<PostTag> tlist = new SubscriptionService().getAllTagsOfUser(user.getId());
                   	if(tlist != null && tlist.size() != 0){
                   %>
                   	<ul class="unstyled">

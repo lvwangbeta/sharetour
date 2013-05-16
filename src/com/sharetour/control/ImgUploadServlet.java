@@ -34,14 +34,32 @@ public class ImgUploadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ImgAction imgAction = new ImgAction();
-		String url = imgAction.saveImg(request, temppath);
-		String resp = null;
+		String filename = imgAction.saveImg(request, temppath);
+		String url = "/imgs?id=" + filename;
+		//String resp = null;
+		
+		/*
+		@SuppressWarnings("unchecked")
+		List<String> photos = (List<String>) request.getSession().getAttribute("photos");
+		if(photos == null){
+			photos = new ArrayList<String>();
+			request.getSession().setAttribute("photos", photos);
+		}
+		photos.add(filename);
+		
 		if(url != null && url.length() != 0){
 			resp = "{\"success\":true,\"url\":\""+url+"\"}";
 		}
 		response.setContentType("application/json; charset=utf-8");
-		PrintWriter out = response.getWriter();	
-		out.write(resp);
+		*/
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		String callback = request.getParameter("CKEditorFuncNum");
+		out.println("<script type=\"text/javascript\">");
+		out.println("window.parent.CKEDITOR.tools.callFunction(" + callback
+		+ ",'" + url + "',''" + ")");
+		out.println("</script>");	
+		//out.write(resp);
 		out.close();
 
 	}
@@ -50,7 +68,6 @@ public class ImgUploadServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

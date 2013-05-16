@@ -146,4 +146,14 @@
     <servlet-name>subscribe</servlet-name>
     <url-pattern>/action/subscribe</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AlbumUpServlet</display-name>
+    <servlet-name>AlbumUpServlet</servlet-name>
+    <servlet-class>com.sharetour.control.AlbumUpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AlbumUpServlet</servlet-name>
+    <url-pattern>/action/albumup</url-pattern>
+  </servlet-mapping>
 </web-app>

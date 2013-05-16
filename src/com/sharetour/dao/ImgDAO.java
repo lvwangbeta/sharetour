@@ -32,8 +32,8 @@ public class ImgDAO {
 		in.setFilename(filename);
 		in.save();
 		client.close();
-		String url = "/imgs?id=" + filename;
-		return url;
+		//String url = "/imgs?id=" + filename;
+		return filename;
 	}
 	
 	public InputStream getImg(String filename){
