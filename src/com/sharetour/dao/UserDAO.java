@@ -58,10 +58,10 @@ public class UserDAO {
 	
 	public int getAuthorid(String username){
 		QueryHelper helper = new QueryHelper();
-		UserInfo userinfo = helper.get(UserInfo.class, 
-				username, 
+		UserInfo userinfo = helper.get(UserInfo.class,
 				"select * from users where username=?", 
 				username);
+		helper.closeConnection();
 		return (int)userinfo.getId();
 	}
 	
@@ -72,9 +72,11 @@ public class UserDAO {
 		QueryHelper helper = new QueryHelper();
 		user.setQueryHelper(helper);
 		if(user.Save() > 0){
+			helper.closeConnection();
 			return true;
 		}
 		else{
+			helper.closeConnection();
 			return false;
 		}
 	}

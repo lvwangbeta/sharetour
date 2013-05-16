@@ -30,8 +30,8 @@ public class SubscriptionDAO {
 	public boolean undoSub(Long uid, String tagname){
 		boolean status = false;
 		QueryHelper helper = new QueryHelper();
-		if(helper.delete("delete subsciption " +
-						 "from subscription, posts_tags" +
+		if(helper.delete("delete subscription " +
+						 "from subscription, posts_tags " +
 						 "where tid=posts_tags.id and uid=? and tagname=?", 
 						 uid, tagname) > 0){
 			status = true;
