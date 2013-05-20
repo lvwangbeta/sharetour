@@ -80,6 +80,8 @@ public class SubscriptionDAO {
 	}
 	
 	public List<Post> getPostsOfTags(Collection<Long> tids){
+		if(tids == null || tids.size() == 0)
+			return null;
 		QueryHelper helper = new QueryHelper();
 		StringBuffer buffer = new StringBuffer("select posts.id, authorid, title, summary, " +
 							  "tags, ctime, likes, visit from posts, relations " +

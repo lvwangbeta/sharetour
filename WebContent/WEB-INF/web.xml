@@ -156,4 +156,7 @@
     <servlet-name>AlbumUpServlet</servlet-name>
     <url-pattern>/action/albumup</url-pattern>
   </servlet-mapping>
+  <listener>
+    <listener-class>com.sharetour.listener.MyServletContext</listener-class>
+  </listener>
 </web-app>

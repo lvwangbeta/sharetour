@@ -90,10 +90,13 @@ public class SubscriptionService {
 	public List<Post> getPostsOfSubByUser(Long uid){
 		List<PostTag> tlist = getAllTagsOfUser(uid);
 		List<String> tags = new ArrayList<String>();
-		for(PostTag tag:tlist){
-			tags.add(tag.getTagname());
+		if(tlist != null && tlist.size() != 0){
+			for(PostTag tag:tlist){
+				tags.add(tag.getTagname());
+			}
+			return getPostsOfTags(tags);
 		}
-		return getPostsOfTags(tags);
+		return null;
 	}
 	
 	
