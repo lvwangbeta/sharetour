@@ -1,25 +1,32 @@
 package com.sharetour.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.bson.types.ObjectId;
 
-public class Album {
-	private ObjectId _id;
+public class Album implements Serializable {
+
+	private static final long serialVersionUID = -8343545984379551338L;
+	private ObjectId id;
 	private ObjectId coverid;
 	private String albumname;
 	private String desc;
-	private List<Photo> photos;
+	private List<Photo> photos = new ArrayList<Photo>();
 	private Date ctime;
 	private Long uid;
 	private Long username;
 	private int visit;
-	public ObjectId get_id() {
-		return _id;
+	private List<UserInfo> likers = new ArrayList<UserInfo>();
+	
+	
+	public ObjectId getId() {
+		return id;
 	}
-	public void set_id(ObjectId _id) {
-		this._id = _id;
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 	public ObjectId getCoverid() {
 		return coverid;
@@ -68,6 +75,12 @@ public class Album {
 	}
 	public void setVisit(int visit) {
 		this.visit = visit;
+	}
+	public List<UserInfo> getLikers() {
+		return likers;
+	}
+	public void setLikers(List<UserInfo> likers) {
+		this.likers = likers;
 	}
 	
 }

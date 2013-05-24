@@ -3,6 +3,7 @@ package com.sharetour.service;
 import java.io.InputStream;
 import org.apache.commons.fileupload.FileItem;
 import com.sharetour.dao.ImgDAO;
+import com.sharetour.model.Photo;
 
 public class ImgService {
 	
@@ -22,7 +23,7 @@ public class ImgService {
 	/*
 	 * return img filename
 	 */
-	public String processUploadFile(FileItem item) throws Exception{
+	public Photo processUploadFile(FileItem item) throws Exception{
 		return imgdao.saveImg(item);
 	}
 	

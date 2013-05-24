@@ -1,23 +1,35 @@
 package com.sharetour.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
 
-public class Photo {
-	private ObjectId _id;
+public class Photo implements Serializable{
+
+	private static final long serialVersionUID = 4596526198993228200L;
+	private ObjectId id;
+	private String type;
 	private String desc;
 	private int likes;
-	private List<PhotoComment> comments;
+	private List<PhotoComment> comments = new ArrayList<PhotoComment>();
 	
-	public ObjectId get_id() {
-		return _id;
+	public ObjectId getId() {
+		return id;
 	}
 
-	public void set_id(ObjectId _id) {
-		this._id = _id;
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 
+	public void setType(String type){
+		this.type = type;
+	}
+	public String getType(){
+		return type;
+	}
+	
 	public String getDesc() {
 		return desc;
 	}

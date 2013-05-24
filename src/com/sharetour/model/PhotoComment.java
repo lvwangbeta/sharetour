@@ -1,18 +1,25 @@
 package com.sharetour.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import org.bson.types.ObjectId;
 
-public class PhotoComment {
-	private ObjectId _id;
+public class PhotoComment implements Serializable{
+
+	private static final long serialVersionUID = -4748627776571020506L;
+	private ObjectId id;
 	private String comment;
 	private Long uid;
 	private String username;
+	private Date ctime;
+	private ObjectId parent;
 	
-	public ObjectId get_id() {
-		return _id;
+	public ObjectId getId() {
+		return id;
 	}
-	public void set_id(ObjectId _id) {
-		this._id = _id;
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 	public String getComment() {
 		return comment;
@@ -31,5 +38,17 @@ public class PhotoComment {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public Date getCtime() {
+		return ctime;
+	}
+	public void setCtime(Date ctime) {
+		this.ctime = ctime;
+	}
+	public ObjectId getParent() {
+		return parent;
+	}
+	public void setParent(ObjectId parent) {
+		this.parent = parent;
 	}
 }

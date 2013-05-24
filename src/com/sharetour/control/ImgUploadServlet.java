@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sharetour.model.Photo;
+
 /**
  * Servlet implementation class ImgUploadServlet
  */
@@ -34,34 +36,27 @@ public class ImgUploadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ImgAction imgAction = new ImgAction();
-		String filename = imgAction.saveImg(request, temppath);
-		String url = "/imgs?id=" + filename;
-		//String resp = null;
+		Photo photo = imgAction.saveImg(request, temppath);
+		response.setCharacterEncoding("utf-8");	
 		
-		/*
-		@SuppressWarnings("unchecked")
-		List<String> photos = (List<String>) request.getSession().getAttribute("photos");
-		if(photos == null){
-			photos = new ArrayList<String>();
-			request.getSession().setAttribute("photos", photos);
+		//from post or album
+		String url = "/imgs?id=" + photo.getId().toString() +"."+ photo.getType();
+		String attr = request.getParameter("attr");
+		System.out.println("attr:"+attr);
+		if("post".equals(attr)){
+			PrintWriter out = response.getWriter();	
+			String callback = request.getParameter("CKEditorFuncNum");
+			out.println("<script type=\"text/javascript\">");
+			out.println("window.parent.CKEDITOR.tools.callFunction(" + callback
+			+ ",'" + url + "',''" + ")");
+			out.println("</script>");
+			out.close();
+		}else if("album".equals(attr)){
+			response.setContentType("application/json; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.write("{\"success\":true,\"url\":\""+url+"\"}");
+			out.close();
 		}
-		photos.add(filename);
-		
-		if(url != null && url.length() != 0){
-			resp = "{\"success\":true,\"url\":\""+url+"\"}";
-		}
-		response.setContentType("application/json; charset=utf-8");
-		*/
-		response.setCharacterEncoding("utf-8");
-		PrintWriter out = response.getWriter();
-		String callback = request.getParameter("CKEditorFuncNum");
-		out.println("<script type=\"text/javascript\">");
-		out.println("window.parent.CKEDITOR.tools.callFunction(" + callback
-		+ ",'" + url + "',''" + ")");
-		out.println("</script>");	
-		//out.write(resp);
-		out.close();
-
 	}
 	
 	/**

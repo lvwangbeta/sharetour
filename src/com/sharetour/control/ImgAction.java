@@ -5,27 +5,29 @@ import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import com.sharetour.model.Album;
+import com.sharetour.model.Photo;
 import com.sharetour.service.ImgService;
-import com.sharetour.util.Action;
 
-public class ImgAction implements Action{
+public class ImgAction{
 
 	private static final Log log = LogFactory.getLog(ImgAction.class);
 	private static String TEMPPATH;	
 	
-	public String saveImg(HttpServletRequest request, String temppath){
+	public Photo saveImg(HttpServletRequest request, String temppath){
 		TEMPPATH = temppath;
 		return execute(request);
 	}
 	
-	@Override
-	public String execute(HttpServletRequest request) {
+
+	public Photo execute(HttpServletRequest request) {
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
@@ -40,33 +42,24 @@ public class ImgAction implements Action{
 
 		
 		ImgService imgService = new ImgService();
-		String imgUrl = null;
+		Photo photo = null;
 		
 		try {
 			@SuppressWarnings("unchecked")
 			List<FileItem> items = upload.parseRequest(request);
 			Iterator<FileItem> it = items.iterator(); 
-			while(it.hasNext())
-			{
+			while(it.hasNext()){
 				FileItem item = (FileItem)it.next();
-				if(item.isFormField())
-				{
+				if(item.isFormField()){
 					
 				}
-				else
-				{
-					/*
-					 * handle only one image
-					 */
-					imgUrl = imgService.processUploadFile(item);
-					/*
-					String callback = request.getParameter("CKEditorFuncNum");
-					response.getWriter().println("<script type=\"text/javascript\">");
-					response.getWriter().println("window.parent.CKEDITOR.tools.callFunction(" + callback
-					+ ",'" + url + "',''" + ")");
-					response.getWriter().println("</script>");
-					*/
-					log.info("img url:"+imgUrl);
+				else{
+					photo = imgService.processUploadFile(item);
+					if(photo != null){
+						cacheImgToSession(request.getSession(), photo);
+						log.info("upload img id:"+photo.getId().toString());
+					}
+					
 				}
 			}
 			
@@ -77,7 +70,17 @@ public class ImgAction implements Action{
 			log.info("img upload error");
 			return null;
 		}
-		return imgUrl;
+		return photo;
 	}
 
+	private void cacheImgToSession(HttpSession session, Photo photo){
+		Album album = (Album) session.getAttribute("album");
+		if(album == null){
+			album = new Album();
+			session.setAttribute("album", album);
+		}
+		album.getPhotos().add(photo);
+		log.info("cache img:"+photo.getId().toString()+" to session");
+	}
+	
 }

@@ -25,14 +25,14 @@ public class ImgDownAction {
 	public void downLoadImg(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");   //[0-9]+.jpg
+		String filename = request.getParameter("id");   //[0-9]+.jpg
 		String height = request.getParameter("height");
 		String width = request.getParameter("width");
-		if(id == null){
+		if(filename == null){
 			log.error("img name null");
 			return ;
 		}
-		String[] fields = StringUtils.split(id, ".");
+		String[] fields = StringUtils.split(filename, ".");
 		if(fields.length != 2){
 			log.error("img name format error");
 			return ;
@@ -43,7 +43,7 @@ public class ImgDownAction {
 		}
 		
 		String ext = fields[1];
-		InputStream imgstream = new ImgService().getImg(id);
+		InputStream imgstream = new ImgService().getImg(filename);
 		if(imgstream == null){
 			return;
 		}

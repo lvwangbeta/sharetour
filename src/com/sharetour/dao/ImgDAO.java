@@ -5,29 +5,45 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bson.types.ObjectId;
-
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSInputFile;
 import com.sharetour.db.MongoDBPool;
+import com.sharetour.model.Photo;
+import com.sharetour.util.ImgTools;
+import com.sharetour.util.ObjectIdGenerator;
 
 public class ImgDAO {
 	
 	private static final Log log = LogFactory.getLog(ImgDAO.class);
 	
-	public String saveImg(FileItem item) throws Exception{
+	public Photo saveImg(FileItem item) throws Exception{
+		Photo photo = new Photo();
 		String filename = item.getName();
-		int index = filename.lastIndexOf(".");
-		filename = new ObjectId() + filename.substring(index);
-		System.out.println(filename);
 		if(filename == null || filename.length() == 0)
+		{
+			log.error("img name illegal");
 			return null;
-		GridFS photo = new GridFS(MongoDBPool.getInstance().getDB(), "imgs");
+		}
+		int index = filename.lastIndexOf(".");
+		String type = filename.substring(index+1);
+		if(!ImgTools.checkImgFormatValidata(type)){
+			log.error("img type illegal");
+			return null;
+		}
+		ObjectId id = ObjectIdGenerator.generate();
+		//filename = new ObjectId() + filename.substring(index);
+		photo.setId(id);
+		photo.setType(type);
+		
+		GridFS mphoto = new GridFS(MongoDBPool.getInstance().getDB(), "imgs");
 		GridFSInputFile in = null;
-		in = photo.createFile(item.getInputStream());
-		in.setFilename(filename);
+		in = mphoto.createFile(item.getInputStream());
+		in.setId(id);
+		in.setFilename(id.toString()+"."+type);
+		in.setContentType(type);
 		in.save();
-		return filename;
+		return photo;
 	}
 	
 	public InputStream getImg(String filename){
