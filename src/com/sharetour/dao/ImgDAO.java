@@ -33,7 +33,7 @@ public class ImgDAO {
 		}
 		ObjectId id = ObjectIdGenerator.generate();
 		//filename = new ObjectId() + filename.substring(index);
-		photo.setId(id);
+		photo.setId(id.toString());
 		photo.setType(type);
 		
 		GridFS mphoto = new GridFS(MongoDBPool.getInstance().getDB(), "imgs");
@@ -43,6 +43,7 @@ public class ImgDAO {
 		in.setFilename(id.toString()+"."+type);
 		in.setContentType(type);
 		in.save();
+		item.getInputStream().close();
 		return photo;
 	}
 	
