@@ -18,15 +18,15 @@
     <meta name="author" content="gavin">
 
     <!-- Le styles -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
     </style>
-    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -37,19 +37,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/">享途</a>
+          <a class="brand" href="<%=request.getContextPath()%>">享途</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="/about">About</a></li>
+              <li class="active"><a href="<%=request.getContextPath()%>">Home</a></li>
+              <li><a href="<%=request.getContextPath()%>/about">About</a></li>
             </ul>
             <c:choose>
             	<c:when test="${sessionScope.user == null }">
-					      <form class="navbar-form pull-right" method="post" action="/action/login">
+					      <form class="navbar-form pull-right" method="post" action="<%=request.getContextPath()%>/action/login">
 		              <input class="span2" type="text" name="username" placeholder="Email">
 		              <input class="span2" type="password" name="password" placeholder="Password">
 		              <button type="submit" class="btn">Sign in</button>
-		              <a class="btn" href="/register">注册</a>
+		              <a class="btn" href="<%=request.getContextPath()%>/register">注册</a>
 		            </form>            		
             	</c:when>
             	<c:otherwise>
@@ -57,11 +57,11 @@
 		              <li class="dropdown active">
 		                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username} <b class="caret"></b></a>
 		                <ul class="dropdown-menu">
-		                  <li><a href="/u/space">我的空间</a></li>
-		                  <li><a href="/newpost">写新游记</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/u/space">我的空间</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/newpost">写新游记</a></li>
                   		  <li><a href="#">消息 <span class="badge badge-important">6</span></a></li>		                  
 		                  <li class="divider"></li>
-		                  <li><a href="/action/logout">退出</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/action/logout">退出</a></li>
 		                </ul>
 		              </li>
 		            </ul>           	
@@ -79,15 +79,15 @@
           <div class="gallery billboard">
             <ul class="rslides">
               <li>
-                <img src="/img/7.jpg" alt="">
+                <img src="<%=request.getContextPath()%>/img/7.jpg" alt="">
                 <p class="caption">This is a caption</p>
               </li>
               <li>
-                <img src="/img/8.jpg" alt="">
+                <img src="<%=request.getContextPath()%>/img/8.jpg" alt="">
                 <p class="caption">This is another caption</p>
               </li>
               <li>
-                <img src="/img/9.jpg" alt="">
+                <img src="<%=request.getContextPath()%>/img/9.jpg" alt="">
                 <p class="caption">This is another caption</p>
               </li>
             </ul>                   
@@ -99,42 +99,42 @@
             <ul class="thumbnails">
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="../img/pre.jpg" alt="">
+                  <img src="<%=request.getContextPath()%>/img/pre.jpg" alt="">
                   <h3>Thumbnail label</h3>
                   <p>Thumbnail caption...</p>
                 </div>
               </li>
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="../img/pre.jpg" alt="">
+                  <img src="<%=request.getContextPath()%>/img/pre.jpg" alt="">
                   <h3>Thumbnail label</h3>
                   <p>Thumbnail caption...</p>
                 </div>
               </li>          
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="../img/pre.jpg" alt="">
+                  <img src="<%=request.getContextPath()%>/img/pre.jpg" alt="">
                   <h3>Thumbnail label</h3>
                   <p>Thumbnail caption...</p>
                 </div>
               </li>          
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="../img/pre.jpg" alt="">
+                  <img src="<%=request.getContextPath()%>/img/pre.jpg" alt="">
                   <h3>Thumbnail label</h3>
                   <p>Thumbnail caption...</p>
                 </div>
               </li>  
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="../img/pre.jpg" alt="">
+                  <img src="<%=request.getContextPath()%>/img/pre.jpg" alt="">
                   <h3>Thumbnail label</h3>
                   <p>Thumbnail caption...</p>
                 </div>
               </li>          
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="../img/pre.jpg" alt="">
+                  <img src="<%=request.getContextPath()%>/img/pre.jpg" alt="">
                   <h3>Thumbnail label</h3>
                   <p>Thumbnail caption...</p>
                 </div>
@@ -169,7 +169,7 @@
                       <div class="span2">
                         <div class="preimg">
                           <a href="#" class="thumbnail">
-                              <img src="/img/pre.jpg" alt="">
+                              <img src="<%=request.getContextPath()%>/img/pre.jpg" alt="">
                           </a>                      
                         </div>
 
@@ -224,7 +224,7 @@
                     <div class="row">
                       <div class="span8">
                         <div class="posttitle">
-                            <h4><strong><a href="/post/<%=post.getId()%>"><%=post.getTitle() %></a></strong></h4>
+                            <h4><strong><a href="<%=request.getContextPath()%>/post/<%=post.getId()%>"><%=post.getTitle() %></a></strong></h4>
                           </div>
                       </div>                   
                     </div>
@@ -233,7 +233,7 @@
                       <div class="span2">
                         <div class="preimg">
                           <a href="#" class="thumbnail">
-                              <img src="../img/pre.jpg" alt="">
+                              <img src="<%=request.getContextPath()%>/img/pre.jpg" alt="">
                           </a>
                         </div>
                       </div>
@@ -252,12 +252,12 @@
                         <i class="icon-tags"></i> 
                           Tags : 
                         <%for(String tag:StringUtils.split(post.getTags(), ' ')) {%>
-                          <a href="/tag/<%=tag%>"><span class="label label-warning"><%=tag %></span></a>
+                          <a href="<%=request.getContextPath()%>/tag/<%=tag%>"><span class="label label-warning"><%=tag %></span></a>
                         <%} %> 
                             </p>                                                  
                           </div>
                           <div class="span2">
-                              <a href="/action/like?postid=<%=post.getId() %>"  
+                              <a href="<%=request.getContextPath()%>/action/like?postid=<%=post.getId() %>"  
                               <%
                                 if(user != null && 
                                 postlikeservice.checkPostLike(user.getId(), post.getId())){
@@ -305,7 +305,7 @@
       	            if(hottags != null)
       	            {
       					for(PostTag tag: hottags) {%>				
-      	            <li><a href="/tag/<%=tag.getTagname() %>"><%=tag.getTagname()+"  "+ tag.getPostcount() %></a></li>			
+      	            <li><a href="<%=request.getContextPath()%>/tag/<%=tag.getTagname() %>"><%=tag.getTagname()+"  "+ tag.getPostcount() %></a></li>			
       					<%}
       	            } %>  			
       			</ul>
@@ -327,11 +327,11 @@
                   		String summary = wp.getSummary();
                 %>
                 <div class="media">
-                  <a class="pull-left" href="/post/<%=wp.getId() %>">
-                    <img class="media-object" src="../img/head.jpg" style="width: 64px; height: 64px;">
+                  <a class="pull-left" href="<%=request.getContextPath()%>/post/<%=wp.getId() %>">
+                    <img class="media-object" src="<%=request.getContextPath()%>/img/head.jpg" style="width: 64px; height: 64px;">
                   </a>
                   <div class="media-body">
-                    <a href="/post/<%=wp.getId() %>"><%=wp.getTitle() %></a>
+                    <a href="<%=request.getContextPath()%>/post/<%=wp.getId() %>"><%=wp.getTitle() %></a>
                     <p><%=summary.length()>40?summary.substring(0, 40):summary %></p>
                   </div>
                 </div>
@@ -348,10 +348,10 @@
               %>
                 <div class="media">
                   <a class="pull-left" href="/post/<%=mp.getId() %>">
-                    <img class="media-object" src="../img/head.jpg" style="width: 64px; height: 64px;">
+                    <img class="media-object" src="<%=request.getContextPath()%>/img/head.jpg" style="width: 64px; height: 64px;">
                   </a>
                   <div class="media-body">
-                    <a href="/post/<%=mp.getId() %>"><%=mp.getTitle() %></a>
+                    <a href="<%=request.getContextPath()%>/post/<%=mp.getId() %>"><%=mp.getTitle() %></a>
                     <p><%=summary.length()>40?summary.substring(0, 40):summary %></p>
                   </div>
                 </div>              	
@@ -370,10 +370,10 @@
     </div>
     <!-- end container  -->
     
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/responsiveslides.min.js"></script>
-    <script type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/responsiveslides.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/index.js"></script>
     <script type="text/javascript">
      $(".rslides").responsiveSlides({
           auto: false,

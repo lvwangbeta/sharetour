@@ -79,7 +79,7 @@
     <servlet-class>com.sharetour.control.ImgUploadServlet</servlet-class>
     <init-param>
       <param-name>temppath</param-name>
-      <param-value>temp</param-value>
+      <param-value>/temp</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>

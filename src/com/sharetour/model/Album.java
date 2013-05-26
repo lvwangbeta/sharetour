@@ -12,6 +12,7 @@ public class Album implements Serializable {
 	private String coverid;
 	private String albumname;
 	private String desc;
+	private int size;
 	private List<Photo> photos = new ArrayList<Photo>();
 	private Date ctime;
 	private Long uid;
@@ -79,6 +80,12 @@ public class Album implements Serializable {
 	}
 	public void setLikers(List<UserInfo> likers) {
 		this.likers = likers;
+	}
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
 	}
 	
 }

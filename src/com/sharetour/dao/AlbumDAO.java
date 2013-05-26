@@ -1,11 +1,39 @@
 package com.sharetour.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bson.types.ObjectId;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
+import com.sharetour.db.MongoDBPool;
 import com.sharetour.model.Album;
+import com.sharetour.model.Photo;
 
 public class AlbumDAO {
 
 	public boolean saveAlbum(Album album){
-		return false;
+		DBCollection albumColl = MongoDBPool.getInstance().getCollection("album");
+		BasicDBObject doc = new BasicDBObject("_id",new ObjectId(album.getId())).
+							append("albumname", album.getAlbumname()).
+					        append("uid", album.getUid()).
+					        append("username", album.getUsername()).
+					        append("size", album.getSize()).
+					        append("ctime", album.getCtime()).
+					        append("visit", album.getVisit()).
+					        append("desc", album.getDesc());
+		
+		List<BasicDBObject> photos = new ArrayList<BasicDBObject>();	
+		for(Photo photo: album.getPhotos()){
+			photos.add(new BasicDBObject("_id", new ObjectId(photo.getId())).
+										 append("desc", photo.getDesc()).
+										 append("ctime", photo.getCtime()).
+										 append("likes", photo.getLikes()) );
+		}
+		doc.append("photos", photos);
+		albumColl.insert(doc);
+		return true;
 	}
 	public Album getAlbum(){
 		return null;

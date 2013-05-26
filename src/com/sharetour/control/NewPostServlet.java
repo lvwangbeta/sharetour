@@ -29,10 +29,10 @@ public class NewPostServlet extends HttpServlet {
 		Action newpostaction = ActionFactory.getAction("newpost");
 		String view = newpostaction.execute(request);
 		if("success".equals(view)){
-			response.sendRedirect("/u/space");
+			response.sendRedirect(request.getContextPath()+"/u/space");
 		}
 		else if("error".equals(view)){
-			response.sendRedirect("/u/space");
+			response.sendRedirect(request.getContextPath()+"/u/space");
 		}
 	}
 

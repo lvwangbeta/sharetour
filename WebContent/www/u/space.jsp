@@ -22,15 +22,15 @@
     <meta name="description" content="index">
     <meta name="author" content="gavin">
 
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
     </style>
-    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 
   </head>
   <body>
@@ -42,11 +42,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/">享途</a>
+          <a class="brand" href="<%=request.getContextPath()%>">享途</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
-              <li><a href="/about">About</a></li>
+              <li><a href="<%=request.getContextPath()%>/about">About</a></li>
             </ul>
             <ul class="nav pull-right">
               <li class="dropdown active">
@@ -58,7 +58,7 @@
                   <li><a href="#">info <span class="badge badge-important">6</span></a></li>
                   <li class="divider"></li>
                   <li class="nav-header">Nav header</li>
-                  <li><a href="/action/logout">退出</a></li>
+                  <li><a href="<%=request.getContextPath()%>/action/logout">退出</a></li>
                 </ul>
               </li>
             </ul>             
@@ -78,13 +78,13 @@
       	 <div class="media">
       	 	<div class="row">
       	 		<div class="span1">
-      	 			<img class="media-object" src="/img/head.jpg" style="height:64px;width=64px;">
+      	 			<img class="media-object" src="<%=request.getContextPath()%>/img/head.jpg" style="height:64px;width=64px;">
       	 		</div>
       	 		<div class="span7">
 	                <div class="media-body">
 	                    <div class="thumbnail">
-							<a class="btn btn-large" type="button" href="/newpost">新游记</a>
-							<a class="btn btn-large" type="button" href="/album">新建相册</a>							
+							<a class="btn btn-large" type="button" href="<%=request.getContextPath()%>/newpost">新游记</a>
+							<a class="btn btn-large" type="button" href="<%=request.getContextPath()%>/album">新建相册</a>							
 	                    </div>              
 	                </div>      	 			
       	 		</div>
@@ -100,7 +100,7 @@
 	            <div class="row">
 	              <div class="span1">
 	                <a class="pull-left" href="/u/">
-	                  <img class="media-object" src="/img/head.jpg" style="height:64px;width=64px;">
+	                  <img class="media-object" src="<%=request.getContextPath()%>/img/head.jpg" style="height:64px;width=64px;">
 	                </a>                 
 	              </div>
 	              <!-- end span1 -->
@@ -108,7 +108,7 @@
 	                <div class="media-body">
 	                    <div class="thumbnail">
 	                      <div>
-	                        <h4><a href="/post/<%=post.getId() %>"><%=post.getTitle() %></a></h4>
+	                        <h4><a href="<%=request.getContextPath()%>/post/<%=post.getId() %>"><%=post.getTitle() %></a></h4>
 	                      </div>
 	                      <%if(post.getCover()!=null) {%>
 	                      <img src="<%=post.getCover() %>">
@@ -116,7 +116,7 @@
 	                      <div class="caption">
 	                        <p><%=post.getSummary() %></p>
 	                        <%for(String tag:StringUtils.split(post.getTags(), " ")){ %>
-		              			<a href="/tag/<%=tag%>"><span class="label label-warning"><%=tag %></span></a>
+		              			<a href="<%=request.getContextPath()%>/tag/<%=tag%>"><span class="label label-warning"><%=tag %></span></a>
 		              		<%} %>
 	                      </div>
 	                    </div>              
@@ -137,7 +137,7 @@
           
             <div class="accordion-group">
               <div class="accordion-heading">
-                <a class="accordion-toggle" href="/u/posts">
+                <a class="accordion-toggle" href="<%=request.getContextPath()%>/u/posts">
                   <i class="icon-user"></i>&nbsp;&nbsp;我的游记
                 </a>
               </div>
@@ -160,7 +160,7 @@
                   		<%for(PostTag tag:tlist) {%>
                   		<li>
                   			<i class="icon-tag"></i>&nbsp;&nbsp;
-                  			<a href="/tag/<%=tag.getTagname() %>"><%=tag.getTagname() %></a> 
+                  			<a href="<%=request.getContextPath()%>/tag/<%=tag.getTagname() %>"><%=tag.getTagname() %></a> 
                   		</li>
                   		<%} %>
                   	</ul>
@@ -189,7 +189,7 @@
     </div>
     <!-- end container -->
   	
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
   </body>
 </body>

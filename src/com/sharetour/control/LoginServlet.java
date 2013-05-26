@@ -30,10 +30,10 @@ public class LoginServlet extends HttpServlet {
 		Action loginaction = ActionFactory.getAction("login");
 		String view = loginaction.execute(request);
 		if("login".equals(view)){
-			response.sendRedirect("/");
+			response.sendRedirect(request.getContextPath());
 		}
 		else if("home".equals(view)){
-			response.sendRedirect("/");
+			response.sendRedirect(request.getContextPath());
 		}	
 	}
 

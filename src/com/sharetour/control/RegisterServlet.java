@@ -29,11 +29,11 @@ public class RegisterServlet extends HttpServlet {
 		Action registeraction = ActionFactory.getAction("register");
 		String view = registeraction.execute(request);
 		if("home".equals(view)){
-			response.sendRedirect("/");
+			response.sendRedirect(request.getContextPath());
 		}
 		else{
 			//request.getRequestDispatcher("/register").forward(request, response);
-			response.sendRedirect("/register");
+			response.sendRedirect(request.getContextPath()+"/register");
 		}
 	}
 

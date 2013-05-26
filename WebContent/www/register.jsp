@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	if(session.getAttribute("user") != null)
-		response.sendRedirect("/");
+		response.sendRedirect(request.getContextPath());
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
     <meta name="author" content="gavin">
 
     <!-- Le styles -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -28,8 +28,8 @@
       	margin-left: 10px;
       }
     </style>
-    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -40,15 +40,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/">享途</a>
+          <a class="brand" href="<%=request.getContextPath()%>">享途</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="/about">About</a></li>
+              <li class="active"><a href="<%=request.getContextPath()%>">Home</a></li>
+              <li><a href="<%=request.getContextPath()%>/about">About</a></li>
             </ul>
             <c:choose>
             	<c:when test="${sessionScope.user == null }">
-					      <form class="navbar-form pull-right" method="post" action="/action/login">
+					      <form class="navbar-form pull-right" method="post" action="<%=request.getContextPath()%>/action/login">
 		              <input class="span2" type="text" name="username" placeholder="用户名">
 		              <input class="span2" type="password" name="password" placeholder="密码">
 		              <button type="submit" class="btn">登录</button>
@@ -59,11 +59,11 @@
 		              <li class="dropdown active">
 		                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username} <b class="caret"></b></a>
 		                <ul class="dropdown-menu">
-		                  <li><a href="/u/space">我的空间</a></li>
-		                  <li><a href="/newpost">写新游记</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/u/space">我的空间</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/newpost">写新游记</a></li>
                   		  <li><a href="#">消息 <span class="badge badge-important">6</span></a></li>		                  
 		                  <li class="divider"></li>
-		                  <li><a href="/action/logout">退出</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/action/logout">退出</a></li>
 		                </ul>
 		              </li>
 		            </ul>           	
@@ -77,7 +77,7 @@
     
     
 	<div class="container">
-		<form id="regiform" action="/action/register" method="post">
+		<form id="regiform" action="<%=request.getContextPath()%>/action/register" method="post">
 		  <fieldset>
 		    <legend>注册</legend>
 		    <label for="email">Email</label>
@@ -254,9 +254,9 @@
 		  </fieldset>
 		</form>				
 	</div> <!-- end contqiner -->
-	<script type="text/javascript" src="/js/jquery.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/js/jquery.validate.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
 	<script type="text/javascript">
 	$("#regiform").validate({
 			rules: {

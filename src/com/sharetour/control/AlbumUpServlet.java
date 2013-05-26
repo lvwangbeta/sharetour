@@ -39,7 +39,7 @@ public class AlbumUpServlet extends HttpServlet {
 		else{
 			out.write("error");
 		}
-		
+		out.close();
 		
 	}
 

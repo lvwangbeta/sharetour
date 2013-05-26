@@ -3,8 +3,6 @@ package com.sharetour.control;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -39,7 +37,6 @@ public class AlbumAction implements Action{
 		UserInfo user = (UserInfo)request.getSession().getAttribute("user");
 		album.setUid(user.getId());
 		album.setUsername(user.getUsername());
-		album.setCtime(new Date());
 		if(new AlbumService().saveAlbum(album)){
 			log.info("album save success");
 			return Action.SUCCESS;
