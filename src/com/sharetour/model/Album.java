@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.bson.types.ObjectId;
-
 public class Album implements Serializable {
 
 	private static final long serialVersionUID = -8343545984379551338L;
-	private ObjectId id;
-	private ObjectId coverid;
+	private String id;
+	private String coverid;
 	private String albumname;
 	private String desc;
 	private List<Photo> photos = new ArrayList<Photo>();
@@ -22,16 +20,16 @@ public class Album implements Serializable {
 	private List<UserInfo> likers = new ArrayList<UserInfo>();
 	
 	
-	public ObjectId getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(ObjectId id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	public ObjectId getCoverid() {
+	public String getCoverid() {
 		return coverid;
 	}
-	public void setCoverid(ObjectId coverid) {
+	public void setCoverid(String coverid) {
 		this.coverid = coverid;
 	}
 	public String getAlbumname() {

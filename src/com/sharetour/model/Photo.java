@@ -5,23 +5,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.bson.types.ObjectId;
 
 public class Photo implements Serializable{
 
 	private static final long serialVersionUID = 4596526198993228200L;
-	private ObjectId id;
+	private String id;
 	private String type;
 	private String desc;
 	private Date ctime;
 	private int likes;
 	private List<PhotoComment> comments = new ArrayList<PhotoComment>();
 	
-	public ObjectId getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
