@@ -78,12 +78,13 @@
       	 <div class="media">
       	 	<div class="row">
       	 		<div class="span1">
-      	 			<img class="media-object" src="../../img/head.jpg" style="height:64px;width=64px;">
+      	 			<img class="media-object" src="/img/head.jpg" style="height:64px;width=64px;">
       	 		</div>
       	 		<div class="span7">
 	                <div class="media-body">
 	                    <div class="thumbnail">
-
+							<a class="btn btn-large" type="button" href="/newpost">新游记</a>
+							<a class="btn btn-large" type="button" href="/album">新建相册</a>							
 	                    </div>              
 	                </div>      	 			
       	 		</div>
@@ -99,7 +100,7 @@
 	            <div class="row">
 	              <div class="span1">
 	                <a class="pull-left" href="/u/">
-	                  <img class="media-object" src="../../img/head.jpg" style="height:64px;width=64px;">
+	                  <img class="media-object" src="/img/head.jpg" style="height:64px;width=64px;">
 	                </a>                 
 	              </div>
 	              <!-- end span1 -->

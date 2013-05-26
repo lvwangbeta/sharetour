@@ -16,7 +16,7 @@
     $(document).ready(function() {
         $('#jquery-wrapped-fine-uploader').fineUploader({
           request: {
-            endpoint: '/action/imgupload'
+            endpoint: '/action/imgupload?attr=album'
           },
           multiple: false,
           validation: {

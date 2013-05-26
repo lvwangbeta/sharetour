@@ -2,6 +2,7 @@ package com.sharetour.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -12,6 +13,7 @@ public class Photo implements Serializable{
 	private ObjectId id;
 	private String type;
 	private String desc;
+	private Date ctime;
 	private int likes;
 	private List<PhotoComment> comments = new ArrayList<PhotoComment>();
 	
@@ -52,5 +54,13 @@ public class Photo implements Serializable{
 
 	public void setLikes(int likes) {
 		this.likes = likes;
+	}
+
+	public Date getCtime() {
+		return ctime;
+	}
+
+	public void setCtime(Date ctime) {
+		this.ctime = ctime;
 	}
 }

@@ -17,7 +17,7 @@ public class Album implements Serializable {
 	private List<Photo> photos = new ArrayList<Photo>();
 	private Date ctime;
 	private Long uid;
-	private Long username;
+	private String username;
 	private int visit;
 	private List<UserInfo> likers = new ArrayList<UserInfo>();
 	
@@ -64,10 +64,10 @@ public class Album implements Serializable {
 	public void setUid(Long uid) {
 		this.uid = uid;
 	}
-	public Long getUsername() {
+	public String getUsername() {
 		return username;
 	}
-	public void setUsername(Long username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 	public int getVisit() {

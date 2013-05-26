@@ -13,5 +13,6 @@ public interface Action {
 	static final String ERROR		 = "error";
 	static final String DECODEERROR  = "decode_error";
 	static final String NOLOGIN		 = "nologin";
+	static final String JSONRETERROR = "json retrieve error";
 	public String execute(HttpServletRequest request);
 }
