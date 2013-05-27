@@ -233,7 +233,6 @@
           }
         }).on('complete', function(event, id, fileName, responseJSON) {
           if (responseJSON.success) {
-            $('.qq-upload-list').hide();
             $('#imgshow').append(
                     '<div class="alert item" id="'+responseJSON.id+'">'+
                       '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
