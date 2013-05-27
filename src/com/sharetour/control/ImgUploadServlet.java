@@ -52,7 +52,7 @@ public class ImgUploadServlet extends HttpServlet {
 			out.println("</script>");
 			out.close();
 		}else if("album".equals(attr)){
-			response.setContentType("application/json; charset=utf-8");
+			response.setContentType("text/plain; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.write("{\"success\":true,\"url\":\""+url+"&height=100&width=100\""+
 			",\"id\":\""+photo.getId().toString()+"\"}");
