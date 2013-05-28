@@ -41,8 +41,10 @@ public class EhCacheProvider implements CacheProvider{
 
 	@Override
 	public void stop() {
-		// TODO Auto-generated method stub
-		
+		if(manager != null){
+			manager.shutdown();
+		}
+			
 	}
 
 

@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.sharetour.model.*" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	if(session.getAttribute("user") != null)
-		response.sendRedirect("/");
+		response.sendRedirect(request.getContextPath());
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,18 +16,23 @@
     <meta name="author" content="gavin">
 
     <!-- Le styles -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
+      label.error{
+      	display: inline;
+      	color: red;
+      	margin-left: 10px;
+      }
     </style>
-    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -33,45 +40,54 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="<%=request.getContextPath()%>">享途</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="nav-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>
+              <li class="active"><a href="<%=request.getContextPath()%>">Home</a></li>
+              <li><a href="<%=request.getContextPath()%>/about">About</a></li>
             </ul>
-            <ul class="nav pull-right">
-            	<li><a href="/blog/login">login</a></li>
-            </ul>
-                  		
+            <c:choose>
+            	<c:when test="${sessionScope.user == null }">
+					      <form class="navbar-form pull-right" method="post" action="<%=request.getContextPath()%>/action/login">
+		              <input class="span2" type="text" name="username" placeholder="用户名">
+		              <input class="span2" type="password" name="password" placeholder="密码">
+		              <button type="submit" class="btn">登录</button>
+		            </form>            		
+            	</c:when>
+            	<c:otherwise>
+		            <ul class="nav pull-right">
+		              <li class="dropdown active">
+		                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username} <b class="caret"></b></a>
+		                <ul class="dropdown-menu">
+		                  <li><a href="<%=request.getContextPath()%>/u/space">我的空间</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/newpost">写新游记</a></li>
+                  		  <li><a href="#">消息 <span class="badge badge-important">6</span></a></li>		                  
+		                  <li class="divider"></li>
+		                  <li><a href="<%=request.getContextPath()%>/action/logout">退出</a></li>
+		                </ul>
+		              </li>
+		            </ul>           	
+            	</c:otherwise>
+            </c:choose>
+
           </div><!--/.nav-collapse -->
         </div>
       </div>
-    </div> <!-- end navbar -->
+    </div> <!-- end nav bar -->
+    
+    
 	<div class="container">
-		<form action="/action/register" method="post">
+		<form id="regiform" action="<%=request.getContextPath()%>/action/register" method="post">
 		  <fieldset>
-		    <legend>Blog</legend>
+		    <legend>注册</legend>
 		    <label for="email">Email</label>
-		    <input type="text" name="email" class="span3" placeholder="email">
+		    <input type="text" name="email" id="email" class="span3" placeholder="email">
 		    <label for="username">用户名</label>
-		    <input type="text" name="username" class="span3" placeholder="username">
+		    <input type="text" name="username" id="username" class="span3" placeholder="username">
 		    <label for="password">密码</label>
-		    <input type="password" name="password" class="span3" placeholder="password">
+		    <input type="password" name="password" id="password" class="span3" placeholder="password">
 		    <label for="confirm">确认密码</label>
-		    <input type="password" name="confirm" class="span3" placeholder="confirm">
+		    <input type="password" name="confirm" id="confirm" class="span3" placeholder="confirm">
 		    <label>性别</label>
 		    <label for="male" class="radio inline">
 		    	<input type="radio" id="male" name="gender" value="0" checked>男
@@ -234,11 +250,52 @@
 				<option value="31">31</option>
 			</select>
 			<label></label>
-		    <button type="submit" class="btn">Submit</button>
+		    <button type="submit" id="submit" class="btn">Submit</button>
 		  </fieldset>
 		</form>				
 	</div> <!-- end contqiner -->
-	<script type="text/javascript" src="/js/jquery.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
+	<script type="text/javascript">
+	$("#regiform").validate({
+			rules: {
+				username: {
+					required: true,
+					minlength: 5
+				},
+				password: {
+					required: true,
+					minlength: 5
+				},
+				confirm: {
+					required: true,
+					minlength: 5,
+					equalTo: "#password"
+				},
+				email: {
+					required: true,
+					email: true
+				}
+			},
+			messages: {
+				username: {
+					required: "请输入用户名",
+					minlength: "用户名长度至少大于5"
+				},
+				password: {
+					required: "请输入密码",
+					minlength: "密码至少5位"
+				},
+				confirm: {
+					required: "请确认密码",
+					minlength: "确认密码至少5位",
+					equalTo: "密码不一致，请确认"
+				},
+				email: "请输入合法的email地址",
+				agree: "Please accept our policy"
+			}
+		});
+	</script>	
 </body>
 </html>

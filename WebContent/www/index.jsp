@@ -99,42 +99,42 @@
             <ul class="thumbnails">
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="../img/pre.jpg" alt="">
+                  <img src="/img/pre.jpg" alt="">
                   <h3>Thumbnail label</h3>
                   <p>Thumbnail caption...</p>
                 </div>
               </li>
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="../img/pre.jpg" alt="">
+                  <img src="/img/pre.jpg" alt="">
                   <h3>Thumbnail label</h3>
                   <p>Thumbnail caption...</p>
                 </div>
               </li>          
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="../img/pre.jpg" alt="">
+                  <img src="/img/pre.jpg" alt="">
                   <h3>Thumbnail label</h3>
                   <p>Thumbnail caption...</p>
                 </div>
               </li>          
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="../img/pre.jpg" alt="">
+                  <img src="/img/pre.jpg" alt="">
                   <h3>Thumbnail label</h3>
                   <p>Thumbnail caption...</p>
                 </div>
               </li>  
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="../img/pre.jpg" alt="">
+                  <img src="/img/pre.jpg" alt="">
                   <h3>Thumbnail label</h3>
                   <p>Thumbnail caption...</p>
                 </div>
               </li>          
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="../img/pre.jpg" alt="">
+                  <img src="/img/pre.jpg" alt="">
                   <h3>Thumbnail label</h3>
                   <p>Thumbnail caption...</p>
                 </div>
@@ -233,7 +233,7 @@
                       <div class="span2">
                         <div class="preimg">
                           <a href="#" class="thumbnail">
-                              <img src="../img/pre.jpg" alt="">
+                              <img src="/img/pre.jpg" alt="">
                           </a>
                         </div>
                       </div>
@@ -328,7 +328,7 @@
                 %>
                 <div class="media">
                   <a class="pull-left" href="/post/<%=wp.getId() %>">
-                    <img class="media-object" src="../img/head.jpg" style="width: 64px; height: 64px;">
+                    <img class="media-object" src="/img/head.jpg" style="width: 64px; height: 64px;">
                   </a>
                   <div class="media-body">
                     <a href="/post/<%=wp.getId() %>"><%=wp.getTitle() %></a>
@@ -348,7 +348,7 @@
               %>
                 <div class="media">
                   <a class="pull-left" href="/post/<%=mp.getId() %>">
-                    <img class="media-object" src="../img/head.jpg" style="width: 64px; height: 64px;">
+                    <img class="media-object" src="/img/head.jpg" style="width: 64px; height: 64px;">
                   </a>
                   <div class="media-body">
                     <a href="/post/<%=mp.getId() %>"><%=mp.getTitle() %></a>

@@ -108,7 +108,7 @@
                     <label for="">内容(必填)</label>
                     <textarea class="ckeditor" name="content" id="content"></textarea>
                     <script type="text/javascript">  
-                        CKEDITOR.replace('content',{filebrowserImageUploadUrl : 'imgupload',width:800,height:400 });  
+                        CKEDITOR.replace('content',{filebrowserImageUploadUrl : '/action/imgupload?attr=post',width:800,height:400 });  
                     </script> 
                   </td>
                 </tr>

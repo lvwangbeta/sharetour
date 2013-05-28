@@ -110,7 +110,6 @@ public class URLMappingFilter implements Filter {
 		{
 			page += query;
 		}
-		
 		request.getRequestDispatcher(page).forward(request, response);
 		
 	}

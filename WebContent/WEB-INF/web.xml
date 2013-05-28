@@ -79,7 +79,7 @@
     <servlet-class>com.sharetour.control.ImgUploadServlet</servlet-class>
     <init-param>
       <param-name>temppath</param-name>
-      <param-value>temp</param-value>
+      <param-value>/temp</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
@@ -146,4 +146,17 @@
     <servlet-name>subscribe</servlet-name>
     <url-pattern>/action/subscribe</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AlbumUpServlet</display-name>
+    <servlet-name>AlbumUpServlet</servlet-name>
+    <servlet-class>com.sharetour.control.AlbumUpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AlbumUpServlet</servlet-name>
+    <url-pattern>/action/albumup</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>com.sharetour.listener.MyServletContext</listener-class>
+  </listener>
 </web-app>

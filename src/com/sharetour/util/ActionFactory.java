@@ -3,6 +3,7 @@ package com.sharetour.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sharetour.control.AlbumAction;
 import com.sharetour.control.CommentAction;
 import com.sharetour.control.LikeAction;
 import com.sharetour.control.LoginAction;
@@ -23,6 +24,7 @@ public class ActionFactory {
 		actions.put("comment", new CommentAction());
 		actions.put("like", new LikeAction());
 		actions.put("subscribe", new SubscriptionAction());
+		actions.put("album", new AlbumAction());
 	}
 	public static Action getAction(String action){
 		return actions.get(action);

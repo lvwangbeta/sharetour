@@ -53,6 +53,15 @@ public class CacheHelper {
 		getCache(cache_name).put(key, value);
 	}
 	
+	/*
+	 * stop cache 
+	 */
+	public static void stop(){
+		if(provider != null){
+			provider.stop();
+		}
+	}
+	
 	
 	
 }
