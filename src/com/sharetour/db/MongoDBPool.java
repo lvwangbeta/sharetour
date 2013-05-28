@@ -10,11 +10,20 @@ import com.mongodb.MongoClient;
 import com.mongodb.DB;
 
 public class MongoDBPool {
+	
 	public static final String HOST = "172.30.48.73";
 	public static final int	   PORT = 25273;
 	public static final String DB   = "db";
 	public static final String USER = "b2b10f1d-b31c-4a10-b6d7-b4914bb48292";
 	public static final String PWD  = "de446439-2fc5-43ec-8c0f-7568932b3d27";
+	/*
+	public static final String HOST = "localhost";
+	public static final int	   PORT = 27017;
+	public static final String DB   = "db";
+	public static final String USER = "";
+	public static final String PWD  = "";
+	*/
+	
 	private static MongoClient mongo;
 	private static MongoDBPool mongoPool;
 	

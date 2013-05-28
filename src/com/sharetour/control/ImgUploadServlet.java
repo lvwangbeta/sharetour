@@ -40,7 +40,7 @@ public class ImgUploadServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");	
 		
 		//from post or album
-		String url = "/imgs?id=" + photo.getId().toString() +"."+ photo.getType();
+		String url = "/imgs?id=" + photo.getId().toString();
 		String attr = request.getParameter("attr");
 		System.out.println("attr:"+attr);
 		if("post".equals(attr)){

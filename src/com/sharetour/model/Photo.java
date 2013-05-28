@@ -10,6 +10,7 @@ public class Photo implements Serializable{
 
 	private static final long serialVersionUID = 4596526198993228200L;
 	private String id;
+	private String name;
 	private String type;
 	private String desc;
 	private Date ctime;
@@ -61,5 +62,13 @@ public class Photo implements Serializable{
 
 	public void setCtime(Date ctime) {
 		this.ctime = ctime;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

@@ -1,6 +1,5 @@
 package com.sharetour.dao;
 
-import java.io.InputStream;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -40,23 +39,20 @@ public class ImgDAO {
 		GridFSInputFile in = null;
 		in = mphoto.createFile(item.getInputStream());
 		in.setId(id);
-		in.setFilename(id.toString()+"."+type);
+		in.setFilename(id.toString());
 		in.setContentType(type);
 		in.save();
 		item.getInputStream().close();
 		return photo;
 	}
 	
-	public InputStream getImg(String filename){
-		log.info("getting img:"+filename+" from mongo");
-		if(filename == null || filename.length() == 0){
+	public GridFSDBFile getImg(String id){
+		log.info("getting img:"+id+" from mongo");
+		if(id == null || id.length() == 0){
 			log.info("img filename null");
 			return null;
 		}
 		GridFS photo = new GridFS(MongoDBPool.getInstance().getDB(), "imgs");
-		GridFSDBFile imgout = photo.findOne(filename);
-		if(imgout != null)
-			return imgout.getInputStream();
-		return null;
+		return photo.findOne(id);
 	}
 }

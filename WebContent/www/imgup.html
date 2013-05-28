@@ -11,6 +11,7 @@
     <link href="../css/fineuploader-3.5.0.css" rel="stylesheet">
     <link href="../css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -66,7 +67,22 @@
         font-size: 24px;
         font-family: "Microsoft Yahei", "微软雅黑", Tahoma, Arial;
       }
+      
+      .privacy,.albumtag{
+        padding: 10px 20px;
+      }
+      #privacy-option{
+        height: 40px;
+      }
 
+      .white-popup {
+        position: relative;
+        background: #FFF;
+        padding: 20px;
+        width:auto;
+        max-width: 500px;
+        margin: 20px auto;
+      }
       .clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
       .clearfix { display: inline-block; }
        <font></font>  
@@ -153,50 +169,37 @@
         </div>
         <!-- end span8  -->
 
-        <div class="span4">
-          <div>
-            <div class="accordion">
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
-                    Collapsible Group Item #1
-                  </a>
-                </div>
-                <div id="collapseOne" class="accordion-body collapse in">
-                  <div class="accordion-inner">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <div class="accordion-inner">
-                    <i class="icon-tag"></i>&nbsp;&nbsp;sdf
-                    <a href="#" class="pull-right sub">订阅</a>                                    
-                  </div>
-                
-                </div>
-              </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle"  href="/u/space">
-                    <i class="icon-user"></i>&nbsp;&nbsp;我的游记
-                  </a>
-                </div>
-              </div>  
-
-
-            </div>            
-          </div>        
+        <div class="span3">
+          <div class="box">
+            <div class="privacy">
+              <select id="privacy-option">
+                <option value="public">所有人可见</option>
+                <option value="private">仅自己可见</option>
+              </select>              
+            </div>
+            <!-- end privacy -->
+            <div class="albumtag">
+              <label for="albumtag">标签 ( 空格隔开 ):</label>
+              <textarea name="albumtag" id="albumtag" rows="4"></textarea>
+            </div>
+          </div>                 
         </div>        
+        <!-- end span4 -->
       </div>
       <!-- end row -->
     </div>
     <!-- end container -->
     
+    <div id="loginpopup" class="mfp-hide white-popup">
+      please login 
+
+    </div>
+    <a href="#loginpopup" id="poplink">pop</a>
+
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script src="../js/jquery.fineuploader-3.5.0.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.magnific-popup.js"></script>
     <script>
     $(document).ready(function() {
         $('#imgupbtn').fineUploader({
@@ -234,6 +237,11 @@
           }
          
         });
+
+        $('#poplink').magnificPopup({
+          type:'inline',
+          midClick: true
+        });        
       });
     </script>
   </body>
