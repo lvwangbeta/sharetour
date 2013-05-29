@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class ConnectionPool {
 	
@@ -24,6 +26,7 @@ public class ConnectionPool {
 	private static int maxActive;
 	private static int maxIdle;
 	private static int maxWait;
+	private static final Log log = LogFactory.getLog(Connection.class);
 	
 	/*
 	 * setPoolFromPram()
@@ -92,18 +95,20 @@ public class ConnectionPool {
 	}
 	private ConnectionPool()
 	{
+		log.info("setting connection pool");
 		
 		setPoolFromParam("jdbc:mysql://172.30.48.29:3306/d830e97b407104c25a9535461208a9470", 
 						 "u74ktCJ81MdBT", "ppIEca9zHLkZm", 
 						 "com.mysql.jdbc.Driver", 
-						 5, 100, 30, 10000);
+						 10, 100, 30, 10000);
 		
 		/*
 		setPoolFromParam("jdbc:mysql://localhost:3306/blog", 
 				"root", "123", 
 				"com.mysql.jdbc.Driver", 
-				5, 100, 30, 10000);
+				10, 100, 30, 10000);
 		*/
+		log.info("new connection pool instance");
 		InitDS();
 	}
 	
@@ -120,6 +125,7 @@ public class ConnectionPool {
 				if(instance == null)
 				{  
 					instance = new ConnectionPool();
+					log.info("ConnectionPool init completed");
 				}
 			}
 		}
@@ -127,34 +133,49 @@ public class ConnectionPool {
 	}
 	public Connection getConnection()
 	{
-		Connection con = null;
-		if(DS == null)
-			InitDS();
-		if(DS != null)
-		{		
+		try {
+			return DS.getConnection();
+		} catch (SQLException e) {
+			log.error("get connection failed");			
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/*
+	 * 关闭数据库连接池
+	 */
+	public static void close(){
+		BasicDataSource bds = (BasicDataSource)DS;
+		if(bds != null){
 			try {
-				con = DS.getConnection();
-			} catch (SQLException e) 
-			{
-				e.printStackTrace();
+				bds.close();
+				log.info("close connection pool success");
+			} catch (SQLException e) {
+				log.error("close connection pool failed");
+				e.printStackTrace();				
+			}
+			finally{
+				bds = null;
+				DS = null;			
 			}
 		}
-		return con;
 	}
 	
 	public static void CloseCon(Connection con, PreparedStatement pstm, ResultSet res)
 	{
-		if(con != null)
+		log.info("closing connection");
+		if(res != null)
 		{
 			try {
-				con.close();
+				res.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				log.info("close result set failed");
 				e.printStackTrace();
 			}
 			finally
 			{
-				con = null;
+				res = null;
 			}
 		}
 		if(pstm != null)
@@ -162,7 +183,7 @@ public class ConnectionPool {
 			try {
 				pstm.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				log.info("close preparedstatement failed");
 				e.printStackTrace();
 			}
 			finally
@@ -170,17 +191,18 @@ public class ConnectionPool {
 				pstm = null;
 			}
 		}
-		if(res != null)
+		if(con != null)
 		{
 			try {
-				res.close();
+				con.close();
+				log.info("close connection success");
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				log.error("close connection failed");
 				e.printStackTrace();
 			}
 			finally
 			{
-				res = null;
+				con = null;
 			}
 		}
 	}

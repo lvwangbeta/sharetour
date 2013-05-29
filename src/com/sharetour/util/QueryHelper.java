@@ -131,7 +131,6 @@ public class QueryHelper {
 	
 	/*
 	 * save by sql
-	 * 返回自增主见
 	 */
 	public long save(String sql, Object...objects){
 		throw new UnsupportedOperationException("method not ready");
@@ -182,3 +181,4 @@ public class QueryHelper {
 	}
 	
 }
+

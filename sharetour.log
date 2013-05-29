@@ -1,0 +1,50 @@
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(26) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(38) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.dao.AlbumDAO.getAlbumsOfUser(52) | { "_id" : { "$oid" : "51a22e527ea8a4615a1b952c"} , "albumname" : "album title" , "uid" : 1 , "username" : "gavin" , "size" : 2 , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "visit" : 0 , "desc" :  null  , "photos" : [ { "_id" : { "$oid" : "51a22e387ea8a4615a1b9526"} , "desc" : "photo first" , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "likes" : 0} , { "_id" : { "$oid" : "51a22e417ea8a4615a1b9529"} , "desc" : "photo second" , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "likes" : 0}]}
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.dao.AlbumDAO.getAlbumsOfUser(52) | { "_id" : { "$oid" : "51a22e527ea8a4615a1b952c"} , "albumname" : "album title" , "uid" : 1 , "username" : "gavin" , "size" : 2 , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "visit" : 0 , "desc" :  null  , "photos" : [ { "_id" : { "$oid" : "51a22e387ea8a4615a1b9526"} , "desc" : "photo first" , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "likes" : 0} , { "_id" : { "$oid" : "51a22e417ea8a4615a1b9529"} , "desc" : "photo second" , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "likes" : 0}]}
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.dao.AlbumDAO.getAlbumsOfUser(53) | { "_id" : { "$oid" : "51a22e527ea8a4615a1b952c"} , "albumname" : "album title" , "uid" : 1 , "username" : "gavin" , "size" : 2 , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "visit" : 0 , "desc" :  null  , "photos" : [ { "_id" : { "$oid" : "51a22e387ea8a4615a1b9526"} , "desc" : "photo first" , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "likes" : 0} , { "_id" : { "$oid" : "51a22e417ea8a4615a1b9529"} , "desc" : "photo second" , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "likes" : 0}]}
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.dao.AlbumDAO.getAlbumsOfUser(55) | { "_id" : { "$oid" : "51a22e527ea8a4615a1b952c"} , "albumname" : "album title" , "uid" : 1 , "username" : "gavin" , "size" : 2 , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "visit" : 0 , "desc" :  null  , "photos" : [ { "_id" : { "$oid" : "51a22e387ea8a4615a1b9526"} , "desc" : "photo first" , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "likes" : 0} , { "_id" : { "$oid" : "51a22e417ea8a4615a1b9529"} , "desc" : "photo second" , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "likes" : 0}]}
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.dao.AlbumDAO.getAlbumsOfUser(55) | 51a22e527ea8a4615a1b952c
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.dao.AlbumDAO.getAlbumsOfUser(55) | [ { "_id" : { "$oid" : "51a22e387ea8a4615a1b9526"} , "desc" : "photo first" , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "likes" : 0} , { "_id" : { "$oid" : "51a22e417ea8a4615a1b9529"} , "desc" : "photo second" , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "likes" : 0}]
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.dao.AlbumDAO.getAlbumsOfUser(54) | { "_id" : { "$oid" : "51a22e527ea8a4615a1b952c"} , "albumname" : "album title" , "uid" : 1 , "username" : "gavin" , "size" : 2 , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "visit" : 0 , "desc" :  null  , "photos" : [ { "_id" : { "$oid" : "51a22e387ea8a4615a1b9526"} , "desc" : "photo first" , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "likes" : 0} , { "_id" : { "$oid" : "51a22e417ea8a4615a1b9529"} , "desc" : "photo second" , "ctime" : { "$date" : "2013-05-26T15:46:26.534Z"} , "likes" : 0}]}
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.dao.AlbumDAO.getAlbumsOfUser(66) | album title
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.dao.AlbumDAO.getAlbumsOfUser(77) | 51a22e387ea8a4615a1b9526photo first
+[Log] INFO [main] com.sharetour.dao.AlbumDAO.getAlbumsOfUser(77) | 51a22e417ea8a4615a1b9529photo second
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(33) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(45) | MongoDBPool init completed

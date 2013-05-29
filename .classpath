@@ -13,6 +13,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/commons-collections-3.2.jar"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/commons-dbcp-1.4.jar"/>
@@ -24,15 +25,15 @@
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/commons-pool-1.4.jar"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/ehcache-core-2.6.5.jar"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/ehcache-web-2.0.4.jar"/>
+	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/gson-2.2.4.jar"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/jsoup-1.7.2.jar"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/junit-4.11.jar"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/mongo-2.10.1.jar"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/mysql-connector-java-5.1.13.jar"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/standard.jar"/>
-	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/junit-4.11.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="/home/hp/workspace/sharetour/WebContent/WEB-INF/lib/thumbnailator-0.4.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

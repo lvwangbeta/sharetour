@@ -45,8 +45,10 @@ public class TagService {
 		log.info("getting tags id list");
 		List<PostTag> tlist = tagdao.getTagsId(tags);
 		List<Long> tidlist = new ArrayList<Long>();
-		for(PostTag tag: tlist){
-			tidlist.add(tag.getId());
+		if(tidlist != null){
+			for(PostTag tag: tlist){
+				tidlist.add(tag.getId());
+			}
 		}
 		return tidlist;
 	}
