@@ -17,22 +17,36 @@ public class AlbumService {
 		album.setSize(album.getPhotos().size());
 		album.setVisit(0);
 		album.setCtime(new Date());
-		
+		List<Photo> photos = album.getPhotos();
+		if(photos == null)
+			return false;
 		for(Photo photo: album.getPhotos()){
 			photo.setLikes(0);
 			photo.setCtime(new Date());
 		}		
+		album.setCoverid(photos.get(0).getId());
 		return albumdao.saveAlbum(album);
 	}
 	
 	public Album getAlbum(String id){
-		return null;
+		return albumdao.getAlbum(id);
 	}
 	
 	/*
-	 * 获得某人的相册
+	 * 获得某人的相册列表
 	 */
 	public List<Album> getAlbumsOfUser(Long uid){
-		return null;
+		return albumdao.getAlbumsOfUser(uid);
 	}
+	
+	/*
+	 * 获得热门相册
+	 * @param order 排序规则
+	 * @param size  
+	 */
+	public List<Album> getHotAlbums(Object order, int size){
+		return albumdao.getAlubms(order, size);
+	}
+	
+	
 }

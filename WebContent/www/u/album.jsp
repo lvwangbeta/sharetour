@@ -3,6 +3,7 @@
 <%@ page import="com.sharetour.model.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="com.sharetour.service.SubscriptionService" %>
+<%@ page import="com.sharetour.service.AlbumService" %>
 <%@ page import="java.util.*" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%
@@ -23,11 +24,33 @@
     <meta name="author" content="gavin">
 
     <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/magnific-popup.css" />
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
+      .imgshow img{
+      	width: 156px;
+      	height: 156px;
+      	margin: 0;
+      	padding: 0;
+		margin-bottom: 5px;
+      }  
+      .mfp-container {
+		margin-top: 20px;
+	  } 
+      .albumdesc{
+      	margin-top: 10px; 
+      }   
+	  .white-popup-block {
+		background: #FFF;
+		padding: 20px 20px;
+		text-align: left;
+		max-width: 650px;
+		margin: 40px auto;
+		position: relative;
+	  }            
     </style>
     <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
@@ -69,11 +92,6 @@
     <!--  begin container  -->
     <div class="container">
       <div class="row">
-        <%
-        	SubscriptionService sub = new SubscriptionService(); 
-        	List<Post> postlist = sub.getPostsOfSubByUser(user.getId());
-        	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        %>
       	<div class="span8">
       	 <div class="media">
       	 	<div class="row">
@@ -93,8 +111,10 @@
       	 </div>
       	 <!-- end media  -->      	
       		<%
-      		if(postlist != null && postlist.size() != 0)
-      			for(Post post:postlist){ 
+      		AlbumService albumService = new AlbumService();
+      		List<Album> albums = albumService.getAlbumsOfUser(user.getId());
+      		if(albums != null){
+      			for(Album album : albums){
       		%>
       		<div class="media">
 	            <div class="row">
@@ -107,17 +127,26 @@
 	              <div class="span7">
 	                <div class="media-body">
 	                    <div class="thumbnail">
-	                      <div>
-	                        <h4><a href="<%=request.getContextPath()%>/post/<%=post.getId() %>"><%=post.getTitle() %></a></h4>
-	                      </div>
-	                      <%if(post.getCover()!=null) {%>
-	                      <img src="<%=post.getCover() %>">
-	                      <%}%>
 	                      <div class="caption">
-	                        <p><%=post.getSummary() %></p>
-	                        <%for(String tag:StringUtils.split(post.getTags(), " ")){ %>
-		              			<a href="<%=request.getContextPath()%>/tag/<%=tag%>"><span class="label label-warning"><%=tag %></span></a>
-		              		<%} %>
+	                      		<h4><%=album.getAlbumname() %></h4>
+		                      	<div class="imgshow">
+		                      	
+								<%
+								List<Photo> photos = album.getPhotos();
+								if(photos != null){
+									for(Photo photo: photos){
+								%>
+										<a class="pop" href="/popalbum/<%=album.getId()%>">
+										<img alt="<%=photo.getDesc()%>" 
+										src="<%=request.getContextPath()%>/imgs?id=<%=photo.getId()%>&height=156&width=156">
+										</a>
+								<%
+									}
+								}
+								%>
+								</div>
+								<!-- end imgshow  -->
+								<p class="albumdesc"><%=album.getDesc() %></p>
 	                      </div>
 	                    </div>              
 	                </div>                 
@@ -127,7 +156,7 @@
 				<!-- end row -->
       		</div>
       		<!-- end media -->
-      		<%} %>
+      		<%}} %>
       	</div>
       	<!-- end span8  -->
       	
@@ -153,6 +182,7 @@
               <div id="subTags" class="accordion-body collapse in">
                 <div class="accordion-inner">
                   <%
+                  	SubscriptionService sub = new SubscriptionService(); 
                   	List<PostTag> tlist = sub.getAllTagsOfUser(user.getId());
                   	if(tlist != null && tlist.size() != 0){
                   %>
@@ -191,5 +221,15 @@
   	
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('.pop').magnificPopup({
+            type: 'ajax',
+            alignTop: true,
+            overflowY: 'scroll' 
+          });	
+    });
+    </script>     
   </body>
 </body>

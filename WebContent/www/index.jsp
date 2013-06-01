@@ -2,12 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.*" %>
-<%@ page import="com.sharetour.service.HotPostService" %>
-<%@ page import="com.sharetour.service.TagService" %>
-<%@ page import="com.sharetour.service.PostLikeService" %>
+<%@ page import="com.sharetour.service.*" %>
 <%@ page import="com.sharetour.model.*" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	UserInfo user = (UserInfo)session.getAttribute("user");
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,6 +28,23 @@
     </style>
     <link href="/css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/magnific-popup.css" />
+    <style>
+      .mfp-container {
+		margin-top: 20px;
+	  } 
+      .albumdesc{
+      	margin-top: 10px; 
+      }   
+	  .white-popup-block {
+		background: #FFF;
+		padding: 20px 20px;
+		text-align: left;
+		max-width: 650px;
+		margin: 40px auto;
+		position: relative;
+	  }     
+    </style>    
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -95,52 +113,28 @@
           <!-- end gallery billboard --> 
           
           <!-- begin hot post gallery -->
+          <%
+          	AlbumService albumService = new AlbumService();
+          	if(user != null){
+          		List<Album> albums = albumService.getAlbumsOfUser(user.getId());
+          		if(albums != null){     		
+          %>
           <div>
             <ul class="thumbnails">
+            <%
+            	for(Album album:albums){
+            %>
               <li class="hpbox">
                 <div class="thumbnail">
-                  <img src="/img/pre.jpg" alt="">
-                  <h3>Thumbnail label</h3>
-                  <p>Thumbnail caption...</p>
+                  <a class="pop" href="/popalbum/<%=album.getId()%>"><img src="/imgs?id=<%=album.getCoverid()%>&width=226&height=152"  alt="<%=album.getAlbumname() %>"></a>
+                  <h4><%=album.getAlbumname() %></h4>
+                  <p><%=album.getDesc() %></p>
                 </div>
-              </li>
-              <li class="hpbox">
-                <div class="thumbnail">
-                  <img src="/img/pre.jpg" alt="">
-                  <h3>Thumbnail label</h3>
-                  <p>Thumbnail caption...</p>
-                </div>
-              </li>          
-              <li class="hpbox">
-                <div class="thumbnail">
-                  <img src="/img/pre.jpg" alt="">
-                  <h3>Thumbnail label</h3>
-                  <p>Thumbnail caption...</p>
-                </div>
-              </li>          
-              <li class="hpbox">
-                <div class="thumbnail">
-                  <img src="/img/pre.jpg" alt="">
-                  <h3>Thumbnail label</h3>
-                  <p>Thumbnail caption...</p>
-                </div>
-              </li>  
-              <li class="hpbox">
-                <div class="thumbnail">
-                  <img src="/img/pre.jpg" alt="">
-                  <h3>Thumbnail label</h3>
-                  <p>Thumbnail caption...</p>
-                </div>
-              </li>          
-              <li class="hpbox">
-                <div class="thumbnail">
-                  <img src="/img/pre.jpg" alt="">
-                  <h3>Thumbnail label</h3>
-                  <p>Thumbnail caption...</p>
-                </div>
-              </li>                        
+              </li> 
+              <%} %>           
             </ul>            
           </div>  
+          <%}} %>
           <!-- end hotposts gallery -->    
 		      <!-- begin btn group leader -->
           <p class="lead">Bare minimum radio button tabs example:</p>
@@ -213,7 +207,6 @@
               List<Post> postlist = hotpostservice.getHotPost();
               Iterator<Post> it = postlist.iterator();
               SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-              UserInfo user = (UserInfo)session.getAttribute("user");
               PostLikeService postlikeservice = new PostLikeService();
               while(it.hasNext()){
                  Post post = it.next(); 
@@ -373,16 +366,25 @@
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/responsiveslides.min.js"></script>
-    <script type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript">
-     $(".rslides").responsiveSlides({
-          auto: false,
-          pager: false,
-          nav: true,
-          speed: 500,
-          namespace: "callbacks"
-        });
-    </script>      
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.magnific-popup.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>    
+    <script>
+    $(document).ready(function(){
+        $(".rslides").responsiveSlides({
+            auto: false,
+            pager: false,
+            nav: true,
+            speed: 500,
+            namespace: "callbacks"
+          });    
+        
+        $('.pop').magnificPopup({
+            type: 'ajax',
+            alignTop: true,
+            overflowY: 'scroll' 
+          });	
+    });
+    </script>          
   </body>
 </html>
 

@@ -126,15 +126,9 @@
                 <label for="albumname">相册名：</label>
                 <input type="text" style="width:98%" name="albumname" id="albumname">
                 <div id="imgshow">
-                    <div class="alert item">
-                      <button type="button" class="close" data-dismiss="alert">&times;</button>
-                      <div class="row">
-                      <div class="span2"><img src="<%=request.getContextPath()%>/img/head.jpg" style="height:100px;width=100xp" alt=""> </div>
-                      <div class="span4"><textarea name="" class="span4" id="" rows="4"></textarea> </div>                              
-                      </div>
-                    </div>            
+          
                 </div>              
-
+				<!--end imgshow  -->
             </div>
             <!-- end box-body -->
             
@@ -270,11 +264,10 @@
           var albumdesc = $('#albumdesc').val();
           data += '"desc":';
           data = data + '"' + albumdesc + '"}'
-          alert(data);
 
           $.post('<%=request.getContextPath()%>/action/albumup', data, function(data){
         	  if(data=='success'){
-        		  window.location.href='<%=request.getContextPath()%>/u/space';
+        		  window.location.href='<%=request.getContextPath()%>/u/album';
         	  }else{
         		  
         	  }

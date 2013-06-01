@@ -27,7 +27,10 @@ public class ImgTools {
 		}
 		BufferedImage imgbuff = null;
 		try {
-			 imgbuff = Thumbnails.of(imgstream).size(height, width).asBufferedImage();
+			 imgbuff = Thumbnails.of(imgstream).
+					   size(width, height).
+					   keepAspectRatio(false).
+					   asBufferedImage();
 		} catch (IOException e) {
 			log.info("img resize error");
 		}

@@ -26,14 +26,15 @@ public class AlbumDAO {
 					        append("size", album.getSize()).
 					        append("ctime", album.getCtime()).
 					        append("visit", album.getVisit()).
-					        append("desc", album.getDesc());
+					        append("desc", album.getDesc()).
+					        append("coverid", album.getCoverid());
 		
 		List<BasicDBObject> photos = new ArrayList<BasicDBObject>();	
 		for(Photo photo: album.getPhotos()){
 			photos.add(new BasicDBObject("_id", new ObjectId(photo.getId())).
-										 append("desc", photo.getDesc()).
-										 append("ctime", photo.getCtime()).
-										 append("likes", photo.getLikes()) );
+							append("desc", photo.getDesc()).
+							append("ctime", photo.getCtime()).
+							append("likes", photo.getLikes()) );
 		}
 		doc.append("photos", photos);
 		albumColl.insert(doc);
@@ -73,6 +74,7 @@ public class AlbumDAO {
 		album.setSize(albumjson.getInt("size"));
 		album.setVisit(albumjson.getInt("visit"));
 		album.setLikers(null);
+		album.setCoverid(albumjson.getString("coverid"));
 		
 		BasicDBList photosjson = (BasicDBList) albumjson.get("photos");
 		List<Photo> photos = new ArrayList<Photo>();
@@ -89,6 +91,11 @@ public class AlbumDAO {
 		}
 		album.setPhotos(photos);
 		return album;
+	}
+	
+	
+	public List<Album> getAlubms(Object order, int size){
+		return null;
 	}
 	
 }

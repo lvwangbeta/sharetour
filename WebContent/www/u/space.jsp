@@ -84,7 +84,7 @@
 	                <div class="media-body">
 	                    <div class="thumbnail">
 							<a class="btn btn-large" type="button" href="<%=request.getContextPath()%>/newpost">新游记</a>
-							<a class="btn btn-large" type="button" href="<%=request.getContextPath()%>/album">新建相册</a>							
+							<a class="btn btn-large" type="button" href="<%=request.getContextPath()%>/newalbum">新建相册</a>							
 	                    </div>              
 	                </div>      	 			
       	 		</div>
