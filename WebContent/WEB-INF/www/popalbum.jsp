@@ -19,7 +19,7 @@
     	for(Photo photo: photos){
     %>
     	<div class="item" style="display:block">
-	    	<img src="/imgs?id=<%=photo.getId()%>" alt="" />
+	    	<img src="<%=request.getContextPath()%>/imgs?id=<%=photo.getId()%>" alt="" />
 	    	<p><%=photo.getDesc() %></p>
     	</div>
     <%

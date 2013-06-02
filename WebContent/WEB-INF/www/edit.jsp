@@ -7,8 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Tour</title>
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-responsive.min.css">
 <style type="text/css">
 <style type="text/css">
   body {
@@ -16,10 +16,10 @@
     padding-bottom: 40px;
   }
 </style>
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/edit.js"></script>
-<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/edit.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
 
 </head>
 <body>
@@ -27,7 +27,7 @@
 	UserInfo user = (UserInfo)session.getAttribute("user");
 	if(user == null)
 	{
-		response.sendRedirect("/");
+		response.sendRedirect(request.getContextPath()+"/");
 		return;
 	}
 %>
@@ -39,33 +39,33 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/index">享途</a>
+          <a class="brand" href="<%=request.getContextPath()%>/">享途</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="/index">享途</a></li>
-              <li><a href="/about">关于享途</a></li>
+              <li class="active"><a href="<%=request.getContextPath()%>/">享途</a></li>
+              <li><a href="<%=request.getContextPath()%>/about">关于享途</a></li>
             </ul>
 		    <c:choose>
 			  <c:when test="${sessionScope.user != null }">
 					<ul class="nav pull-right">
 		              <li class="dropdown">
-		                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username}<b class="caret"></b></a>
+		                <a href="<%=request.getContextPath()%>#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username}<b class="caret"></b></a>
 		                <ul class="dropdown-menu">
-		                  <li><a href="/u/space">我的空间</a></li>
-		                  <li><a href="/edit">写新游记</a></li>
-		                  <li><a href="/u/space">我的游记</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/u/space">我的空间</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/edit">写新游记</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/u/space">我的游记</a></li>
 		                  <li class="divider"></li>
-		                  <li><a href="/logout">退出</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/logout">退出</a></li>
 		                </ul>
 		              </li>
 		            </ul>	
               </c:when>
               <c:otherwise>
-	              <form class="navbar-form pull-right" method="post" action="login">
+	              <form class="navbar-form pull-right" method="post" action="<%=request.getContextPath()%>/login">
 	                <input class="span2" type="text" name="username" placeholder="Email">
 	                <input class="span2" type="password" name="password" placeholder="Password">
 	                <button type="submit" class="btn">登录</button>
-	                <a class="btn" href="/registerpage">注册</a>
+	                <a class="btn" href="<%=request.getContextPath()%>/registerpage">注册</a>
 	              </form>
               </c:otherwise>
 		   	</c:choose>
@@ -79,7 +79,7 @@
         <div class="span4">
           <br><br>
           <div class="box span9 offset1">
-            <img src="/img/head.jpg" alt="headimg" class="img-circle" style="width:200px;height:200px">
+            <img src="<%=request.getContextPath()%>/img/head.jpg" alt="headimg" class="img-circle" style="width:200px;height:200px">
           </div>
           <div class="box span9 offset1">
             <div>
@@ -91,7 +91,7 @@
           </div>   
         </div>
         <div class="span8">
-          <form action="newpost" method="post">
+          <form action="<%=request.getContextPath()%>/newpost" method="post">
             <div>
               <table>
                 <tr>

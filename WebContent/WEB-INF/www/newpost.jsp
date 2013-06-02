@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <%
 	if(session.getAttribute("user") == null)
-		response.sendRedirect("");
+		response.sendRedirect(request.getContextPath()+"/");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,15 +16,15 @@
     <meta name="author" content="gavin">
 
     <!-- Le styles -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
     </style>
-    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -35,36 +35,26 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/">享途</a>
+          <a class="brand" href="<%=request.getContextPath()%>/">享途</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="/about">About</a></li>
+              <li class="active"><a href="<%=request.getContextPath()%>/">Home</a></li>
+              <li><a href="<%=request.getContextPath()%>/about">About</a></li>
             </ul>
-            <c:choose>
-            	<c:when test="${sessionScope.user == null }">
-					      <form class="navbar-form pull-right" method="post" action="/action/login">
-		              <input class="span2" type="text" name="username" placeholder="Email">
-		              <input class="span2" type="password" name="password" placeholder="Password">
-		              <button type="submit" class="btn">Sign in</button>
-		              <a class="btn" href="/register">注册</a>
-		            </form>            		
-            	</c:when>
-            	<c:otherwise>
-		            <ul class="nav pull-right">
-		              <li class="dropdown active">
-		                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username} <b class="caret"></b></a>
-		                <ul class="dropdown-menu">
-		                  <li><a href="/u/space">我的空间</a></li>
-		                  <li><a href="/newpost">写新游记</a></li>
-                  		  <li><a href="#">消息 <span class="badge badge-important">6</span></a></li>		                  
-		                  <li class="divider"></li>
-		                  <li><a href="/action/logout">退出</a></li>
-		                </ul>
-		              </li>
-		            </ul>           	
-            	</c:otherwise>
-            </c:choose>
+            <ul class="nav pull-right">
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">${sessionScope.user.email }</a></li>
+                  <li><a href="#">${sessionScope.user.birth }</a></li>
+                  <li><a href="#">${sessionScope.user.gender }</a></li>
+                  <li><a href="#">info <span class="badge badge-important">6</span></a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="<%=request.getContextPath()%>/action/logout">退出</a></li>
+                </ul>
+              </li>
+            </ul>  
 
           </div><!--/.nav-collapse -->
         </div>
@@ -80,7 +70,7 @@
 	          </div>
 	        </div> <!-- end span3 -->
 	        <div class="span9">
-            <form action="/action/newpost" method="post">
+            <form action="<%=request.getContextPath()%>/action/newpost" method="post">
   	          <table>
   	            <tr>
   	              <td><legend>写新文章</legend></td>
@@ -96,11 +86,11 @@
   	              <td>
   	                <label for="content">内容(必填)</label>
   	                <textarea class="ckeditor span8" name="content" id="content"></textarea>
-  	                <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+  	                <script type="text/javascript" src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
   	                <script type="text/javascript">  
   	                    CKEDITOR.replace('content',
   	                    		{ width:700,height:400,
-  	                    		  filebrowserImageUploadUrl : '/action/imgupload?attr=post',width:800,height:400 } );  
+  	                    		  filebrowserImageUploadUrl : '<%=request.getContextPath()%>/action/imgupload?attr=post',width:800,height:400 } );  
   	                </script> 
   	              </td>
   	            </tr>
@@ -119,7 +109,7 @@
 	        </div> <!-- end span9 -->
 	      </div> <!-- end row -->
     </div> <!-- end container -->
-	<script type="text/javascript" src="/js/jquery.js"></script> 
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script> 
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
   </body>
 </html>

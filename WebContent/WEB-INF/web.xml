@@ -27,7 +27,7 @@
     </init-param>
     <init-param>
       <param-name>pageLocation</param-name>
-      <param-value>/</param-value>
+      <param-value>/WEB-INF</param-value>
     </init-param>
     <init-param>
       <param-name>www</param-name>

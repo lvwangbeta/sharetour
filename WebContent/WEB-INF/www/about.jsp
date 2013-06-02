@@ -10,15 +10,15 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
     </style>
-    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
-    <script type="text/javascript" src="/js/jquery.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.js"></script>
+    <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
 </head>
 <body>
 <div class="container well">

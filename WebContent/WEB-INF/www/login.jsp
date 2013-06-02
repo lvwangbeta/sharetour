@@ -13,15 +13,15 @@
     <meta name="description" content="register">
     <meta name="author" content="gavin">
 
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
     </style>
-    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -32,27 +32,27 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="<%=request.getContextPath()%>#">Project name</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="<%=request.getContextPath()%>#">Home</a></li>
+              <li><a href="<%=request.getContextPath()%>#about">About</a></li>
+              <li><a href="<%=request.getContextPath()%>#contact">Contact</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <a href="<%=request.getContextPath()%>#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
+                  <li><a href="<%=request.getContextPath()%>#">Action</a></li>
+                  <li><a href="<%=request.getContextPath()%>#">Another action</a></li>
+                  <li><a href="<%=request.getContextPath()%>#">Something else here</a></li>
                   <li class="divider"></li>
                   <li class="nav-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
+                  <li><a href="<%=request.getContextPath()%>#">Separated link</a></li>
+                  <li><a href="<%=request.getContextPath()%>#">One more separated link</a></li>
                 </ul>
               </li>
             </ul>
             <ul class="nav pull-right">
-            	<li><a href="/register">注册</a></li>
+            	<li><a href="<%=request.getContextPath()%>/register">注册</a></li>
             </ul>
                   		
           </div><!--/.nav-collapse -->
@@ -78,7 +78,7 @@
 		  <button class="btn btn-large btn-primary" type="submit">Sign in</button>
 		</form>			
 	</div> <!-- end container -->
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>		
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>		
   </body>
 </html>

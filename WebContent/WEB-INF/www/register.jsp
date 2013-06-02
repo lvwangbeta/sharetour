@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	if(session.getAttribute("user") != null)
-		response.sendRedirect(request.getContextPath());
+		response.sendRedirect(request.getContextPath()+"/u/space");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
     <meta name="author" content="gavin">
 
     <!-- Le styles -->
-    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%><%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -28,8 +28,8 @@
       	margin-left: 10px;
       }
     </style>
-    <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+    <link href="<%=request.getContextPath()%><%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%><%=request.getContextPath()%>/css/style.css">
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -40,11 +40,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="<%=request.getContextPath()%>">享途</a>
+          <a class="brand" href="<%=request.getContextPath()%><%=request.getContextPath()%>">享途</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="<%=request.getContextPath()%>">Home</a></li>
-              <li><a href="<%=request.getContextPath()%>/about">About</a></li>
+              <li class="active"><a href="<%=request.getContextPath()%><%=request.getContextPath()%>">Home</a></li>
+              <li><a href="<%=request.getContextPath()%><%=request.getContextPath()%>/about">About</a></li>
             </ul>
             <c:choose>
             	<c:when test="${sessionScope.user == null }">
@@ -57,11 +57,11 @@
             	<c:otherwise>
 		            <ul class="nav pull-right">
 		              <li class="dropdown active">
-		                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username} <b class="caret"></b></a>
+		                <a href="<%=request.getContextPath()%>#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username} <b class="caret"></b></a>
 		                <ul class="dropdown-menu">
-		                  <li><a href="<%=request.getContextPath()%>/u/space">我的空间</a></li>
-		                  <li><a href="<%=request.getContextPath()%>/newpost">写新游记</a></li>
-                  		  <li><a href="#">消息 <span class="badge badge-important">6</span></a></li>		                  
+		                  <li><a href="<%=request.getContextPath()%><%=request.getContextPath()%>/u/space">我的空间</a></li>
+		                  <li><a href="<%=request.getContextPath()%><%=request.getContextPath()%>/newpost">写新游记</a></li>
+                  		  <li><a href="<%=request.getContextPath()%>#">消息 <span class="badge badge-important">6</span></a></li>		                  
 		                  <li class="divider"></li>
 		                  <li><a href="<%=request.getContextPath()%>/action/logout">退出</a></li>
 		                </ul>
@@ -254,9 +254,9 @@
 		  </fieldset>
 		</form>				
 	</div> <!-- end contqiner -->
-	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%><%=request.getContextPath()%>/js/jquery.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%><%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%><%=request.getContextPath()%>/js/jquery.validate.js"></script>
 	<script type="text/javascript">
 	$("#regiform").validate({
 			rules: {

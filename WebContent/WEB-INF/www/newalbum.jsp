@@ -1,6 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.sharetour.model.UserInfo" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%
+	UserInfo user = (UserInfo)session.getAttribute("user");
+	if(user == null){
+		response.sendRedirect(request.getContextPath()+"/");
+	}
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +16,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="index">
     <meta name="author" content="gavin">
-
     <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/css/fineuploader-3.5.0.css" rel="stylesheet">
     <style type="text/css">
@@ -80,38 +86,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
   </head>
   <body>
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="/<%=request.getContextPath()%>">享途</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="<%=request.getContextPath()%>">Home</a></li>
-              <li><a href="<%=request.getContextPath()%>/about">About</a></li>
-            </ul>
-            <ul class="nav pull-right">
-              <li class="dropdown active">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username} <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">${sessionScope.user.email }</a></li>
-                  <li><a href="#">${sessionScope.user.birth }</a></li>
-                  <li><a href="#">${sessionScope.user.gender }</a></li>
-                  <li><a href="#">info <span class="badge badge-important">6</span></a></li>
-                  <li class="divider"></li>
-                  <li class="nav-header">Nav header</li>
-                  <li><a href="<%=request.getContextPath()%>/action/logout">退出</a></li>
-                </ul>
-              </li>
-            </ul>             
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div> <!-- end nav bar -->  
+	<%@ include file="topbar.jsp" %> 
     <!--  begin container  -->
     <div class="container">
       <div class="row">

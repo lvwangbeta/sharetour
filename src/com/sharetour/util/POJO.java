@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.Map;
 import java.util.List;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 /*
  * POJO类是实体关系的基类
@@ -12,6 +15,7 @@ import java.util.List;
 public abstract class POJO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	private static final Log log = LogFactory.getLog(POJO.class);
 	private long id = 0;			
 	private QueryHelper helper;
 	
@@ -119,7 +123,7 @@ public abstract class POJO implements Serializable{
 			sql.append("?");
 		}
 		sql.append(")");
-				
+		log.info("sql: "+sql.toString());
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet res = null;

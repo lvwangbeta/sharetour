@@ -9,7 +9,6 @@ public class Post extends POJO {
 
 	private static final long serialVersionUID = 1L;
 	private long authorid;
-	//private int category;		//博客类别(e.g 工作,随笔)
 	private String title;
 	private String content;
 	private String summary;
