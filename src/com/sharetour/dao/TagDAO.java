@@ -1,11 +1,15 @@
 package com.sharetour.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import com.sharetour.model.Post;
 import com.sharetour.model.PostTag;
 import com.sharetour.util.QueryHelper;
@@ -13,7 +17,58 @@ import com.sharetour.util.QueryHelper;
 public class TagDAO {
 	private final static String KEY = "hottags";
 	private final static String TABLE = "posts_tags";
+	private final static String SEPARATOR = " ";	
 	private static Log log = LogFactory.getLog(TagDAO.class);
+	
+	
+	public List<Long> savePostTag(String ptags){
+		QueryHelper helper = new QueryHelper();
+		Connection connection = helper.getConnection();
+		String[] tags = StringUtils.split(ptags, SEPARATOR);
+		if(tags == null || tags.length == 0)
+			return null;
+		//insert new entry and update count number column of old entry
+		StringBuilder sql = new StringBuilder(
+				"insert into posts_tags(tagname) values(?) on duplicate key update postcount=postcount+1");
+		int len = tags.length;
+		PreparedStatement pstm = null;
+		ResultSet res = null;
+		try {
+			pstm = connection.prepareStatement(sql.toString());
+			for(int i=0; i<len; i++)
+			{
+				pstm.setString(1, tags[i]);
+				pstm.addBatch();
+			}			
+			pstm.executeBatch();
+			//select tag id 
+			sql = new StringBuilder("select id from posts_tags where tagname in (");
+			for(int i=0; i<len; i++)
+			{		
+				sql.append("'");
+				sql.append(tags[i]);
+				sql.append("'");
+				if(i<len-1)
+					sql.append(",");
+			}
+			sql.append(")");	
+			pstm = connection.prepareStatement(sql.toString(), 
+					PreparedStatement.RETURN_GENERATED_KEYS);		
+			res = pstm.executeQuery();
+			List<Long> list = new ArrayList<Long>();
+			while(res.next())
+			{
+				list.add(res.getLong(1));
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			helper.closeConnection();
+		}
+		return null;		
+	}
+	
 	
 	public PostTag getTagId(String tagname){
 		QueryHelper helper = new QueryHelper();

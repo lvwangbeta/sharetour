@@ -39,11 +39,6 @@
     <!--  begin container  -->
     <div class="container">
       <div class="row">
-        <%
-        	PostService service = new PostService(); 
-        	List<Post> postlist = service.getPostsOfAuthor(user.getId());
-        	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        %>
       	<div class="span8">
       	 <div class="media">
       	 	<div class="row">
@@ -53,18 +48,22 @@
       	 		<div class="span7">
 	                <div class="media-body">
 	                    <div class="thumbnail">
-
+							<a class="btn btn-large" type="button" href="<%=request.getContextPath()%>/newpost">新游记</a>
+							<a class="btn btn-large" type="button" href="<%=request.getContextPath()%>/album">新建相册</a>							
 	                    </div>              
 	                </div>      	 			
       	 		</div>
       	 	</div>
       	 
       	 </div>
-      	 <!-- end media  -->      	
-      		<%
+      	 <!-- end media  -->     	
+      	<%
+        	PostService service = new PostService(); 
+        	List<Post> postlist = service.getPostsOfAuthor(user.getId());
+        	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");    		
       		if(postlist != null && postlist.size() != 0)
       			for(Post post:postlist){ 
-      		%>
+      	%>
       		<div class="media">
 	            <div class="row">
 	              <div class="span1">

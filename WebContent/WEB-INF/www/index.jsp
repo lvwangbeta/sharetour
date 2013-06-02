@@ -280,7 +280,9 @@
                 %>
                 <div class="media">
                   <a class="pull-left" href="<%=request.getContextPath()%>/post/<%=wp.getId() %>">
-                    <img class="media-object" src="/img/head.jpg" style="width: 64px; height: 64px;">
+                    <img class="media-object" 
+                    src="<%=request.getContextPath()%>/imgs?id=<%=wp.getCover()%>&height=64&width=64" 
+                    style="width: 64px; height: 64px;">
                   </a>
                   <div class="media-body">
                     <a href="<%=request.getContextPath()%>/post/<%=wp.getId() %>"><%=wp.getTitle() %></a>
@@ -300,7 +302,9 @@
               %>
                 <div class="media">
                   <a class="pull-left" href="<%=request.getContextPath()%>/post/<%=mp.getId() %>">
-                    <img class="media-object" src="<%=request.getContextPath()%>/img/head.jpg" style="width: 64px; height: 64px;">
+                    <img class="media-object" 
+                    src="<%=request.getContextPath()%>/imgs?id=<%=mp.getCover()%>&height=64&width=64" 
+                    style="width: 64px; height: 64px;">
                   </a>
                   <div class="media-body">
                     <a href="<%=request.getContextPath()%>/post/<%=mp.getId() %>"><%=mp.getTitle() %></a>

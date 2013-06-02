@@ -8,15 +8,15 @@ import java.util.Map;
 
 import com.sharetour.util.POJO;
 
-public class Relation extends POJO{
+public class PostTagRelation extends POJO{
 
 	private static final long serialVersionUID = 1L;
 	private long pid;
 	private long tid;
 	
-	public Relation()
+	public PostTagRelation()
 	{
-		super("relations");
+		super("post_tag_relation");
 	}
 
 	@Override

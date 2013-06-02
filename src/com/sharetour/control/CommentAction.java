@@ -35,8 +35,8 @@ public class CommentAction implements Action{
 			comment.setPostid(postid);
 			comment.setName(name);
 			comment.setContent(content);
-			PostCommentService commentService = new PostCommentService(comment);
-			if(commentService.saveComment()){
+			PostCommentService commentService = new PostCommentService();
+			if(commentService.saveComment(comment)){
 				return SUCCESS;
 			}
 			else{

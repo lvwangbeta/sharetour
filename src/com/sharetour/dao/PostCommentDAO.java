@@ -5,10 +5,8 @@ import com.sharetour.util.QueryHelper;
 
 public class PostCommentDAO {
 	private PostComment comment;
-	public PostCommentDAO(PostComment comment){
-		this.comment = comment;
-	}
-	public boolean saveComment(){
+	
+	public boolean saveComment(PostComment comment){
 		QueryHelper helper = new QueryHelper();
 		this.comment.setQueryHelper(helper);
 		if(this.comment.Save() == 0){

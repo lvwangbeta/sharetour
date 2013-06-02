@@ -1,9 +1,7 @@
 package com.sharetour.service;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.sharetour.cache.CacheHelper;
@@ -14,11 +12,11 @@ public class HotPostService{
 	
 	private static Log log = LogFactory.getLog(HotPostService.class);	
 	private final static String ORDER = "likes";
-	private final static String HOTPOST_CACHE_NAME = Post.class.getSimpleName(); 
-	private final static String HOT_POST_KEY = "hot_posts";
-	private final static String WEEK_HOT_POST_KEY = "hot_posts_this_week";
-	private final static String MONTH_HOT_POST_KEY = "hot_posts_of_month";
-	private int limit = 10;
+	private final static String HOTPOST = "HotPost"; 
+	private final static String WEEK_HOT_POST = "WeekHotPost";
+	private final static String MONTH_HOT_POST = "WeekHotPost";
+	
+	private static int LIMIT = 10;
 	private PostDAO hpdao;
 	public HotPostService(){
 		hpdao = new PostDAO();
@@ -29,7 +27,14 @@ public class HotPostService{
 	 * @return
 	 */
 	public List<Post> getHotPost(){	
-		return getHotPost(1, limit);
+		return getHotPost(1, LIMIT);
+	}
+	
+	public List<Post> getHotPostOfPage(int page){
+		return getHotPost(page, LIMIT);
+	}
+	public List<Post> getHotPostOfPage(int page, int limit){
+		return getHotPost(page, limit);
 	}
 	
 	/*
@@ -40,23 +45,18 @@ public class HotPostService{
 	public List<Post> getHotPost(int page, int limit){
 		log.info("get hot post from "+page+" limit "+limit);
 		@SuppressWarnings("unchecked")
-		Map<Integer, List<Post>> page_posts_map = (HashMap<Integer, List<Post>>) CacheHelper.
-		getCacheData(HOTPOST_CACHE_NAME, HOT_POST_KEY);
-		if(page_posts_map == null){
-			log.info("hot post cache not in use");
-			page_posts_map = new HashMap<Integer, List<Post>>();
-			CacheHelper.put(HOTPOST_CACHE_NAME, HOT_POST_KEY, page_posts_map);
-		}
-		List<Post> list = page_posts_map.get(page);
-		if(list == null){
+		List<Post> hp = (List<Post>) CacheHelper.
+		getCacheData(HOTPOST, page);
+		
+		if(hp == null){
 			log.info("get hot post from db");
-			list = hpdao.getPostList(page, limit, ORDER);
-			page_posts_map.put(page, list);
+			hp = hpdao.getPostList(page, limit, ORDER);
+			CacheHelper.put(HOTPOST, page, hp);
 		}
 		else{
-				log.info("get hot post from cache");
+			log.info("get hot post from cache");
 		}
-		return list;
+		return hp;
 	}
 	
 	/*
@@ -68,23 +68,19 @@ public class HotPostService{
 	public List<Post> getHostPostOfThisWeek(int page, int limit){
 		log.info("getting this week's hot posts...");
 		@SuppressWarnings("unchecked")
-		Map<Integer, List<Post>> whotposts = (Map<Integer, List<Post>>) CacheHelper.
-		getCacheData(HOTPOST_CACHE_NAME, WEEK_HOT_POST_KEY);
+		List<Post> whotposts = (List<Post>) CacheHelper.
+		getCacheData(WEEK_HOT_POST, page);
+
 		if(whotposts == null){
-			whotposts = new HashMap<Integer, List<Post>>();
-			CacheHelper.put(HOTPOST_CACHE_NAME, WEEK_HOT_POST_KEY, whotposts);
-		}
-		List<Post> list = whotposts.get(page);
-		if(list == null){
 			log.info("get this week's hot posts from db");
-			list = hpdao.getHotPostOfThisWeek(page, limit);
-			whotposts.put(page, list);
+			whotposts = hpdao.getHotPostOfThisWeek(page, limit);
+			CacheHelper.put(WEEK_HOT_POST, page, whotposts);
 			log.info("put this week's hot posts to cache");
 		}
 		else{
 			log.info("get this week's hot posts from cache");
 		}
-		return list;
+		return whotposts;
 	}
 	
 	
@@ -99,22 +95,18 @@ public class HotPostService{
 		int year  = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
 		@SuppressWarnings("unchecked")
-		Map<Integer, List<Post>> mhotposts = (Map<Integer, List<Post>>) CacheHelper.
-		getCacheData(HOTPOST_CACHE_NAME, MONTH_HOT_POST_KEY);
+		List<Post> mhotposts = (List<Post>) CacheHelper.
+		getCacheData(MONTH_HOT_POST, page);
+
 		if(mhotposts == null){
-			mhotposts = new HashMap<Integer, List<Post>>();
-			CacheHelper.put(HOT_POST_KEY, MONTH_HOT_POST_KEY, mhotposts);
-		}
-		List<Post> list = mhotposts.get(page);
-		if(list == null){
 			log.info("get month hot posts from db");
-			list = hpdao.getHotPostOfMonth(year, month, page, limit);
-			mhotposts.put(page, list);
+			mhotposts = hpdao.getHotPostOfMonth(year, month, page, limit);
+			CacheHelper.put(MONTH_HOT_POST, page, mhotposts);
 			log.info("put month hot posts to cache");
 		}
 		else{
 			log.info("get month hot posts from cache");
 		}
-		return list;
+		return mhotposts;
 	}
 }

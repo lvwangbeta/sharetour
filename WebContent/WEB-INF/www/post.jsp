@@ -65,7 +65,7 @@
 						</form>
 					</div> 	
 					<ol class="comments-list" id="comments-list">
-					<%if(comments != null) {%>
+					<%if(comments != null && comments.size()!=0) {%>
 						<c:forEach var="comment" items="<%=comments %>">
 							<li>
 								<div>
