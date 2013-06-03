@@ -41,11 +41,11 @@ public class AlbumService {
 	
 	/*
 	 * 获得热门相册
-	 * @param order 排序规则
+	 * @param order 排序规则(默认按照访问量)
 	 * @param size  
 	 */
-	public List<Album> getHotAlbums(Object order, int size){
-		return albumdao.getAlubms(order, size);
+	public List<Album> getHotAlbums(Object order,int page, int size){
+		return albumdao.getAlubms(order, page, size);
 	}
 	
 	

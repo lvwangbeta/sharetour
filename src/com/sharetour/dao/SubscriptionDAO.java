@@ -83,9 +83,9 @@ public class SubscriptionDAO {
 		if(tids == null || tids.size() == 0)
 			return null;
 		QueryHelper helper = new QueryHelper();
-		StringBuffer buffer = new StringBuffer("select posts.id, authorid, title, summary, " +
-							  "tags, ctime, likes, visit from posts, relations " +
-							  "where posts.id=relations.pid and relations.tid in (");
+		StringBuffer buffer = new StringBuffer("select posts.id,cover, authorid, title, summary, " +
+							  "tags, ctime, likes, visit from posts, post_tag_relation " +
+							  "where posts.id=post_tag_relation.pid and post_tag_relation.tid in (");
 		Iterator<Long> it = tids.iterator();
 		for(int i=0; i<tids.size(); i++){
 			if(i != 0){

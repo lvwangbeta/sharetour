@@ -15,6 +15,8 @@ import com.sharetour.model.PostTag;
 import com.sharetour.util.QueryHelper;
 
 public class TagDAO {
+	private final static String TABLE_POSTS_TAG = "posts_tags";
+	private final static String TABLE_POST_TAG_RELA = "post_tag_relation";
 	private final static String KEY = "hottags";
 	private final static String TABLE = "posts_tags";
 	private final static String SEPARATOR = " ";	
@@ -118,16 +120,15 @@ public class TagDAO {
 		List<Post> list = helper.
 			query_slice(
 						Post.class,
-						"select posts.id, posts.authorid, posts.title, " +
+						"select posts.id, posts.authorid, posts.title,posts.cover, " +
 						"posts.summary, posts.tags, posts.visit, posts.ctime " +
-						"from posts,relations,posts_tags where " +
-						"posts.id=relations.pid " +
-						"and relations.tid=posts_tags.id and posts_tags.tagname=?", 
+						"from posts,post_tag_relation,posts_tags where " +
+						"posts.id=post_tag_relation.pid " +
+						"and post_tag_relation.tid=posts_tags.id and posts_tags.tagname=?", 
 						1, 
 						1000,
 						tagname
 						);
-		System.out.println(tagname);
 		helper.closeConnection();
 		return list;		
 	}

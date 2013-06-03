@@ -71,7 +71,7 @@
 	                <div class="media-body">
 	                    <div class="thumbnail">
 							<a class="btn btn-large" type="button" href="<%=request.getContextPath()%>/newpost">新游记</a>
-							<a class="btn btn-large" type="button" href="<%=request.getContextPath()%>/album">新建相册</a>							
+							<a class="btn btn-large" type="button" href="<%=request.getContextPath()%>/newalbum">新建相册</a>							
 	                    </div>              
 	                </div>      	 			
       	 		</div>
@@ -140,7 +140,14 @@
                 </a>
               </div>
             </div>          
-          
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" href="<%=request.getContextPath()%>/u/album">
+                  <i class="icon-picture"></i>&nbsp;&nbsp;我的相册
+                </a>
+              </div>
+            </div>                 
+          	<br />          
           
             <div class="accordion-group">
               <div class="accordion-heading">

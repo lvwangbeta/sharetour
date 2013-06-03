@@ -18,18 +18,15 @@
     <meta name="description" content="index">
     <meta name="author" content="gavin">
 
-    <!-- Le styles -->
     <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
     <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/magnific-popup.css" />
     <style>
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }    
       .mfp-container {
 		margin-top: 20px;
 	  } 
@@ -43,7 +40,11 @@
 		max-width: 650px;
 		margin: 40px auto;
 		position: relative;
-	  }     
+	  }  
+	  .item{
+	  	padding-bottom: 20px; 
+	  	overflow: hidden;
+	  }   
     </style>    
   </head>
   <body>
@@ -74,9 +75,8 @@
           <!-- begin hot post gallery -->
           <%
           	AlbumService albumService = new AlbumService();
-          	if(user != null){
-          		List<Album> albums = albumService.getAlbumsOfUser(user.getId());
-          		if(albums != null){     		
+          	List<Album> albums = albumService.getHotAlbums("visit", 1, 6);
+          	if(albums != null){     		
           %>
           <div>
             <ul class="thumbnails">
@@ -84,7 +84,7 @@
             	for(Album album:albums){
             %>
               <li class="hpbox">
-                <div class="thumbnail">
+                <div class="thumbnail item">
                   <a class="pop" href="<%=request.getContextPath()%>/popalbum/<%=album.getId()%>"><img src="<%=request.getContextPath()%>/imgs?id=<%=album.getCoverid()%>&width=226&height=152"  alt="<%=album.getAlbumname() %>"></a>
                   <h4><%=album.getAlbumname() %></h4>
                   <p><%=album.getDesc() %></p>
@@ -93,7 +93,7 @@
               <%} %>           
             </ul>            
           </div>  
-          <%}} %>
+          <%} %>
           <!-- end hotposts gallery -->    
 		      <!-- begin btn group leader -->
           <p class="lead">Bare minimum radio button tabs example:</p>
@@ -107,60 +107,6 @@
           <!-- begin hotposts tab-content -->
           <div class="tab-content">
             <div class="tab-pane active" id="hotposts">
-            <div class="post">
-                <div class="row">
-                  <div class="span8">
-                    <div class="row">
-                      <div class="span8">
-                        <div class="posttitle">
-                            <h4><strong><a href="#">Title of the post</a></strong></h4>
-                          </div>
-                      </div>                   
-                    </div>
-                    <!-- end row level2 -->
-                    <div class="row">
-                      <div class="span2">
-                        <div class="preimg">
-                          <a href="#" class="thumbnail">
-                              <img src="<%=request.getContextPath()%>/img/pre.jpg" alt="">
-                          </a>                      
-                        </div>
-
-                      </div>
-                      <div class="span6">     
-                        <p>
-                          <i class="icon-user"></i> by <a href="#">Mark</a> 
-                          | <i class="icon-calendar"></i> Sept 16th, 2012
-                          | <i class="icon-comment"></i> <a href="#">3 Comments</a>
-                        </p> 
-                        <p>
-                          Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari conclusionemque, ad nobis propriae quaerendum sea.
-                        </p>
-                        <div class="row">
-                          <div class="span4">
-                            <p>
-                              <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
-                              <a href="#"><span class="label label-warning">Bootstrap</span></a> 
-                              <a href="#"><span class="label label-warning">UI</span></a> 
-                              <a href="#"><span class="label label-warning">growth</span></a>
-                            </p>                                                  
-                          </div>
-                          <div class="span2">
-                              <a href="#"><span class="label label-important">6 like</span></a> 
-                              <a href="#"><span class="label label-success">35 share</span></a>
-                          </div>
-
-                        </div>
-
-                      </div>
-                    </div>
-                    <!-- end row level 2 -->
-                  </div>
-                  <!-- end span8 -->
-                </div>  
-              <!-- end row level1 -->
-              </div>
-              <!-- end sample post -->
               <%
               HotPostService hotpostservice = new HotPostService();
               List<Post> postlist = hotpostservice.getHotPost();
@@ -184,8 +130,8 @@
                     <div class="row">
                       <div class="span2">
                         <div class="preimg">
-                          <a href="#" class="thumbnail">
-                              <img src="<%=request.getContextPath()%>/img/pre.jpg" alt="">
+                          <a href="<%=request.getContextPath()%>/post/<%=post.getId()%>" class="thumbnail">
+                              <img src="<%=post.getCover()%>&width=160&height=128" alt="preimg">
                           </a>
                         </div>
                       </div>

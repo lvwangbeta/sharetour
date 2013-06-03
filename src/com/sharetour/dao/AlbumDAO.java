@@ -94,8 +94,17 @@ public class AlbumDAO {
 	}
 	
 	
-	public List<Album> getAlubms(Object order, int size){
-		return null;
+	public List<Album> getAlubms(Object order, int page, int size){
+		DBCollection albumColl = MongoDBPool.getInstance().getCollection("album");
+		DBCursor cursor = albumColl.find().
+						  sort(new BasicDBObject("visit",-1)).
+						  skip( (page-1)*12 ).limit(size);
+		List<Album> albums = new ArrayList<Album>();
+		while(cursor.hasNext()){
+			BasicDBObject albumjson = (BasicDBObject) cursor.next();
+			albums.add(formJson(albumjson));
+		}
+		return albums;
 	}
 	
 }

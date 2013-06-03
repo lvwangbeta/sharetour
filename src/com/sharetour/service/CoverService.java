@@ -2,7 +2,6 @@ package com.sharetour.service;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -24,6 +23,12 @@ public class CoverService {
 		if(matcher.find())
 		{
 			String coverurl = matcher.group();
+			pattern = Pattern.compile("src=\".*?\"");
+			matcher = pattern.matcher(coverurl);
+			if(matcher.find()){
+				coverurl = matcher.group();
+			}
+			coverurl = coverurl.substring(coverurl.indexOf("\"")+1, coverurl.lastIndexOf("\""));
 			log.info("cover url:"+coverurl);
 			return coverurl;
 		}

@@ -16,6 +16,7 @@
 	TagService tagservice = new TagService();
 	List<Post> postlist = tagservice.getPostsRelatedToTag(tag);
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	UserInfo user = (UserInfo)session.getAttribute("user");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +33,15 @@
       body {
         padding-top: 60px;
         padding-bottom: 40px;
+      }
+      .caption img{
+      	float: left;
+      	margin: 0 10px 10px 0;
+      }
+      .caption .action{
+      	float: right;
+      	padding-right:10px;
+      	text-align: right;
       }
     </style>
     <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
@@ -51,22 +61,38 @@
 	            <div class="row">
 	              <div class="span1">
 	                <a class="pull-left" href="<%=request.getContextPath()%>/u/">
-	                  <img class="media-object" src="<%=request.getContextPath()%>../../img/head.jpg" style="height:64px;width=64px;">
+	                  <img class="media-object" src="<%=request.getContextPath()%>/img/head.jpg" style="height:64px;width=64px;">
 	                </a>                 
 	              </div>
 	              <!-- end span1 -->
 	              <div class="span7">
 	                <div class="media-body">
 	                    <div class="thumbnail">
-	                      <div>
-	                        <h4><a href="<%=request.getContextPath()%>/post/<%=post.getId() %>"><%=post.getTitle() %></a></h4>
-	                      </div>
-	                      <img src="<%=request.getContextPath()%>../../img/7.jpg">
 	                      <div class="caption">
-	                        <p><%=post.getSummary() %></p>
-	                        <%for(String t:StringUtils.split(post.getTags(), " ")){ %>
-		              			<a href="<%=request.getContextPath()%>/tag/<%=t%>"><span class="label label-warning"><%=t %></span></a>
-		              		<%} %>
+	                        <h4><a href="<%=request.getContextPath()%>/post/<%=post.getId() %>"><%=post.getTitle() %></a></h4>
+	                      </div>                      
+	                      <div class="caption clearfix">
+	                        <%if(post.getCover()!=null) {%>
+	                        <img src="<%=post.getCover()%>&height=150&width=150">
+	                        <%}%>
+	                        <%=post.getSummary() %>
+	                      </div>
+	                      <div class="caption">
+	                      	<div class="row">
+	                      		<div class="span4">
+			                        <p>
+			                        <%for(String t:StringUtils.split(post.getTags(), " ")){ %>
+				              			<a href="<%=request.getContextPath()%>/tag/<%=t%>"><span class="label label-warning"><%=t %></span></a>
+				              		<%} %>
+				              		</p>		                      		
+	                      		</div>
+	                      		<div class="span2 action">
+	                      			<span><a href="">转载</a></span>
+	                      			<span><a href="">评论</a></span>
+	                      			<span><a href="">like</a></span>
+	                      			<span>12</span>
+	                      		</div>
+	                      	</div>                      
 	                      </div>
 	                    </div>              
 	                </div>                 
@@ -80,19 +106,34 @@
         </div> <!-- end span8 posts -->
         <div class="span4">		
           <%
-          	SubscriptionService subservice = new SubscriptionService();
+          	SubscriptionService sub = new SubscriptionService();
           %>	
           <div class="accordion">
+            
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" href="<%=request.getContextPath()%>/u/posts">
+                  <i class="icon-file"></i>&nbsp;&nbsp;我的游记
+                </a>
+              </div>
+            </div>          
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" href="<%=request.getContextPath()%>/u/album">
+                  <i class="icon-picture"></i>&nbsp;&nbsp;我的相册
+                </a>
+              </div>
+            </div>                 
+          	<br />
             <div class="accordion-group">
                 <div class="accordion-heading">
                   <div class="accordion-inner">
                     <i class="icon-tag"></i>&nbsp;&nbsp;<%=tag %>
-                    <%if(session.getAttribute("user") == null) {%>
+                    <%if(user == null) {%>
                     <a href="<%=request.getContextPath()%>/action/subscribe?action=sub&tagname=<%=tag%>" class="pull-right sub">订阅</a>
                     <%} 
                     else{
-                    	UserInfo user = (UserInfo)session.getAttribute("user");
-                    	if(!subservice.checkSubStatus(user.getId(), tag)){%>
+                    	if(!sub.checkSubStatus(user.getId(), tag)){%>
                     	<a href="<%=request.getContextPath()%>/action/subscribe?action=sub&tagname=<%=tag%>" class="pull-right sub">订阅</a>
                     	<%}else{%>
                     	<a href="<%=request.getContextPath()%>/action/subscribe?action=undosub&tagname=<%=tag%>" class="pull-right sub">取消订阅</a>
@@ -100,7 +141,45 @@
                     <%} %>                           
                   </div>        
                 </div>	
-            </div>                  
+            </div> 
+            <!-- end sub action -->
+            <br />          	
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="<%=request.getContextPath()%>#subTags">
+                  <i class="icon-tags"></i>&nbsp;&nbsp;	我订阅的标签
+                </a>
+              </div>
+              <div id="subTags" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                  <%
+                  	List<PostTag> tlist = sub.getAllTagsOfUser(user.getId());
+                  	if(tlist != null && tlist.size() != 0){
+                  %>
+                  	<ul class="unstyled">
+                  		<%for(PostTag t:tlist) {%>
+                  		<li>
+                  			<i class="icon-tag"></i>&nbsp;&nbsp;
+                  			<a href="<%=request.getContextPath()%>/tag/<%=t.getTagname() %>"><%=t.getTagname() %></a> 
+                  		</li>
+                  		<%} %>
+                  	</ul>
+                  <%}%>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="<%=request.getContextPath()%>#following">
+                  <i class="icon-user"></i>&nbsp;&nbsp;我的关注
+                </a>
+              </div>
+              <div id="following" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  
+                </div>
+              </div>
+            </div>                             
           </div>
           <!-- end accordion -->			
         </div> 

@@ -113,6 +113,7 @@ public class Post extends POJO {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("authorid", getAuthorid());
 		//map.put("category", getCategory());
+		map.put("cover", getCover());
 		map.put("title", getTitle());
 		map.put("content", getContent());
 		map.put("summary", getSummary());

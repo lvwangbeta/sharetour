@@ -208,7 +208,7 @@
                       '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
                       '<div class="row">'+
                         '<div class="span2">'+
-                          '<img src="<%=request.getContextPath()%>'+responseJSON.url+'" style="height:100px;width:100xp" alt="">'+
+                          '<img src="'+responseJSON.url+'" style="height:100px;width:100xp" alt="">'+
                         '</div>'+
                         '<div class="span4">'+
                           '<textarea name="desc" id="'+responseJSON.id+"-desc"+'" class="span4 photodesc" rows="5"></textarea>'+ 
