@@ -24,6 +24,7 @@ public class ImgTools {
 	public static BufferedImage resizeImg(InputStream imgstream, int height, int width){
 		if(imgstream == null){
 			log.info("img stream null");
+			return null;
 		}
 		BufferedImage imgbuff = null;
 		try {
@@ -35,6 +36,26 @@ public class ImgTools {
 			log.info("img resize error");
 		}
 		return imgbuff;
+	}
+	
+	public static BufferedImage 
+	crop(InputStream imgstream, int x1, int y1, int x2, int y2, int width, int height){
+		if(imgstream == null){
+			log.info("img stream null");
+			return null;
+		}
+		BufferedImage imgbuff = null;
+		try {
+			 imgbuff = Thumbnails.of(imgstream).
+					   sourceRegion(x1, y1, x2, y2).
+					   size(width, height).
+					   keepAspectRatio(false).
+					   asBufferedImage();
+		} catch (IOException e) {
+			log.info("img crop error");
+		}
+		log.info("img crop success");
+		return imgbuff;		
 	}
 	
 	/*

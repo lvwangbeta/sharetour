@@ -159,4 +159,14 @@
   <listener>
     <listener-class>com.sharetour.listener.MyServletContext</listener-class>
   </listener>
+  <servlet>
+    <description></description>
+    <display-name>AvatorServlet</display-name>
+    <servlet-name>AvatorServlet</servlet-name>
+    <servlet-class>com.sharetour.control.AvatorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AvatorServlet</servlet-name>
+    <url-pattern>/action/avator</url-pattern>
+  </servlet-mapping>
 </web-app>

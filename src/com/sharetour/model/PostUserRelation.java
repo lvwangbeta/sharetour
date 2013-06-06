@@ -11,7 +11,7 @@ import com.sharetour.util.POJO;
  */
 public class PostUserRelation extends POJO{
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 5025653538790099011L;
 	private long pid;
 	private long uid;
 	private String lik;

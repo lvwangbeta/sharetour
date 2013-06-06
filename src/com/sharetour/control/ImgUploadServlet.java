@@ -57,6 +57,13 @@ public class ImgUploadServlet extends HttpServlet {
 			out.write("{\"success\":true,\"url\":\""+url+"&height=100&width=100\""+
 			",\"id\":\""+photo.getId().toString()+"\"}");
 			out.close();
+		}else if("avator".equals(attr)){
+			request.getSession().setAttribute("avator", photo.getId());
+			response.setContentType("text/plain; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.write("{\"success\":true,\"url\":\""+url+"&height=300&width=300\""+
+			",\"id\":\""+photo.getId().toString()+"\"}");
+			out.close();			
 		}
 	}
 	

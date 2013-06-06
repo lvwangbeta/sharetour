@@ -7,7 +7,7 @@ import com.sharetour.util.POJO;
 
 public class Subscription extends POJO{
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 6236018405584081685L;
 	private Long uid;
 	private Long tid;
 	private PostTag posttag = new PostTag();

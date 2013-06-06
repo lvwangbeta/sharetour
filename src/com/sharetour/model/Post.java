@@ -5,9 +5,9 @@ import java.util.Map;
 import java.util.HashMap;
 import com.sharetour.util.POJO;
 
-public class Post extends POJO {
+public class Post extends POJO{
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 5366341787825325633L;
 	private long authorid;
 	private String title;
 	private String content;

@@ -10,8 +10,7 @@ import com.sharetour.util.POJO;
  */
 public class PostCategory extends POJO{
 
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 3648789645290100969L;
 	private int authorid;		//作者ID
 	private int postid;			//
 	private String name;		//类名

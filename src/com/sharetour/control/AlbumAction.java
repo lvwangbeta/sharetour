@@ -1,16 +1,15 @@
 package com.sharetour.control;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.google.gson.Gson;
 import com.sharetour.model.Album;
 import com.sharetour.model.UserInfo;
 import com.sharetour.service.AlbumService;
 import com.sharetour.util.Action;
+import com.sharetour.util.JSONHelper;
 
 public class AlbumAction implements Action{
 
@@ -26,14 +25,13 @@ public class AlbumAction implements Action{
 		}
 		String paramjson = null;
 		try {
-			paramjson = retrieveJSON(request);
+			paramjson = JSONHelper.retrieveJSON(request.getReader());
 			log.info("request json:"+paramjson);
 		} catch (IOException e) {
 			log.error("format params to json error");
 			return Action.JSONRETERROR;
 		}
-		Gson gson = new Gson();
-		Album album = gson.fromJson(paramjson, Album.class);
+		Album album = JSONHelper.json2obj(paramjson, Album.class);
 		UserInfo user = (UserInfo)request.getSession().getAttribute("user");
 		album.setUid(user.getId());
 		album.setUsername(user.getUsername());
@@ -43,17 +41,5 @@ public class AlbumAction implements Action{
 		}
 		log.error("album save error");
 		return Action.ERROR;
-	}
-
-	
-	private String retrieveJSON(HttpServletRequest request) throws IOException{
-		BufferedReader reader = request.getReader();
-		StringBuffer json = new StringBuffer();
-		String line = reader.readLine();
-		while(line != null){
-			json.append(line + "\n");
-			line = reader.readLine();
-		}
-		return json.toString();
 	}
 }

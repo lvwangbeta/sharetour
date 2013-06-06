@@ -14,6 +14,7 @@
   <head>
     <meta charset="utf-8">
     <title>ShareTour</title>
+    <meta property="qc:admins" content="7150557211254752634754675642163757" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="index">
     <meta name="author" content="gavin">
@@ -41,7 +42,8 @@
 		margin: 40px auto;
 		position: relative;
 	  }  
-	  .item{
+	  .albumbox{
+	  	height: 250px;
 	  	padding-bottom: 20px; 
 	  	overflow: hidden;
 	  }   
@@ -84,7 +86,7 @@
             	for(Album album:albums){
             %>
               <li class="hpbox">
-                <div class="thumbnail item">
+                <div class="thumbnail albumbox">
                   <a class="pop" href="<%=request.getContextPath()%>/popalbum/<%=album.getId()%>"><img src="<%=request.getContextPath()%>/imgs?id=<%=album.getCoverid()%>&width=226&height=152"  alt="<%=album.getAlbumname() %>"></a>
                   <h4><%=album.getAlbumname() %></h4>
                   <p><%=album.getDesc() %></p>

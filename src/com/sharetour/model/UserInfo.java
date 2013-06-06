@@ -11,7 +11,7 @@ import com.sharetour.util.POJO;
 
 public class UserInfo extends POJO implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -6477608831652054079L;
 	private String username;
 	private String password;
 	private String email;

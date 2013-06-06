@@ -7,9 +7,8 @@ import java.util.Map;
 import com.sharetour.util.POJO;
 
 public class PostComment extends POJO{
-
-	private static final long serialVersionUID = 1L;
-
+	
+	private static final long serialVersionUID = 602414268362761452L;
 	private long authorid;
 	private long postid;
 	private long parentid;		//父级评论

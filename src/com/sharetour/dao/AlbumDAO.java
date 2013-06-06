@@ -16,9 +16,10 @@ import com.sharetour.model.Photo;
 public class AlbumDAO {
 
 	private static final Log log = LogFactory.getLog(AlbumDAO.class);
+	private static final String ALBUM = "album";
 	
 	public boolean saveAlbum(Album album){
-		DBCollection albumColl = MongoDBPool.getInstance().getCollection("album");
+		DBCollection albumColl = MongoDBPool.getInstance().getCollection(ALBUM);
 		BasicDBObject doc = new BasicDBObject("_id",new ObjectId(album.getId())).
 							append("albumname", album.getAlbumname()).
 					        append("uid", album.getUid()).
@@ -41,14 +42,14 @@ public class AlbumDAO {
 		return true;
 	}
 	public Album getAlbum(String id){
-		DBCollection albumColl = MongoDBPool.getInstance().getCollection("album");
+		DBCollection albumColl = MongoDBPool.getInstance().getCollection(ALBUM);
 		BasicDBObject doc = new BasicDBObject("_id",new ObjectId(id));
 		BasicDBObject albumjson = (BasicDBObject)albumColl.findOne(doc);
 		return formJson(albumjson);
 	}
 	
 	public List<Album> getAlbumsOfUser(Long uid){
-		DBCollection albumColl = MongoDBPool.getInstance().getCollection("album");
+		DBCollection albumColl = MongoDBPool.getInstance().getCollection(ALBUM);
 		BasicDBObject doc = new BasicDBObject("uid",uid);
 		DBCursor cursor = albumColl.find(doc);
 		List<Album> albums = new ArrayList<Album>();
@@ -95,7 +96,7 @@ public class AlbumDAO {
 	
 	
 	public List<Album> getAlubms(Object order, int page, int size){
-		DBCollection albumColl = MongoDBPool.getInstance().getCollection("album");
+		DBCollection albumColl = MongoDBPool.getInstance().getCollection(ALBUM);
 		DBCursor cursor = albumColl.find().
 						  sort(new BasicDBObject("visit",-1)).
 						  skip( (page-1)*12 ).limit(size);

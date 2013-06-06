@@ -10,7 +10,7 @@ import com.sharetour.util.POJO;
 
 public class PostTagRelation extends POJO{
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -4600107424785310284L;
 	private long pid;
 	private long tid;
 	

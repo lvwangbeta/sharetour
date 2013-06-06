@@ -10,7 +10,7 @@ import com.sharetour.util.POJO;
 
 public class PostTag extends POJO{
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8764985959758155878L;
 	private String tagname;
 	private int postcount;			//该标签的post数
 	public PostTag()

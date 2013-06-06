@@ -15,12 +15,11 @@ import com.sharetour.util.ObjectIdGenerator;
 public class ImgDAO {
 	
 	private static final Log log = LogFactory.getLog(ImgDAO.class);
-	
+	private String collection = "imgs";
 	public Photo saveImg(FileItem item) throws Exception{
 		Photo photo = new Photo();
 		String filename = item.getName();
-		if(filename == null || filename.length() == 0)
-		{
+		if(filename == null || filename.length() == 0){
 			log.error("img name illegal");
 			return null;
 		}
@@ -35,7 +34,7 @@ public class ImgDAO {
 		photo.setId(id.toString());
 		photo.setType(type);
 		
-		GridFS mphoto = new GridFS(MongoDBPool.getInstance().getDB(), "imgs");
+		GridFS mphoto = new GridFS(MongoDBPool.getInstance().getDB(), collection);
 		GridFSInputFile in = null;
 		in = mphoto.createFile(item.getInputStream());
 		in.setId(id);
@@ -46,6 +45,14 @@ public class ImgDAO {
 		return photo;
 	}
 	
+	public Photo saveImg(FileItem item, String coll) throws Exception {
+		setCollection(coll);
+		return saveImg(item);
+	}
+	
+	public void setCollection(String coll){
+		this.collection = coll;
+	}
 	public GridFSDBFile getImg(String id){
 		log.info("getting img:"+id+" from mongo");
 		if(id == null || id.length() == 0){

@@ -1,0 +1,74 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jcrop 图像裁剪插件 &raquo; 在线演示 &raquo; 按高宽比预览裁剪效果 - 前端开发仓库</title>
+<link rel="stylesheet" href="../../../css/jquery.Jcrop.css">
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/jquery.Jcrop.min.js"></script>
+<script>
+jQuery(function($){
+	// Create variables (in this scope) to hold the API and image size
+	var jcrop_api,boundx,boundy;
+	
+	$("#target").Jcrop({
+		onChange:updatePreview,
+		onSelect:updatePreview,
+		aspectRatio:1
+	},function(){
+		// Use the API to get the real image size
+		var bounds=this.getBounds();
+		boundx=bounds[0];
+		boundy=bounds[1];
+		// Store the API in the jcrop_api variable
+		jcrop_api=this;
+	});
+	
+	function updatePreview(c){
+		if(parseInt(c.w)>0){
+			var rx=100/c.w;
+			var ry=100/c.h;
+			
+			$("#preview").css({
+				width:Math.round(rx*boundx)+"px",
+				height:Math.round(ry*boundy)+"px",
+				marginLeft:"-"+Math.round(rx*c.x)+"px",
+				marginTop:"-"+Math.round(ry*c.y)+"px"
+			});
+		};
+	};
+});
+</script>
+</head>
+<body>
+<div id="outer">
+	<div class="jcExample">
+		<div class="article">
+			<h1>Jcrop - 按高宽比预览裁剪效果</h1>
+			
+			<table>
+				<tr>
+					<td><img src="../../../img/head.jpg" id="target" alt="Flowers"></td>
+					<td>
+						<div style="width:100px;height:100px;overflow:hidden;">
+							<img src="../../../img/head.jpg" id="preview" alt="Preview">
+						</div>
+					</td>
+				</tr>
+			</table>
+			
+			<p><strong>模拟实时预览裁剪效果的示例</strong></p>
+			<p>很直观的例子，使用 Jcrop 的 <em>onChange</em> 事件，实时更新裁剪后的图像预览。这种形式适合用于创建略缩图或头像。</p>
+			
+			<div id="dl_links">
+				<a href="../index.html">在线演示</a> |
+				<a target="_blank" href="http://code.ciaoca.com/jquery/jcrop/">中文文档</a> |
+				<a target="_blank" href="http://deepliquid.com/content/Jcrop.html">Jcrop Home</a> |
+				<a target="_blank" href="http://deepliquid.com/content/Jcrop_Manual.html">Manual (Docs)</a>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
