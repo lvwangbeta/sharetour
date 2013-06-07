@@ -30,8 +30,19 @@ public class ImgService {
 	
 	/*
 	 * get img stream
+	 * @param img filename
 	 */
 	public GridFSDBFile getImg(String filename){
+		return imgdao.getImg(filename);
+	}
+	
+	/*
+	 * get img from collection
+	 * @param collection
+	 * @param img filename
+	 */
+	public GridFSDBFile getImgFrom(String collection, String filename){
+		imgdao.setCollection(collection);
 		return imgdao.getImg(filename);
 	}
 }

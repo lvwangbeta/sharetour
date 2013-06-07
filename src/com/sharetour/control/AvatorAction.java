@@ -41,7 +41,12 @@ public class AvatorAction implements Action{
 		Crop crop = JSONHelper.json2obj(crop_info, Crop.class);
 		
 		AvatorService avatorService = new AvatorService();
-		ObjectId id = avatorService.generateAvatorThumb(new ObjectId(avator_orig_id), crop);
+		ObjectId id = null;
+		try {
+			id = avatorService.generateAvatorThumb(new ObjectId(avator_orig_id), crop);
+		} catch (IOException e) {
+			return ERROR;
+		}
 		if(id == null)
 			return Action.ERROR;
 		Avator avator = new Avator();

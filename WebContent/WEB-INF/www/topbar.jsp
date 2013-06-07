@@ -17,7 +17,7 @@
             </ul>
             <c:choose>
             	<c:when test="${sessionScope.user == null }">
-					      <form class="navbar-form pull-right" method="post" action="<%=request.getContextPath()%>/action/login">
+					<form class="navbar-form pull-right" method="post" action="<%=request.getContextPath()%>/action/login">
 		              <input class="span2" type="text" name="username" placeholder="Email">
 		              <input class="span2" type="password" name="password" placeholder="Password">
 		              <button type="submit" class="btn">Sign in</button>
@@ -33,6 +33,7 @@
 		                  <li><a href="<%=request.getContextPath()%>/newpost">写新游记</a></li>
                   		  <li><a href="#">消息 <span class="badge badge-important">6</span></a></li>		                  
 		                  <li class="divider"></li>
+		                  <li><a href="<%=request.getContextPath()%>/account/">账户信息</a></li>
 		                  <li><a href="<%=request.getContextPath()%>/action/logout">退出</a></li>
 		                </ul>
 		              </li>

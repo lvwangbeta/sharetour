@@ -38,8 +38,13 @@ public class ImgTools {
 		return imgbuff;
 	}
 	
-	public static BufferedImage 
-	crop(InputStream imgstream, int x1, int y1, int x2, int y2, int width, int height){
+	/*
+	 * 按比例缩放
+	 * @param imgstream
+	 * @param scale
+	 * @return BufferedImage
+	 */
+	public static BufferedImage scale(InputStream imgstream, double scale) {
 		if(imgstream == null){
 			log.info("img stream null");
 			return null;
@@ -47,7 +52,60 @@ public class ImgTools {
 		BufferedImage imgbuff = null;
 		try {
 			 imgbuff = Thumbnails.of(imgstream).
-					   sourceRegion(x1, y1, x2, y2).
+					   scale(scale).				   
+					   asBufferedImage();
+		} catch (IOException e) {
+			log.info("img resize error");
+		}
+		return imgbuff;
+	}
+	
+	/*
+	 * 裁剪图像
+	 * @param x - The horizontal-compoennt of the top left-hand corner of the source region.
+	 * @param y - The vertical-compoennt of the top left-hand corner of the source region.
+	 * @param width - Width of the source region.
+	 * @param height - Height of the source region.
+	 * @return Bufferediamge
+	 */
+	public static BufferedImage 
+	crop(InputStream imgstream, int x, int y, int width, int height){
+		if(imgstream == null){
+			log.info("img stream null");
+			return null;
+		}
+		BufferedImage imgbuff = null;
+		try {
+			 imgbuff = Thumbnails.of(imgstream).
+					   sourceRegion(x, y, width, height).
+					   size(width, height).
+					   keepAspectRatio(false).
+					   asBufferedImage();
+		} catch (IOException e) {
+			log.info("img crop error");
+		}
+		log.info("img crop success");
+		return imgbuff;		
+	}
+	
+	/*
+	 * 裁剪图像
+	 * @param x - The horizontal-compoennt of the top left-hand corner of the source region.
+	 * @param y - The vertical-compoennt of the top left-hand corner of the source region.
+	 * @param width - Width of the source region.
+	 * @param height - Height of the source region.
+	 * @return Bufferediamge
+	 */
+	public static BufferedImage 
+	crop(BufferedImage imgBuff, int x, int y, int width, int height){
+		if(imgBuff == null){
+			log.info("imgBuff stream null");
+			return null;
+		}
+		BufferedImage imgbuff = null;
+		try {
+			 imgbuff = Thumbnails.of(imgBuff).
+					   sourceRegion(x, y, width, height).
 					   size(width, height).
 					   keepAspectRatio(false).
 					   asBufferedImage();

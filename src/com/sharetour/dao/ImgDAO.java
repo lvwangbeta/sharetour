@@ -59,7 +59,7 @@ public class ImgDAO {
 			log.info("img filename null");
 			return null;
 		}
-		GridFS photo = new GridFS(MongoDBPool.getInstance().getDB(), "imgs");
+		GridFS photo = new GridFS(MongoDBPool.getInstance().getDB(), collection);
 		return photo.findOne(id);
 	}
 }

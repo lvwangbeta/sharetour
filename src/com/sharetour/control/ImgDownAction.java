@@ -28,7 +28,10 @@ public class ImgDownAction {
 			return ;
 		}
 		
-		GridFSDBFile imgout = new ImgService().getImg(id);
+		String coll = request.getParameter("coll");
+		if(coll == null)
+			coll = "imgs";
+		GridFSDBFile imgout = new ImgService().getImgFrom(coll, id);
 		if(imgout == null){
 			return;
 		}
