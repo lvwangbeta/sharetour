@@ -4,6 +4,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.sharetour.service.*" %>
 <%@ page import="com.sharetour.model.*" %>
+<%@ page import="com.sharetour.model.Avator" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -47,6 +48,10 @@
 	  	padding-bottom: 20px; 
 	  	overflow: hidden;
 	  }   
+	  #avatars img{
+	  	height:64px;
+	  	width:64px;
+	  }
     </style>    
   </head>
   <body>
@@ -57,37 +62,42 @@
         <div class="span8">
           <!-- begin gallery billboard -->
           <div class="gallery billboard">
+          <%
+          	AlbumService albumService = new AlbumService();
+          	List<Album> albums = albumService.getHotAlbums("visit", 1, 7);
+          	Iterator<Album> it = albums.iterator();
+          	if(it.hasNext()) {
+          		Album gallery = it.next();
+          		List<Photo> photos = gallery.getPhotos();
+          		if(photos != null && photos.size() != 0){
+          %>
             <ul class="rslides">
+            <%
+            	for(Photo photo : photos){
+            %>
               <li>
-                <img src="<%=request.getContextPath()%>/img/7.jpg" alt="">
-                <p class="caption">This is a caption</p>
+                <img src="<%=request.getContextPath()%>/imgs?id=<%=photo.getId()%>&width=770&height=370" alt="">
+                <p class="caption"><%=photo.getDesc()%></p>
               </li>
-              <li>
-                <img src="<%=request.getContextPath()%>/img/8.jpg" alt="">
-                <p class="caption">This is another caption</p>
-              </li>
-              <li>
-                <img src="<%=request.getContextPath()%>/img/9.jpg" alt="">
-                <p class="caption">This is another caption</p>
-              </li>
-            </ul>                   
+            <%} %>
+            </ul>    
+            <%} }%>               
           </div>
           <!-- end gallery billboard --> 
           
           <!-- begin hot post gallery -->
           <%
-          	AlbumService albumService = new AlbumService();
-          	List<Album> albums = albumService.getHotAlbums("visit", 1, 6);
           	if(albums != null){     		
           %>
           <div>
             <ul class="thumbnails">
             <%
-            	for(Album album:albums){
+            	while(it.hasNext()){
+            		Album album = it.next();
             %>
               <li class="hpbox">
                 <div class="thumbnail albumbox">
-                  <a class="pop" href="<%=request.getContextPath()%>/popalbum/<%=album.getId()%>"><img src="<%=request.getContextPath()%>/imgs?id=<%=album.getCoverid()%>&width=226&height=152"  alt="<%=album.getAlbumname() %>"></a>
+                  <a class="pop" href="<%=request.getContextPath()%>/popalbum/<%=album.getId()%>"><img src="<%=request.getContextPath()%>/imgs?id=<%=album.getCoverid()%>&width=226&height=150"  alt="<%=album.getAlbumname() %>"></a>
                   <h4><%=album.getAlbumname() %></h4>
                   <p><%=album.getDesc() %></p>
                 </div>
@@ -112,11 +122,13 @@
               <%
               HotPostService hotpostservice = new HotPostService();
               List<Post> postlist = hotpostservice.getHotPost();
-              Iterator<Post> it = postlist.iterator();
+              Iterator<Post> postit = postlist.iterator();
               SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
               PostLikeService postlikeservice = new PostLikeService();
-              while(it.hasNext()){
-                 Post post = it.next(); 
+              UserService userService = new UserService();
+              PostService postService = new PostService();
+              while(postit.hasNext()){
+                 Post post = postit.next(); 
               %>
               <div class="post">         
                 <div class="row">
@@ -139,9 +151,10 @@
                       </div>
                       <div class="span6">     
                         <p>
-                      <i class="icon-user"></i> by <a href="#">John</a> 
+                      <i class="icon-user"></i> by <a href="<%=request.getContextPath()%>/u/<%=post.getAuthorid()%>">
+                      <%=userService.findUserById(post.getAuthorid()).getUsername()%></a> 
                       | <i class="icon-calendar"></i> <%=format.format(post.getCtime()) %>
-                      | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+                      | <i class="icon-comment"></i> <a href="#"><%=postService.getCommentsByPostId(post.getId()).size() %> Comments</a>
                         </p> 
                     <p>
                 	<%=post.getSummary() %>                        
@@ -212,15 +225,47 @@
           </div> 
           <!-- end hottags -->    
           
+          
+          <div id="popuser">
+			<div class="tabbable">
+			  <ul class="nav nav-tabs">
+			    <li class="active"><a href="#avatars" data-toggle="tab">热门用户</a></li>
+			  </ul>
+			  <div class="tab-content">
+			    <div class="tab-pane active" id="avatars">
+			      <div>
+			      <%
+			      	AvatorService avatorService = new AvatorService();
+			      	List<UserInfo> popusers = userService.getPopUsers(1);
+			      	for(UserInfo p : popusers){
+			      %>
+			      	<div class="avator">
+			      		<span>
+			      		<a href=""><img class="img-rounded" src="<%=request.getContextPath()%>/imgs?id=<%=avatorService.getAvatorOfUser(p.getId()).getAvatorId() %>&coll=avator_thumb" alt="" /></a>
+			      		</span>
+			      		<span>
+			      		<button class="btn btn-warning">+关注</button>
+			      		</span>	      		
+			      	</div>	
+			      <%} %>	      				      				      	
+			      </div>
+			    </div>
+			  </div>
+			</div>			              
+          </div>
+          <!-- end popuser -->
+          
+          
           <!-- begin week and month hot post nav -->
           <div class="tabbable">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#weekhotposts" data-toggle="tab">week</a></li>
-              <li><a href="#monthhotposts" data-toggle="tab">month</a></li>
+              <li class="active"><a href="#weekhotposts" data-toggle="tab">本周热门</a></li>
+              <li><a href="#monthhotposts" data-toggle="tab">本月热门</a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="weekhotposts">
               <%
+              	
                 List<Post> whotposts = hotpostservice.getHostPostOfThisWeek(1, 10);
                 if(whotposts != null && whotposts.size() != 0){
 					for(Post wp: whotposts) {
@@ -228,8 +273,8 @@
                 %>
                 <div class="media">
                   <a class="pull-left" href="<%=request.getContextPath()%>/post/<%=wp.getId() %>">
-                    <img class="media-object" 
-                    src="<%=request.getContextPath()%>/imgs?id=<%=wp.getCover()%>&height=64&width=64" 
+                    <img class="media-object img-rounded" 
+                    src="<%=request.getContextPath()%>/imgs?id=<%=avatorService.getAvatorOfUser(wp.getAuthorid()).getAvatorId()%>&coll=avator_thumb" 
                     style="width: 64px; height: 64px;">
                   </a>
                   <div class="media-body">
@@ -250,8 +295,8 @@
               %>
                 <div class="media">
                   <a class="pull-left" href="<%=request.getContextPath()%>/post/<%=mp.getId() %>">
-                    <img class="media-object" 
-                    src="<%=request.getContextPath()%>/imgs?id=<%=mp.getCover()%>&height=64&width=64" 
+                    <img class="media-object img-rounded" 
+                    src="<%=request.getContextPath()%>/imgs?id=<%=avatorService.getAvatorOfUser(mp.getAuthorid()).getAvatorId()%>&coll=avator_thumb" 
                     style="width: 64px; height: 64px;">
                   </a>
                   <div class="media-body">

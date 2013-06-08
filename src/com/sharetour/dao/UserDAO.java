@@ -1,10 +1,8 @@
 package com.sharetour.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import com.sharetour.db.ConnectionPool;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.sharetour.model.UserInfo;
 import com.sharetour.util.QueryHelper;
 
@@ -15,32 +13,25 @@ public class UserDAO {
 	/*
 	 * 检测用户名是否重复
 	 */
-	public UserInfo checkUsername(String username){
-		Connection con = ConnectionPool.getInstance().getConnection();
-		PreparedStatement pstm;
-		ResultSet res = null;
-		try {
-			pstm = con.prepareStatement(
-					"select username from users where username=?");
-			pstm.setString(1, username);
-			res = pstm.executeQuery();
-			if(res.next())
-			{
-				UserInfo user = new UserInfo();
-				user.setUsername(username);
-				return user;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			try {
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return null;
+	public UserInfo checkUsername(String username){	
+		QueryHelper helper = new QueryHelper();
+		UserInfo user = helper.get(UserInfo.class, 
+								   "select username from users where username=?", 
+								   username);
+		helper.closeConnection();
+		return user;
 	}
+	
+	public UserInfo findUserById(Long uid) {
+		QueryHelper helper = new QueryHelper();
+		UserInfo user = helper.get(UserInfo.class, 
+								   "select username,id from users where id=?", 
+								   uid);
+		helper.closeConnection();
+		return user;
+	}
+	
+	
 	/*
 	 * 用户信息查找
 	 */
@@ -80,4 +71,15 @@ public class UserDAO {
 			return false;
 		}
 	}
+	
+	public List<UserInfo> getUsersOrderByPostCount(int limit) {
+		QueryHelper helper = new QueryHelper();
+		List<UserInfo> popusers = new ArrayList<UserInfo>();
+		popusers = helper.executeQuery(UserInfo.class, 
+								  "select users.id from users left join posts on users.id=posts.authorid " +
+								  "group by users.id order by count(*) desc limit ?", limit);
+		helper.closeConnection();
+		return popusers;
+	}
+	
 }

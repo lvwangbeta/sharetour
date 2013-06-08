@@ -3,6 +3,8 @@ package com.sharetour.service;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import sun.misc.BASE64Encoder;
@@ -128,5 +130,13 @@ public class UserService {
 	 */
 	public static int getAuthorid(String username){
 		return new UserDAO().getAuthorid(username);
+	}
+	
+	public UserInfo findUserById(Long uid) {
+		return userdao.findUserById(uid);
+	}
+	
+	public List<UserInfo> getPopUsers(int limit) {
+		return userdao.getUsersOrderByPostCount(limit);
 	}
 }

@@ -2,13 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.sharetour.model.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="com.sharetour.service.SubscriptionService" %>
+<%@ page import="com.sharetour.service.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%
 	UserInfo user = (UserInfo)session.getAttribute("user");
-	if(user == null)
-	{
+	if(user == null) {
 		response.sendRedirect(request.getContextPath()+"/");
 		return;
 	}
@@ -49,6 +48,7 @@
       <div class="row">
         <%
         	SubscriptionService sub = new SubscriptionService(); 
+        	AvatorService avatorService = new AvatorService();
         	List<Post> postlist = sub.getPostsOfSubByUser(user.getId());
         	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         %>
@@ -56,7 +56,7 @@
       	 <div class="media">
       	 	<div class="row">
       	 		<div class="span1">
-      	 			<img class="media-object" src="<%=request.getContextPath()%>/img/head.jpg" style="height:64px;width=64px;">
+      	 			<img class="media-object img-rounded" src="<%=request.getContextPath()%>/imgs?id=<%=avatorService.getAvatorOfUser(user.getId()).getAvatorId()%>&coll=avator_thumb" style="height:64px;width=64px;">
       	 		</div>
       	 		<div class="span7">
 	                <div class="media-body">
@@ -78,7 +78,9 @@
 	            <div class="row">
 	              <div class="span1">
 	                <a class="pull-left" href="<%=request.getContextPath()%>/u/">
-	                  <img class="media-object" src="<%=request.getContextPath()%>/img/head.jpg" style="height:64px;width=64px;">
+	                  <img class="media-object img-rounded"
+	                  src="<%=request.getContextPath()%>/imgs?id=<%=avatorService.getAvatorOfUser(post.getAuthorid()).getAvatorId()%>&coll=avator_thumb" 
+	                  style="height:64px;width:64px;">
 	                </a>                 
 	              </div>
 	              <!-- end span1 -->

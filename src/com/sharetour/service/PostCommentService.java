@@ -12,4 +12,7 @@ public class PostCommentService {
 	public boolean saveComment(PostComment comment){
 		return this.commentDAO.saveComment(comment);
 	}
+	
+	
+	
 }

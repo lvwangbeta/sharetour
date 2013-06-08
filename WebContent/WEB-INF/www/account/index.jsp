@@ -76,11 +76,11 @@
         			%>
         				<img  class="img-rounded" id="avator" src="<%=request.getContextPath()%>/imgs?id=<%=avator.getAvatorId()%>&coll=avator_thumb"
         				alt="avator" />
-        				<span><a class="btn" href="<%=request.getContextPath()%>/account/avator">更改头像</a></span>
         			<%		
         				
         				}
-        			%>  				      
+        			%>  
+        				<span><a class="btn" href="<%=request.getContextPath()%>/account/avator">更改头像</a></span>				      
 				    </div>
 				  </div>
 				  <hr />
@@ -96,10 +96,7 @@
 				    </div>
 				  </div>
 				</form>        	
-   	
-        	</div>
-
-        
+        	</div>       
         </div>
       </div>
       <!-- end row -->

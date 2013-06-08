@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.*" %>
-<%@ page import="com.sharetour.service.TagService" %>
-<%@ page import="com.sharetour.service.SubscriptionService" %>
+<%@ page import="com.sharetour.service.*" %>
 <%@ page import="com.sharetour.model.*" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -54,14 +53,17 @@
       <div class="row">
         <div class="span8">
       		<%
-      		if(postlist != null)
+      		if(postlist != null) {
+      			AvatorService avatorService = new AvatorService();
       			for(Post post:postlist){ 
       		%>
       		<div class="media">
 	            <div class="row">
 	              <div class="span1">
 	                <a class="pull-left" href="<%=request.getContextPath()%>/u/">
-	                  <img class="media-object" src="<%=request.getContextPath()%>/img/head.jpg" style="height:64px;width=64px;">
+	                  <img class="media-object img-rounded"
+	                  src="<%=request.getContextPath()%>/imgs?id=<%=avatorService.getAvatorOfUser(post.getAuthorid()).getAvatorId()%>&coll=avator_thumb" 
+	                  style="height:64px;width:64px;">	                 
 	                </a>                 
 	              </div>
 	              <!-- end span1 -->
@@ -102,7 +104,7 @@
 				<!-- end row -->
       		</div>
       		<!-- end media -->
-      		<%} %>         
+      		<%} }%>         
         </div> <!-- end span8 posts -->
         <div class="span4">		
           <%

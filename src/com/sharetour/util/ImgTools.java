@@ -20,6 +20,9 @@ public class ImgTools {
 	private static final String PNG = "png";
 	/*
 	 * resize the image
+	 * @param imgStream
+	 * @param height
+	 * @param width
 	 */
 	public static BufferedImage resizeImg(InputStream imgstream, int height, int width){
 		if(imgstream == null){
@@ -30,7 +33,6 @@ public class ImgTools {
 		try {
 			 imgbuff = Thumbnails.of(imgstream).
 					   size(width, height).
-					   keepAspectRatio(false).
 					   asBufferedImage();
 		} catch (IOException e) {
 			log.info("img resize error");
@@ -38,6 +40,27 @@ public class ImgTools {
 		return imgbuff;
 	}
 	
+	/*
+	 * resize the image 
+	 * @param imgBuffer
+	 * @param height
+	 * @param width
+	 */
+	public static BufferedImage resizeImg(BufferedImage imgBuff, int height, int width){
+		if(imgBuff == null){
+			log.info("img stream null");
+			return null;
+		}
+		BufferedImage imgbuff = null;
+		try {
+			 imgbuff = Thumbnails.of(imgBuff).
+					   size(width, height).
+					   asBufferedImage();
+		} catch (IOException e) {
+			log.info("img resize error");
+		}
+		return imgbuff;
+	}
 	/*
 	 * 按比例缩放
 	 * @param imgstream
@@ -59,6 +82,29 @@ public class ImgTools {
 		}
 		return imgbuff;
 	}
+	
+	/*
+	 * 按比例缩放
+	 * @param imgBuffer
+	 * @param scale
+	 * @return BufferedImage
+	 */
+	public static BufferedImage scale(BufferedImage imgBuff, double scale) {
+		if(imgBuff == null){
+			log.info("img stream null");
+			return null;
+		}
+		BufferedImage imgbuff = null;
+		try {
+			 imgbuff = Thumbnails.of(imgBuff).
+					   scale(scale).				   
+					   asBufferedImage();
+		} catch (IOException e) {
+			log.info("img resize error");
+		}
+		return imgbuff;
+	}
+	
 	
 	/*
 	 * 裁剪图像

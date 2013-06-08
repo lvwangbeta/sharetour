@@ -56,3 +56,16 @@
 [Log] INFO [main] com.sharetour.service.CoverService.getCover(33) | cover url:"/sharetour/imgs?id=51ac429756b0ae8b7714b68e
 [Log] INFO [main] com.sharetour.service.CoverService.getCover(17) | get cover...
 [Log] INFO [main] com.sharetour.service.CoverService.getCover(33) | cover url:/sharetour/imgs?id=51ac429756b0ae8b7714b68e
+[Log] INFO [main] com.sharetour.db.ConnectionPool.<init>(98) | setting connection pool
+[Log] INFO [main] com.sharetour.db.ConnectionPool.<init>(111) | new connection pool instance
+[Log] INFO [main] com.sharetour.db.ConnectionPool.getInstance(128) | ConnectionPool init completed
+[Log] INFO [main] com.sharetour.db.ConnectionPool.<init>(98) | setting connection pool
+[Log] INFO [main] com.sharetour.db.ConnectionPool.<init>(111) | new connection pool instance
+[Log] INFO [main] com.sharetour.db.ConnectionPool.getInstance(128) | ConnectionPool init completed
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(36) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(48) | MongoDBPool init completed
+[Log] INFO [main] com.sharetour.db.ConnectionPool.<init>(98) | setting connection pool
+[Log] INFO [main] com.sharetour.db.ConnectionPool.<init>(111) | new connection pool instance
+[Log] INFO [main] com.sharetour.db.ConnectionPool.getInstance(128) | ConnectionPool init completed
+[Log] INFO [main] com.sharetour.db.MongoDBPool.<init>(36) | mongo db connection success
+[Log] INFO [main] com.sharetour.db.MongoDBPool.getInstance(48) | MongoDBPool init completed

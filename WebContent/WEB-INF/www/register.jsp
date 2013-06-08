@@ -10,13 +10,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>java open blog</title>
+    <title>ShareTour</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="register">
     <meta name="author" content="gavin">
 
     <!-- Le styles -->
-    <link href="<%=request.getContextPath()%><%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -28,8 +28,8 @@
       	margin-left: 10px;
       }
     </style>
-    <link href="<%=request.getContextPath()%><%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="<%=request.getContextPath()%><%=request.getContextPath()%>/css/style.css">
+    <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -40,11 +40,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="<%=request.getContextPath()%><%=request.getContextPath()%>">享途</a>
+          <a class="brand" href="<%=request.getContextPath()%>/">享途</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="<%=request.getContextPath()%><%=request.getContextPath()%>">Home</a></li>
-              <li><a href="<%=request.getContextPath()%><%=request.getContextPath()%>/about">About</a></li>
+              <li class="active"><a href="<%=request.getContextPath()%>/">Home</a></li>
+              <li><a href="<%=request.getContextPath()%>/about">About</a></li>
             </ul>
             <c:choose>
             	<c:when test="${sessionScope.user == null }">
@@ -59,8 +59,8 @@
 		              <li class="dropdown active">
 		                <a href="<%=request.getContextPath()%>#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username} <b class="caret"></b></a>
 		                <ul class="dropdown-menu">
-		                  <li><a href="<%=request.getContextPath()%><%=request.getContextPath()%>/u/space">我的空间</a></li>
-		                  <li><a href="<%=request.getContextPath()%><%=request.getContextPath()%>/newpost">写新游记</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/u/space">我的空间</a></li>
+		                  <li><a href="<%=request.getContextPath()%>/newpost">写新游记</a></li>
                   		  <li><a href="<%=request.getContextPath()%>#">消息 <span class="badge badge-important">6</span></a></li>		                  
 		                  <li class="divider"></li>
 		                  <li><a href="<%=request.getContextPath()%>/action/logout">退出</a></li>
@@ -97,7 +97,7 @@
 		    </label>
 		    <label for="year">生日</label>
 			<select name="year" id="year" class="span1">
-				<option value="" disabled="">Year</option>
+				<option value="" disabled="">年</option>
 				<option value="2013">2013</option>
 				<option value="2012">2012</option>
 				<option value="2011">2011</option>
@@ -216,7 +216,7 @@
 				<option value="12">12月</option>
 			</select> <!-- end month select -->
 			<select name="day" id="day" class="span1">
-				<option value="" disabled="">Day</option>
+				<option value="" disabled="">日</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -254,9 +254,9 @@
 		  </fieldset>
 		</form>				
 	</div> <!-- end contqiner -->
-	<script type="text/javascript" src="<%=request.getContextPath()%><%=request.getContextPath()%>/js/jquery.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath()%><%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath()%><%=request.getContextPath()%>/js/jquery.validate.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
 	<script type="text/javascript">
 	$("#regiform").validate({
 			rules: {

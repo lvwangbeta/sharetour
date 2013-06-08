@@ -95,6 +95,7 @@ public class PostService {
 	public List<PostComment> getCommentsByPostId(Long id){
 		log.info("get comments of post:"+id);
 		List<PostComment> clist = new ArrayList<PostComment>();
+		clist = new ArrayList<PostComment>();
 		clist = postDao.getPostComment(id);			
 		return clist;
 	}

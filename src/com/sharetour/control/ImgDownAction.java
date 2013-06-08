@@ -31,26 +31,26 @@ public class ImgDownAction {
 		String coll = request.getParameter("coll");
 		if(coll == null)
 			coll = "imgs";
-		GridFSDBFile imgout = new ImgService().getImgFrom(coll, id);
+		ImgService imgService = new ImgService();
+		GridFSDBFile imgout = imgService.getImgFrom(coll, id);
 		if(imgout == null){
 			return;
 		}
 		String ext = imgout.getContentType();
 		String type = "image/" + ext;
 		response.setContentType(type);
+		
 		ServletOutputStream out = response.getOutputStream();
 		BufferedImage img = null;
 		if((height != null && height.length() != 0) &&
 		   (width != null && width.length() != 0)){
 			int h = Integer.parseInt(height);
 			int w = Integer.parseInt(width);
-			img = ImgTools.resizeImg(imgout.getInputStream(), h, w);
+			img = imgService.resizeImg(ImageIO.read(imgout.getInputStream()), w, h);
 		}
 		else{
 			img = ImageIO.read(imgout.getInputStream());
 		}
 		ImgTools.write(img, ext, out);
 	}
-	
-	
 }
