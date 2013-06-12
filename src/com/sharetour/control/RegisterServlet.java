@@ -28,8 +28,8 @@ public class RegisterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Action registeraction = ActionFactory.getAction("register");
 		String view = registeraction.execute(request);
-		if("home".equals(view)){
-			response.sendRedirect(request.getContextPath()+"/");
+		if("success".equals(view)){
+			response.sendRedirect(request.getContextPath()+"/account");
 		}
 		else{
 			//request.getRequestDispatcher("/register").forward(request, response);

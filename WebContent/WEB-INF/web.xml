@@ -169,4 +169,14 @@
     <servlet-name>AvatorServlet</servlet-name>
     <url-pattern>/action/avator</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AccountSettingServlet</display-name>
+    <servlet-name>AccountSettingServlet</servlet-name>
+    <servlet-class>com.sharetour.control.AccountSettingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccountSettingServlet</servlet-name>
+    <url-pattern>/action/accountsetting</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -72,4 +72,6 @@ public class AvatorDAO {
 		avator.setAvatorId(json.getObjectId("avator"));
 		return avator;
 	}
+	
+	
 }

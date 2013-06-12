@@ -25,7 +25,9 @@ public class UserInfo extends POJO implements Serializable {
 	private int status;
 	private Date this_login_time;
 	private String this_login_ip;
-		
+	private String nickname;
+	private String intro;
+	
 	public UserInfo()
 	{
 		super("users");
@@ -122,5 +124,21 @@ public class UserInfo extends POJO implements Serializable {
 		map.put("gender", getGender());
 		map.put("birth", getBirth());
 		return map;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getIntro() {
+		return intro;
+	}
+
+	public void setIntro(String intro) {
+		this.intro = intro;
 	}
 }

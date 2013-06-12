@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.sharetour.model.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="com.sharetour.service.PostService" %>
-<%@ page import="com.sharetour.service.SubscriptionService" %>
+<%@ page import="com.sharetour.service.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%
@@ -45,6 +44,7 @@
   </head>
   <body>
 	<%@ include file="../topbar.jsp" %>
+	<% AvatorService avatorService = new AvatorService(); %>
     <!--  begin container  -->
     <div class="container">
       <div class="row">
@@ -52,7 +52,8 @@
       	 <div class="media">
       	 	<div class="row">
       	 		<div class="span1">
-      	 			<img class="media-object" src="<%=request.getContextPath()%>/img/head.jpg" style="height:64px;width=64px;">
+      	 			<img class="media-object img-rounded" 
+      	 			src="<%=request.getContextPath()%>/imgs?id=<%=avatorService.getAvatorOfUser(user.getId()).getAvatorId()%>&coll=avator_thumb" style="height:64px;width=64px;">
       	 		</div>
       	 		<div class="span7">
 	                <div class="media-body">
@@ -75,10 +76,7 @@
       	%>
       		<div class="media">
 	            <div class="row">
-	              <div class="span1">
-	                <a class="pull-left" href="<%=request.getContextPath()%>/u/">
-	                  <img class="media-object" src="<%=request.getContextPath()%>/img/head.jpg" style="height:64px;width=64px;">
-	                </a>                 
+	              <div class="span1">             
 	              </div>
 	              <!-- end span1 -->
 	              <div class="span7">

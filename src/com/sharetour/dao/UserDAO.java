@@ -59,17 +59,13 @@ public class UserDAO {
 	/*
 	 * 保存新用户
 	 */
-	public boolean registerNewUser(UserInfo user){
+	public Long registerNewUser(UserInfo user){
 		QueryHelper helper = new QueryHelper();
 		user.setQueryHelper(helper);
-		if(user.Save() > 0){
-			helper.closeConnection();
-			return true;
-		}
-		else{
-			helper.closeConnection();
-			return false;
-		}
+		Long uid = 0L;
+		uid = user.Save();
+		helper.closeConnection();
+		return uid;
 	}
 	
 	public List<UserInfo> getUsersOrderByPostCount(int limit) {
@@ -82,4 +78,10 @@ public class UserDAO {
 		return popusers;
 	}
 	
+	public int updateAccount(Long uid, String nickname, String intro) {
+		QueryHelper helper = new QueryHelper();
+		int rows_effected = helper.update("update users set nickname=? , intro=? where id=?", nickname, intro, uid);
+		helper.closeConnection();
+		return rows_effected;
+	}
 }

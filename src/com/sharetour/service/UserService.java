@@ -7,8 +7,13 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.bson.types.ObjectId;
+
 import sun.misc.BASE64Encoder;
+
+import com.sharetour.dao.AvatorDAO;
 import com.sharetour.dao.UserDAO;
+import com.sharetour.model.Avator;
 import com.sharetour.model.UserInfo;
 
 /*
@@ -17,6 +22,7 @@ import com.sharetour.model.UserInfo;
  */
 public class UserService {
 	private UserDAO userdao;
+	private static final String DEFAULT_AVATOR = "51b42015140a4add23ec8772";
 	private static Log log = LogFactory.getLog(UserService.class);
 	
 	public UserService(){
@@ -122,7 +128,17 @@ public class UserService {
 	public static boolean Register(UserInfo user){
 		user.setPassword(EncoderByMD5(user.getPassword()));
 		log.info("register new user:"+user.getUsername());
-		return new UserDAO().registerNewUser(user);
+		Long uid = new UserDAO().registerNewUser(user);
+		setDefaultAvator(uid, user.getUsername());
+		return true;
+	}
+	
+	private static void setDefaultAvator(Long uid, String username) {
+		Avator avator = new Avator();
+		avator.setUid(uid);
+		avator.setUsername(username);
+		avator.setAvatorId(new ObjectId(DEFAULT_AVATOR));
+		new AvatorDAO().saveAvator(avator);
 	}
 	
 	/*
@@ -138,5 +154,11 @@ public class UserService {
 	
 	public List<UserInfo> getPopUsers(int limit) {
 		return userdao.getUsersOrderByPostCount(limit);
+	}
+	
+	public boolean updateAccount(Long uid, String nickname, String intro) {
+		if(userdao.updateAccount(uid, nickname, intro) > 0) 
+			return true;
+		return false;
 	}
 }

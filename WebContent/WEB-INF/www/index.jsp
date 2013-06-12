@@ -44,14 +44,67 @@
 		position: relative;
 	  }  
 	  .albumbox{
-	  	height: 250px;
-	  	padding-bottom: 20px; 
+	  	height: 150px;
+	  	padding: 0;
 	  	overflow: hidden;
 	  }   
+	  .albumpre{
+	  	position: relative;
+	  }
+	  .overlay{
+		position: absolute;
+		color: #fff;
+		left: 0;
+		bottom: -1px;
+		background: #000;
+		height: 40px;
+		width: 100%;
+		overflow: hidden;
+		filter: Alpha(opacity=60);    
+	    -moz-opacity:.6;    
+	    opacity:0.6;
+	    padding:10px;
+	  }	
+	  .overlay a{
+		color: #fff;
+		text-decoration: none;
+	  }	   
+	  #popuser{
+	  	margin-bottom: 30px;
+	  }
 	  #avatars img{
 	  	height:64px;
 	  	width:64px;
 	  }
+	  .avator{
+	  	float: left;
+	  	margin-right: 30px;
+	  	margin-bottom: 10px;
+	  }
+	  .album-action {
+	  	border-top: 1px solid #ddd;
+	  	height: 40px;
+	  	width: 100%;
+	  }
+	  .album-action div{
+	  	float: left;
+	  	height: 40px;
+	  	width:32%;
+	  	text-align: center;
+	  	padding-top: 10px;
+	  }
+	  .album-visit, .album-share{
+	  	border-right: 1px solid #ddd;
+	  }
+	  .icon-hearted {
+	  	background: url("<%=request.getContextPath()%>/img/heart.png");
+	  	width: 16px;
+	  	height: 16px;
+	  }
+	  .side-widget{
+	  	margin-bottom: 20px;
+	  }	
+		
     </style>    
   </head>
   <body>
@@ -97,9 +150,13 @@
             %>
               <li class="hpbox">
                 <div class="thumbnail albumbox">
-                  <a class="pop" href="<%=request.getContextPath()%>/popalbum/<%=album.getId()%>"><img src="<%=request.getContextPath()%>/imgs?id=<%=album.getCoverid()%>&width=226&height=150"  alt="<%=album.getAlbumname() %>"></a>
-                  <h4><%=album.getAlbumname() %></h4>
-                  <p><%=album.getDesc() %></p>
+                  <div class="albumpre">
+                  	<a class="pop" href="<%=request.getContextPath()%>/popalbum/<%=album.getId()%>"><img src="<%=request.getContextPath()%>/imgs?id=<%=album.getCoverid()%>&width=236&height=150"  alt="<%=album.getAlbumname() %>"></a>
+		            <div class="overlay">
+		            	<p>this is a album</p>
+		            </div>                    
+                  </div>
+				  
                 </div>
               </li> 
               <%} %>           
@@ -163,9 +220,9 @@
                           <div class="span4">
                             <p>
                         <i class="icon-tags"></i> 
-                          Tags : 
+                         
                         <%for(String tag:StringUtils.split(post.getTags(), ' ')) {%>
-                          <a href="<%=request.getContextPath()%>/tag/<%=tag%>"><span class="label label-warning"><%=tag %></span></a>
+                          <a href="<%=request.getContextPath()%>/tag/<%=tag%>"><span class="label deepbluelabel"><%=tag %></span></a>
                         <%} %> 
                             </p>                                                  
                           </div>
@@ -209,24 +266,29 @@
         </div>
         <!-- end span8  -->
           
-        <div class="span4">
-          <div class="hottags">
-      			<ul class="taglist">
-      				<li><a href="#" class="taglisttitle">HotTags</a></li>
-      	           <% 
-      	            List<PostTag> hottags = TagService.getHotTag();
-      	            if(hottags != null)
-      	            {
-      					for(PostTag tag: hottags) {%>				
-      	            <li><a href="<%=request.getContextPath()%>/tag/<%=tag.getTagname() %>"><%=tag.getTagname()+"  "+ tag.getPostcount() %></a></li>			
-      					<%}
-      	            } %>  			
-      			</ul>
-          </div> 
-          <!-- end hottags -->    
+        <div class="span4">  
+          <div id="hottag-area" class="side-widget">
+			  <div class="tabbable">
+			    <ul class="nav nav-tabs">
+			      <li class="active"><a href="hottags" data-toggle="tab">热门标签</a></li>
+			    </ul>
+			    <div class="tab-content">
+			      <div class="tab-pane active" id="hottags">
+	      	           <% 
+	      	            List<PostTag> hottags = TagService.getHotTag();
+	      	            if(hottags != null)
+	      	            {
+	      					for(PostTag tag: hottags) {%>				
+	      	            <a class="tag redtag" href="<%=request.getContextPath()%>/tag/<%=tag.getTagname() %>"><%=tag.getTagname()+"  "+ tag.getPostcount() %></a>			
+	      					<%}
+	      	            } %>  
+			      </div>
+			    </div>
+			  </div>          
+          </div>       
+          <!-- end hot tag area -->
           
-          
-          <div id="popuser">
+          <div id="popuser" class="side-widget">
 			<div class="tabbable">
 			  <ul class="nav nav-tabs">
 			    <li class="active"><a href="#avatars" data-toggle="tab">热门用户</a></li>
@@ -236,18 +298,20 @@
 			      <div>
 			      <%
 			      	AvatorService avatorService = new AvatorService();
-			      	List<UserInfo> popusers = userService.getPopUsers(1);
+			      	List<UserInfo> popusers = userService.getPopUsers(6);
 			      	for(UserInfo p : popusers){
+			      		Avator avator = avatorService.getAvatorOfUser(p.getId());
+			      		if(avator != null) {
 			      %>
 			      	<div class="avator">
 			      		<span>
-			      		<a href=""><img class="img-rounded" src="<%=request.getContextPath()%>/imgs?id=<%=avatorService.getAvatorOfUser(p.getId()).getAvatorId() %>&coll=avator_thumb" alt="" /></a>
+			      		<a href=""><img class="img-rounded" src="<%=request.getContextPath()%>/imgs?id=<%=avator.getAvatorId() %>&coll=avator_thumb" alt="" /></a>
 			      		</span>
 			      		<span>
-			      		<button class="btn btn-warning">+关注</button>
+			      		<a href="#" class="tag bluetag">+关注</a>
 			      		</span>	      		
 			      	</div>	
-			      <%} %>	      				      				      	
+			      <%} } %>	      				      				      	
 			      </div>
 			    </div>
 			  </div>
@@ -257,61 +321,64 @@
           
           
           <!-- begin week and month hot post nav -->
-          <div class="tabbable">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#weekhotposts" data-toggle="tab">本周热门</a></li>
-              <li><a href="#monthhotposts" data-toggle="tab">本月热门</a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane active" id="weekhotposts">
-              <%
-              	
-                List<Post> whotposts = hotpostservice.getHostPostOfThisWeek(1, 10);
-                if(whotposts != null && whotposts.size() != 0){
-					for(Post wp: whotposts) {
-                  		String summary = wp.getSummary();
-                %>
-                <div class="media">
-                  <a class="pull-left" href="<%=request.getContextPath()%>/post/<%=wp.getId() %>">
-                    <img class="media-object img-rounded" 
-                    src="<%=request.getContextPath()%>/imgs?id=<%=avatorService.getAvatorOfUser(wp.getAuthorid()).getAvatorId()%>&coll=avator_thumb" 
-                    style="width: 64px; height: 64px;">
-                  </a>
-                  <div class="media-body">
-                    <a href="<%=request.getContextPath()%>/post/<%=wp.getId() %>"><%=wp.getTitle() %></a>
-                    <p><%=summary.length()>40?summary.substring(0, 40):summary %></p>
-                  </div>
-                </div>
-                <%} %>
-              <%} %>
-              </div>
-              <!-- end week hot posts -->
-              <div class="tab-pane" id="monthhotposts">
-              <%
-              	List<Post> mhotposts = hotpostservice.getHotPostOfMonth(1, 10);
-              	if(mhotposts != null && mhotposts.size() != 0){
-              		for(Post mp: mhotposts){
-              			String summary = mp.getSummary();
-              %>
-                <div class="media">
-                  <a class="pull-left" href="<%=request.getContextPath()%>/post/<%=mp.getId() %>">
-                    <img class="media-object img-rounded" 
-                    src="<%=request.getContextPath()%>/imgs?id=<%=avatorService.getAvatorOfUser(mp.getAuthorid()).getAvatorId()%>&coll=avator_thumb" 
-                    style="width: 64px; height: 64px;">
-                  </a>
-                  <div class="media-body">
-                    <a href="<%=request.getContextPath()%>/post/<%=mp.getId() %>"><%=mp.getTitle() %></a>
-                    <p><%=summary.length()>40?summary.substring(0, 40):summary %></p>
-                  </div>
-                </div>              	
-              <%
-              		}
-              	}
-              %>
-              </div>
-              <!-- end month hot posts -->
-            </div>
+          <div id="hotposts" class="side-widget">
+	          <div class="tabbable">
+	            <ul class="nav nav-tabs">
+	              <li class="active"><a href="#weekhotposts" data-toggle="tab">本周热门</a></li>
+	              <li><a href="#monthhotposts" data-toggle="tab">本月热门</a></li>
+	            </ul>
+	            <div class="tab-content">
+	              <div class="tab-pane active" id="weekhotposts">
+	              <%
+	              	
+	                List<Post> whotposts = hotpostservice.getHostPostOfThisWeek(1, 10);
+	                if(whotposts != null && whotposts.size() != 0){
+						for(Post wp: whotposts) {
+	                  		String summary = wp.getSummary();
+	                %>
+	                <div class="media">
+	                  <a class="pull-left" href="<%=request.getContextPath()%>/post/<%=wp.getId() %>">
+	                    <img class="media-object img-rounded" 
+	                    src="<%=request.getContextPath()%>/imgs?id=<%=avatorService.getAvatorOfUser(wp.getAuthorid()).getAvatorId()%>&coll=avator_thumb" 
+	                    style="width: 64px; height: 64px;">
+	                  </a>
+	                  <div class="media-body">
+	                    <a href="<%=request.getContextPath()%>/post/<%=wp.getId() %>"><%=wp.getTitle() %></a>
+	                    <p><%=summary.length()>40?summary.substring(0, 40):summary %></p>
+	                  </div>
+	                </div>
+	                <%} %>
+	              <%} %>
+	              </div>
+	              <!-- end week hot posts -->
+	              <div class="tab-pane" id="monthhotposts">
+	              <%
+	              	List<Post> mhotposts = hotpostservice.getHotPostOfMonth(1, 10);
+	              	if(mhotposts != null && mhotposts.size() != 0){
+	              		for(Post mp: mhotposts){
+	              			String summary = mp.getSummary();
+	              %>
+	                <div class="media">
+	                  <a class="pull-left" href="<%=request.getContextPath()%>/post/<%=mp.getId() %>">
+	                    <img class="media-object img-rounded" 
+	                    src="<%=request.getContextPath()%>/imgs?id=<%=avatorService.getAvatorOfUser(mp.getAuthorid()).getAvatorId()%>&coll=avator_thumb" 
+	                    style="width: 64px; height: 64px;">
+	                  </a>
+	                  <div class="media-body">
+	                    <a href="<%=request.getContextPath()%>/post/<%=mp.getId() %>"><%=mp.getTitle() %></a>
+	                    <p><%=summary.length()>40?summary.substring(0, 40):summary %></p>
+	                  </div>
+	                </div>              	
+	              <%
+	              		}
+	              	}
+	              %>
+	              </div>
+	              <!-- end month hot posts -->
+	            </div>
+	          </div>
           </div>
+          <!-- end hotposts area  -->
         </div>
         <!-- end span4 -->        
       </div>

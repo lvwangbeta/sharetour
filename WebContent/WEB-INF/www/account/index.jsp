@@ -58,11 +58,12 @@
         		<h3>账户设置</h3>
         	</div>
         	<div class="box">
-				<form class="form-horizontal account-info">
+				<form class="form-horizontal account-info" id="account-set">
 				  <div class="control-group">
-				  	<label class="control-label" for="name">我的大名</label>
+				  	<label class="control-label" for="nickname">我的大名</label>
 				    <div class="controls">
-				    	<input type="text" name="name" id="name" />
+				    	<input type="text" name="nickname" id="nickname" 
+				    	value="<%= user.getNickname()==null?"":user.getNickname() %>" />
 				    </div>
 				  </div>
 				  <hr />				
@@ -85,14 +86,18 @@
 				  </div>
 				  <hr />
 				  <div class="control-group">
-				    <label class="control-label" for="">个性签名</label>
+				    <label class="control-label" for="intro">个性签名</label>
 				    <div class="controls">
-				      <textarea class="span4" name="desc" id="desc" rows="5"></textarea>
+				      <%if(user.getIntro() == null) {%>
+				      <textarea class="span4" name="intro" id="intro" rows="5"></textarea>
+				      <%}else {%>
+				      <textarea class="span4" name="intro" id="intro" rows="5"><%=user.getIntro() %></textarea>
+				      <%} %>
 				    </div>
 				  </div>
 				  <div class="control-group">
 				    <div class="controls">
-				      <button type="submit" class="btn btn-primary">保存</button>
+				      <button type="submit" id="submit" class="btn btn-success">保存</button>
 				    </div>
 				  </div>
 				</form>        	
@@ -105,5 +110,24 @@
   	
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	$('#submit').click(function(){
+    		var nickname = $('#nickname').val();
+    		var intro = $('#intro').val();
+    		$.post('<%=request.getContextPath()%>/action/accountsetting', 
+    			   {'nickname': nickname, 'intro': intro}, 
+    			   function(data){
+    				if("success"==data) {
+    					window.location.href='<%=request.getContextPath()%>/u/space';
+    				}
+    		});
+    		return false;
+    	});
+    	
+    	
+    });
+    
+    </script>
   </body>
 </body>

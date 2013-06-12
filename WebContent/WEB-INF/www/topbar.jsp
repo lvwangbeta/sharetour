@@ -18,9 +18,9 @@
             <c:choose>
             	<c:when test="${sessionScope.user == null }">
 					<form class="navbar-form pull-right" method="post" action="<%=request.getContextPath()%>/action/login">
-		              <input class="span2" type="text" name="username" placeholder="Email">
-		              <input class="span2" type="password" name="password" placeholder="Password">
-		              <button type="submit" class="btn">Sign in</button>
+		              <input class="span2" type="text" name="username" placeholder="用户名">
+		              <input class="span2" type="password" name="password" placeholder="密码">
+		              <button type="submit" class="btn btn-success">登录</button>
 		              <a class="btn" href="<%=request.getContextPath()%>/register">注册</a>
 		            </form>            		
             	</c:when>

@@ -10,8 +10,6 @@ import com.sharetour.util.Action;
 
 public class RegisterAction implements Action{
 	
-	private static final String FAILURE = "register";
-	private static final String SUCCESS = "home";
 	private static final String GENDER_ERROR = "gender error";
 	@Override
 	public String execute(HttpServletRequest request) {
@@ -33,25 +31,24 @@ public class RegisterAction implements Action{
 		/*
 		 * check field empty
 		 */
-		if(!UserService.emptyCheck(username, password, confirm, email, gender))
-		{
+		if(!UserService.emptyCheck(username, password, confirm, email, gender)) {
 			request.setAttribute(TIP, "field empty");
-			return FAILURE;
+			return ERROR;
 		}
 		
 		/*
 		 * confirm password
 		 */
-		if(!UserService.confirmPassword(password, confirm)){
+		if(!UserService.confirmPassword(password, confirm)) {
 			request.setAttribute(TIP, "password confirm error");
-			return FAILURE;
+			return ERROR;
 		}
 		/*
 		 * check whether user name is exist
 		 */
 		if(UserService.checkUsernameExist(username)){
 			request.setAttribute(TIP, USERNAMEEXIST);
-			return FAILURE;
+			return ERROR;
 		}	
 		
 		/*
@@ -59,14 +56,14 @@ public class RegisterAction implements Action{
 		 */
 		if(!UserService.emailValidate(email)){
 			request.setAttribute(TIP, EMAILVALIDATE);
-			return FAILURE;
+			return ERROR;
 		}
 		/*
 		 * check whether email exist 
 		 */
 		if(UserService.checkEmailExist(email)){
 			request.setAttribute(TIP, EMAILEXIST);
-			return FAILURE;
+			return ERROR;
 		}
 		
 		/*
@@ -74,7 +71,7 @@ public class RegisterAction implements Action{
 		 */
 		if(!UserService.checkGenderValidate(gender)){
 			request.setAttribute(TIP, GENDER_ERROR);
-			return FAILURE;
+			return ERROR;
 		}
 		
 		UserInfo user = new UserInfo();

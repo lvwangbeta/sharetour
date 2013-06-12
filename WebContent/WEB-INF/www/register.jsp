@@ -250,7 +250,7 @@
 				<option value="31">31</option>
 			</select>
 			<label></label>
-		    <button type="submit" id="submit" class="btn">Submit</button>
+		    <button class="btn btn-success" type="submit" id="submit" class="btn">注册</button>
 		  </fieldset>
 		</form>				
 	</div> <!-- end contqiner -->
