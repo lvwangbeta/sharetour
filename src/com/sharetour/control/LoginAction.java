@@ -18,7 +18,8 @@ public class LoginAction implements Action{
 		//System.out.println(java.lang.System.getenv("VCAP_SERVICES"));		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		UserInfo user = UserService.loginCheck(username, password);
+		UserService userService = new UserService();
+		UserInfo user = userService.loginCheck(username, password);
 		
 		if(user == null){
 			request.setAttribute(TIP, PWDERROR);

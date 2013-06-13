@@ -10,17 +10,15 @@ import com.sharetour.model.Post;
 
 public class HotPostService{
 	
-	private static Log log = LogFactory.getLog(HotPostService.class);	
+	private static final Log log = LogFactory.getLog(HotPostService.class);	
 	private final static String ORDER = "likes";
 	private final static String HOTPOST = "HotPost"; 
 	private final static String WEEK_HOT_POST = "WeekHotPost";
 	private final static String MONTH_HOT_POST = "WeekHotPost";
 	
 	private static int LIMIT = 10;
-	private PostDAO hpdao;
-	public HotPostService(){
-		hpdao = new PostDAO();
-	}
+	private PostDAO hpdao = new PostDAO();
+
 	/*
 	 * 获得热门post，并存入缓存
 	 * 默认从第一页开始
@@ -64,6 +62,9 @@ public class HotPostService{
 	 * 并分页缓存
 	 * 缓存结构:(map)
 	 * page--->Post list
+	 * @param page
+	 * @param limit
+	 * @return
 	 */
 	public List<Post> getHostPostOfThisWeek(int page, int limit){
 		log.info("getting this week's hot posts...");
@@ -88,6 +89,9 @@ public class HotPostService{
 	 * 获得当月热门post
 	 * 缓存结构:(map)
 	 * page---->Post list
+	 * @param page
+	 * @param limit
+	 * @return
 	 */
 	public List<Post> getHotPostOfMonth(int page, int limit){
 		log.info("getting month hot posts...");

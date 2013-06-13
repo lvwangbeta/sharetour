@@ -11,10 +11,7 @@ import com.sharetour.util.ImgTools;
 
 public class ImgService {
 	
-	private ImgDAO imgdao;
-	public ImgService(){
-		imgdao = new ImgDAO();
-	}
+	private ImgDAO imgdao = new ImgDAO();
 
 	/* not use here
 	public void processFormField(FileItem item){
@@ -25,6 +22,7 @@ public class ImgService {
 	*/
 	
 	/*
+	 * 处理上传图片
 	 * return img filename
 	 */
 	public Photo processUploadFile(FileItem item) throws Exception{
@@ -49,7 +47,7 @@ public class ImgService {
 		return imgdao.getImg(filename);
 	}
 	
-	/*
+	/* 
 	 * @param imgBuff
 	 * @param width
 	 * @parma height

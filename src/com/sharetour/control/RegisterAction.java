@@ -11,6 +11,7 @@ import com.sharetour.util.Action;
 public class RegisterAction implements Action{
 	
 	private static final String GENDER_ERROR = "gender error";
+	
 	@Override
 	public String execute(HttpServletRequest request) {
 		try {
@@ -27,15 +28,15 @@ public class RegisterAction implements Action{
 		String month = request.getParameter("month");
 		String day = request.getParameter("day");
 		String birth = year + "-" + month + "-" + day;
-		
+			
+		UserService userService = new UserService();
 		/*
 		 * check field empty
 		 */
 		if(!UserService.emptyCheck(username, password, confirm, email, gender)) {
 			request.setAttribute(TIP, "field empty");
 			return ERROR;
-		}
-		
+		}		
 		/*
 		 * confirm password
 		 */
@@ -46,7 +47,7 @@ public class RegisterAction implements Action{
 		/*
 		 * check whether user name is exist
 		 */
-		if(UserService.checkUsernameExist(username)){
+		if(userService.checkUsernameExist(username)){
 			request.setAttribute(TIP, USERNAMEEXIST);
 			return ERROR;
 		}	
@@ -80,7 +81,7 @@ public class RegisterAction implements Action{
 		user.setEmail(email);
 		user.setGender(Integer.parseInt(gender));
 		user.setBirth(birth);
-		if(UserService.Register(user)){
+		if(userService.Register(user)){
 			user.setPassword("");
 			request.getSession().setAttribute("user", user);
 		}

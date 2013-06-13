@@ -11,17 +11,14 @@ import com.sharetour.model.PostTag;
 
 public class TagService {
 	
-	private static Log log = LogFactory.getLog(TagService.class.getSimpleName());	
+	private static final Log log = LogFactory.getLog(TagService.class.getSimpleName());	
 	private static final String HOT_TAG = "HotTag";
 	private static int limit = 10;
-	private TagDAO tagdao;
-	
-	public TagService(){
-		this.tagdao = new TagDAO();
-	}
+	private TagDAO tagdao = new TagDAO();
 	
 	/*
 	 * 根据tagname获得tid
+	 * @param tagname
 	 */
 	public Long getTagId(String tagname){
 		log.info("getting tag id by:"+tagname);
@@ -36,6 +33,7 @@ public class TagService {
 	
 	/*
 	 * 获得与tag set中的tag的id
+	 * @param tags
 	 */
 	public List<Long> getTagsId(List<String> tags){
 		log.info("getting tags id list");

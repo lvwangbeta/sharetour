@@ -28,12 +28,19 @@ public class AlbumService {
 		return albumdao.saveAlbum(album);
 	}
 	
+	/*
+	 * 根据album id获得album相关信息
+	 * @param id
+	 * @return
+	 */
 	public Album getAlbum(String id){
 		return albumdao.getAlbum(id);
 	}
 	
 	/*
 	 * 获得某人的相册列表
+	 * @param uid
+	 * @return
 	 */
 	public List<Album> getAlbumsOfUser(Long uid){
 		return albumdao.getAlbumsOfUser(uid);
@@ -42,7 +49,8 @@ public class AlbumService {
 	/*
 	 * 获得热门相册
 	 * @param order 排序规则(默认按照访问量)
-	 * @param size  
+	 * @param size
+	 * @return  
 	 */
 	public List<Album> getHotAlbums(Object order,int page, int size){
 		return albumdao.getAlubms(order, page, size);

@@ -21,16 +21,18 @@ import com.sharetour.model.UserInfo;
  * 完成注册信息检测，登录信息检测任务
  */
 public class UserService {
-	private UserDAO userdao;
+	
 	private static final String DEFAULT_AVATOR = "51b42015140a4add23ec8772";
 	private static Log log = LogFactory.getLog(UserService.class);
-	
-	public UserService(){
-		userdao = new UserDAO();
-	}
+	private UserDAO userdao = new UserDAO();
 	
 	/*
 	 * field empty check
+	 * @param username
+	 * @param password
+	 * @param confirm
+	 * @param email
+	 * @param gender
 	 */
 	public static boolean emptyCheck(String username, String password,String confirm,
 			String email, String gender){
@@ -47,6 +49,10 @@ public class UserService {
 		}
 	}
 	
+	/*
+	 * @param password
+	 * @param confirm
+	 */
 	public static boolean confirmPassword(String password, String confirm){
 		if(password.equals(confirm)){
 			return true;
@@ -58,14 +64,7 @@ public class UserService {
 	 * exist return true
 	 * not exist return false
 	 */
-	public static boolean checkUsernameExist(String username){
-		
-		if(new UserDAO().checkUsername(username) == null){
-			return false;
-		}
-		return true;
-		
-	}
+
 	/*
 	 * 检测邮箱格式是否合法
 	 */
@@ -116,24 +115,24 @@ public class UserService {
 	/*
 	 * 登录信息检测
 	 */
-	public static UserInfo loginCheck(String username, String password){
+	public UserInfo loginCheck(String username, String password){
 		log.info(username+" login");
-		return new UserDAO().find(username, EncoderByMD5(password));
+		return userdao.find(username, EncoderByMD5(password));
 	}
 	
 	
 	/*
 	 * 注册新用户
 	 */
-	public static boolean Register(UserInfo user){
+	public boolean Register(UserInfo user){
 		user.setPassword(EncoderByMD5(user.getPassword()));
 		log.info("register new user:"+user.getUsername());
-		Long uid = new UserDAO().registerNewUser(user);
+		Long uid = userdao.registerNewUser(user);
 		setDefaultAvator(uid, user.getUsername());
 		return true;
 	}
 	
-	private static void setDefaultAvator(Long uid, String username) {
+	private void setDefaultAvator(Long uid, String username) {
 		Avator avator = new Avator();
 		avator.setUid(uid);
 		avator.setUsername(username);
@@ -144,8 +143,8 @@ public class UserService {
 	/*
 	 * 根据用户名获得ID
 	 */
-	public static int getAuthorid(String username){
-		return new UserDAO().getAuthorid(username);
+	public int getAuthorid(String username){
+		return userdao.getAuthorid(username);
 	}
 	
 	public UserInfo findUserById(Long uid) {
@@ -160,5 +159,13 @@ public class UserService {
 		if(userdao.updateAccount(uid, nickname, intro) > 0) 
 			return true;
 		return false;
+	}
+	public boolean checkUsernameExist(String username){
+		
+		if(new UserDAO().checkUsername(username) == null){
+			return false;
+		}
+		return true;
+		
 	}
 }

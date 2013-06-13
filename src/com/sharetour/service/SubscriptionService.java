@@ -11,13 +11,9 @@ import com.sharetour.model.UserInfo;
 
 public class SubscriptionService {
 	
-	private static Log log = LogFactory.getLog(SubscriptionService.class);
-	private SubscriptionDAO subdao;
-	
-	public SubscriptionService(){
-		subdao = new SubscriptionDAO();
-	}
-	
+	private static final Log log = LogFactory.getLog(SubscriptionService.class);
+	private SubscriptionDAO subdao = new SubscriptionDAO();
+		
 	/*
 	 * 订阅标签
 	 * @param Long uid

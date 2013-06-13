@@ -9,8 +9,10 @@ import org.apache.commons.logging.LogFactory;
  * 生成文章的封面
  */
 public class CoverService {
-	private String content;
+	
+	private static final String DEFAULT_COVER = ""; 
 	private static Log log = LogFactory.getLog(CoverService.class);
+	private String content;
 	
 	public String getCover(String content){
 		log.info("get cover...");
@@ -27,6 +29,9 @@ public class CoverService {
 			matcher = pattern.matcher(coverurl);
 			if(matcher.find()){
 				coverurl = matcher.group();
+			} else {
+				//文章中没有图片，采用默认图
+				return DEFAULT_COVER;
 			}
 			coverurl = coverurl.substring(coverurl.indexOf("\"")+1, coverurl.lastIndexOf("\""));
 			log.info("cover url:"+coverurl);
