@@ -109,6 +109,11 @@ public class PostService {
 		return postDao.getPostList(page, limit);
 	}
 
+	public List<Post> getPostList(int page, int limit, String order){
+		return postDao.getPostList(page, limit, order);
+	}
+
+	
 	/*
 	 * 获得作者的posts
 	 * @param authorid

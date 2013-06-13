@@ -71,6 +71,7 @@ public class PostDAO {
 		helper.closeConnection();
 		return list;
 	}
+	
 	/*
 	 * 根据authorid获得其所有posts
 	 */
