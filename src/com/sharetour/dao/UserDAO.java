@@ -25,7 +25,7 @@ public class UserDAO {
 	public UserInfo findUserById(Long uid) {
 		QueryHelper helper = new QueryHelper();
 		UserInfo user = helper.get(UserInfo.class, 
-								   "select username,id from users where id=?", 
+								   "select username,id,nickname,intro from users where id=?", 
 								   uid);
 		helper.closeConnection();
 		return user;

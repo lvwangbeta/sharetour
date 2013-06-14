@@ -23,8 +23,7 @@ public abstract class POJO implements Serializable{
 	public void setId(long id){this.id = id;}
 	public long getId(){return id;}
 	
-	public POJO(String tablename)
-	{
+	public POJO(String tablename) {
 		setTablename(tablename);
 	}
 	
@@ -33,21 +32,17 @@ public abstract class POJO implements Serializable{
 	 * QueryHelper对象，以保证数据库连接一致以及
 	 * 事务处理
 	 */
-	public void setQueryHelper(QueryHelper helper)
-	{
+	public void setQueryHelper(QueryHelper helper) {
 		this.helper = helper;
 	}
-	public QueryHelper getQueryHelper()
-	{
+	public QueryHelper getQueryHelper() {
 		return this.helper;
 	}
 	
-	public String getTablename()
-	{
+	public String getTablename() {
 		return tablename;
 	}
-	public void setTablename(String tablename)
-	{
+	public void setTablename(String tablename) {
 		this.tablename = tablename;
 	}
 	
@@ -57,8 +52,7 @@ public abstract class POJO implements Serializable{
 	 * @return {<T extends POJO>}
 	 */
 	@SuppressWarnings("unchecked")
-	public <T extends POJO> T Get(long id)
-	{
+	public <T extends POJO> T Get(long id) {
 		String sql = "SELECT * FROM " + getTablename() + " WHERE id=?";
 		T obj = (T) helper.get(getClass(), sql, new Object[]{id});
 		return obj;
@@ -68,8 +62,7 @@ public abstract class POJO implements Serializable{
 	 * Get() without param
 	 */
 	@SuppressWarnings("unchecked")
-	public <T extends POJO> T Get()
-	{
+	public <T extends POJO> T Get() {
 		String sql = "SELECT * FROM " + getTablename() + " WHERE id=?";
 		T obj =  (T) helper.get(getClass(), sql, new Object[]{id});
 		return obj;
@@ -79,8 +72,7 @@ public abstract class POJO implements Serializable{
 	 * 保存对象到数据库中
 	 * Save()
 	 */
-	public long Save()
-	{
+	public long Save() {
 		/*
 		if(getId() > 0)
 		{
@@ -100,8 +92,7 @@ public abstract class POJO implements Serializable{
 	 * @param {POJO} obj
 	 * @param {long} id 返回数据库主键
 	 */
-	public long InsertObject(POJO obj)
-	{
+	public long InsertObject(POJO obj) {
 		Map<String, Object> map = obj.ListInsertableFields();
 		if(map == null ||map.size() == 0) return id;
 		String[] fields = map.keySet().toArray(new String[map.size()]);
@@ -151,22 +142,19 @@ public abstract class POJO implements Serializable{
 	 * 根据map中的 属性更新数据库
 	 * 暂时还是执行sql语句吧
 	 */
-	public void Update(String sql, Object...objects)
-	{
-		helper.update(sql, objects);	
+	public int Update(String sql, Object...objects) {
+		return helper.update(sql, objects);	
 	}
 	
 	/*
 	 * 删除该对象对应的数据库数据
 	 */
-	public void Delete()
-	{
-		if(getId() > 0)
-		{			
-			helper.delete("DELETE FROM " + getTablename() + " WHERE id=?", getId());
+	public int Delete() {
+		int rowsEffected = 0;
+		if(getId() > 0){			
+			rowsEffected = helper.delete("DELETE FROM " + getTablename() + " WHERE id=?", getId());
 		}
-		else
-			return;
+		return rowsEffected;
 	}
 	
 	/*
@@ -174,8 +162,7 @@ public abstract class POJO implements Serializable{
 	 * @param page
 	 * @param size
 	 */
-	public List<? extends POJO> List(int page, int size)
-	{
+	public List<? extends POJO> List(int page, int size) {
 		String sql = "SELECT * FROM " + getTablename()+" ORDER BY id DESC ";
 		return helper.query_slice(getClass(), sql, page, size);
 	}
@@ -185,8 +172,7 @@ public abstract class POJO implements Serializable{
 	 * @param page
 	 * @param size
 	 */
-	public List<? extends POJO> List(int page, int size, String order)
-	{
+	public List<? extends POJO> List(int page, int size, String order) {
 		String sql = "SELECT * FROM " + getTablename()+" ORDER BY " + order + " DESC ";
 		return helper.query_slice(getClass(), sql, page, size);
 	}	
@@ -194,8 +180,7 @@ public abstract class POJO implements Serializable{
 	/*
 	 * 获得总记录条目数
 	 */
-	public int TotalCount()
-	{
+	public int TotalCount() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet res = null;

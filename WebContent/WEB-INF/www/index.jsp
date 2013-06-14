@@ -153,7 +153,7 @@
                   <div class="albumpre">
                   	<a class="pop" href="<%=request.getContextPath()%>/popalbum/<%=album.getId()%>"><img src="<%=request.getContextPath()%>/imgs?id=<%=album.getCoverid()%>&width=236&height=150"  alt="<%=album.getAlbumname() %>"></a>
 		            <div class="overlay">
-		            	<p>this is a album</p>
+		            	<p><%=album.getAlbumname()%></p>
 		            </div>                    
                   </div>
 				  
@@ -163,106 +163,189 @@
             </ul>            
           </div>  
           <%} %>
-          <!-- end hotposts gallery -->    
-		      <!-- begin btn group leader -->
-          <p class="lead">Bare minimum radio button tabs example:</p>
-          <div id="tab" class="btn-group" data-toggle="buttons-radio">
-            <a href="#hotposts" class="btn active" data-toggle="tab">热门游记</a>
-            <a href="#newposts" class="btn" data-toggle="tab">最新游记</a>
-            <a href="#requests" class="btn" data-toggle="tab">Requests</a>
-          </div>
-          <!-- end btn group leader -->          
-     
-          <!-- begin hotposts tab-content -->
-          <div class="tab-content">
-            <div class="tab-pane active" id="hotposts">
-              <%
-              HotPostService hotpostservice = new HotPostService();
-              List<Post> postlist = hotpostservice.getHotPost();
-              Iterator<Post> postit = postlist.iterator();
-              SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-              PostLikeService postlikeservice = new PostLikeService();
-              UserService userService = new UserService();
-              PostService postService = new PostService();
-              while(postit.hasNext()){
-                 Post post = postit.next(); 
-              %>
-              <div class="post">         
-                <div class="row">
-                  <div class="span8">
-                    <div class="row">
-                      <div class="span8">
-                        <div class="posttitle">
-                            <h4><strong><a href="<%=request.getContextPath()%>/post/<%=post.getId()%>"><%=post.getTitle() %></a></strong></h4>
-                          </div>
-                      </div>                   
-                    </div>
-                    <!-- end row level2 -->
-                    <div class="row">
-                      <div class="span2">
-                        <div class="preimg">
-                          <a href="<%=request.getContextPath()%>/post/<%=post.getId()%>" class="thumbnail">
-                              <img src="<%=post.getCover()%>&width=160&height=128" alt="preimg">
-                          </a>
-                        </div>
-                      </div>
-                      <div class="span6">     
-                        <p>
-                      <i class="icon-user"></i> by <a href="<%=request.getContextPath()%>/u/<%=post.getAuthorid()%>">
-                      <%=userService.findUserById(post.getAuthorid()).getUsername()%></a> 
-                      | <i class="icon-calendar"></i> <%=format.format(post.getCtime()) %>
-                      | <i class="icon-comment"></i> <a href="#"><%=postService.getCommentsByPostId(post.getId()).size() %> Comments</a>
-                        </p> 
-                    <p>
-                	<%=post.getSummary() %>                        
-                    </p>
-                        <div class="row">
-                          <div class="span4">
-                            <p>
-                        <i class="icon-tags"></i> 
-                         
-                        <%for(String tag:StringUtils.split(post.getTags(), ' ')) {%>
-                          <a href="<%=request.getContextPath()%>/tag/<%=tag%>"><span class="label deepbluelabel"><%=tag %></span></a>
-                        <%} %> 
-                            </p>                                                  
-                          </div>
-                          <div class="span2">
-                              <a href="<%=request.getContextPath()%>/action/like?postid=<%=post.getId() %>"  
-                              <%
-                                if(user != null && 
-                                postlikeservice.checkPostLike(user.getId(), post.getId())){
-                              %>
-                                class="liketag liked">  
-                              <%
-                                }
-                                else{
-                              %>
-                                class="liketag">
-                              <%
-                                }
-                              %>
-                                <span class="likecount"><%=postlikeservice.getPostLikeCount(post.getId()) %></span>
-                                <span>&nbsp;like</span>
-                              </a> 
-                              <a href="#"  class="sharetag"><span>35 share</span></a>
-                          </div>
-
-                        </div>
-
-                      </div>
-                    </div>
-                    <!-- end row level 2 -->
-                  </div>
-                  <!-- end span8 -->
-                </div>  
-              <!-- end row level1 -->
-              </div>
-              <!-- end post -->     
-              <%} %>                            
-            </div>
-            <!-- end hotposts -->
-          </div>
-          <!-- begin hotposts tab-content -->
+          <!-- end hotposts gallery -->
+          
+          
+          <!-- begin posts list -->
+          <%
+          HotPostService hotpostservice = new HotPostService();
+          SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+          PostLikeService postlikeservice = new PostLikeService();
+          UserService userService = new UserService();
+          PostService postService = new PostService();                 
+          %>        
+		  <div class="tabbable">
+		  	<ul class="nav nav-tabs">
+		    	<li class="active"><a href="#hotposts" data-toggle="tab">热门游记</a></li>
+		    	<li><a href="#newposts" data-toggle="tab">最新游记</a></li>
+		    </ul>
+		    <div class="tab-content">
+	            <div class="tab-pane active" id="hotposts">
+	              <%
+	              List<Post> hotpostlist = hotpostservice.getHotPost();
+	              Iterator<Post> postit = hotpostlist.iterator();
+	              while(postit.hasNext()){
+	                 Post post = postit.next(); 
+	              %>
+	              <div class="post">         
+	                <div class="row">
+	                  <div class="span8">
+	                    <div class="row">
+	                      <div class="span8">
+	                        <div class="posttitle">
+	                            <h4><strong><a href="<%=request.getContextPath()%>/post/<%=post.getId()%>"><%=post.getTitle() %></a></strong></h4>
+	                          </div>
+	                      </div>                   
+	                    </div>
+	                    <!-- end row level2 -->
+	                    <div class="row">
+	                      <div class="span2">
+	                        <div class="preimg">
+	                          <a href="<%=request.getContextPath()%>/post/<%=post.getId()%>" class="thumbnail">
+	                              <img src="<%=post.getCover()%>&width=160&height=128" alt="preimg">
+	                          </a>
+	                        </div>
+	                      </div>
+	                      <div class="span6">     
+	                        <p>
+	                      <i class="icon-user"></i> by <a href="<%=request.getContextPath()%>/u/<%=post.getAuthorid()%>">
+	                      <%=userService.findUserById(post.getAuthorid()).getUsername()%></a> 
+	                      | <i class="icon-calendar"></i> <%=format.format(post.getCtime()) %>
+	                      | <i class="icon-comment"></i> <a href="#"><%=postService.getCommentsByPostId(post.getId()).size() %> Comments</a>
+	                        </p> 
+	                    <p>
+	                	<%=post.getSummary() %>                        
+	                    </p>
+	                        <div class="row">
+	                          <div class="span4">
+	                            <p>
+	                        <i class="icon-tags"></i> 
+	                         
+	                        <%for(String tag:StringUtils.split(post.getTags(), ' ')) {%>
+	                          <a href="<%=request.getContextPath()%>/tag/<%=tag%>"><span class="label deepbluelabel"><%=tag %></span></a>
+	                        <%} %> 
+	                            </p>                                                  
+	                          </div>
+	                          <div class="span2">
+	                              <a href="<%=request.getContextPath()%>/action/like?postid=<%=post.getId() %>"  
+	                              <%
+	                                if(user != null && 
+	                                postlikeservice.checkPostLike(user.getId(), post.getId())){
+	                              %>
+	                                class="liketag liked">  
+	                              <%
+	                                }
+	                                else{
+	                              %>
+	                                class="liketag">
+	                              <%
+	                                }
+	                              %>
+	                                <span class="likecount"><%=postlikeservice.getPostLikeCount(post.getId()) %></span>
+	                                <span>&nbsp;like</span>
+	                              </a> 
+	                              <a href="#"  class="sharetag"><span>35 share</span></a>
+	                          </div>
+	
+	                        </div>
+	
+	                      </div>
+	                    </div>
+	                    <!-- end row level 2 -->
+	                  </div>
+	                  <!-- end span8 -->
+	                </div>  
+	              <!-- end row level1 -->
+	              </div>
+	              <!-- end post -->     
+	              <%} %>                            
+	            </div>
+	            <!-- end hotposts -->
+		    	<div class="tab-pane" id="newposts">
+		    	<%
+		    		List<Post> newposts = postService.getPostList(1, 10, "ctime");
+		    		Iterator<Post> newpostsit = newposts.iterator();
+		    		while(newpostsit.hasNext()) {
+		    			Post newpost = newpostsit.next();
+		    	%>
+	              <div class="post">         
+	                <div class="row">
+	                  <div class="span8">
+	                    <div class="row">
+	                      <div class="span8">
+	                        <div class="posttitle">
+	                            <h4><strong><a href="<%=request.getContextPath()%>/post/<%=newpost.getId()%>"><%=newpost.getTitle() %></a></strong></h4>
+	                          </div>
+	                      </div>                   
+	                    </div>
+	                    <!-- end row level2 -->
+	                    <div class="row">
+	                      <div class="span2">
+	                        <div class="preimg">
+	                          <a href="<%=request.getContextPath()%>/post/<%=newpost.getId()%>" class="thumbnail">
+	                              <img src="<%=newpost.getCover()%>&width=160&height=128" alt="preimg">
+	                          </a>
+	                        </div>
+	                      </div>
+	                      <div class="span6">     
+	                        <p>
+	                      <i class="icon-user"></i> by <a href="<%=request.getContextPath()%>/u/<%=newpost.getAuthorid()%>">
+	                      <%=userService.findUserById(newpost.getAuthorid()).getUsername()%></a> 
+	                      | <i class="icon-calendar"></i> <%=format.format(newpost.getCtime()) %>
+	                      | <i class="icon-comment"></i> <a href="#"><%=postService.getCommentsByPostId(newpost.getId()).size() %> Comments</a>
+	                        </p> 
+	                    <p>
+	                	<%=newpost.getSummary() %>                        
+	                    </p>
+	                        <div class="row">
+	                          <div class="span4">
+	                            <p>
+	                        <i class="icon-tags"></i> 
+	                         
+	                        <%for(String tag:StringUtils.split(newpost.getTags(), ' ')) {%>
+	                          <a href="<%=request.getContextPath()%>/tag/<%=tag%>"><span class="label deepbluelabel"><%=tag %></span></a>
+	                        <%} %> 
+	                            </p>                                                  
+	                          </div>
+	                          <div class="span2">
+	                              <a href="<%=request.getContextPath()%>/action/like?postid=<%=newpost.getId() %>"  
+	                              <%
+	                                if(user != null && 
+	                                postlikeservice.checkPostLike(user.getId(), newpost.getId())){
+	                              %>
+	                                class="liketag liked">  
+	                              <%
+	                                }
+	                                else{
+	                              %>
+	                                class="liketag">
+	                              <%
+	                                }
+	                              %>
+	                                <span class="likecount"><%=postlikeservice.getPostLikeCount(newpost.getId()) %></span>
+	                                <span>&nbsp;like</span>
+	                              </a> 
+	                              <a href="#"  class="sharetag"><span>35 share</span></a>
+	                          </div>
+	
+	                        </div>
+	
+	                      </div>
+	                    </div>
+	                    <!-- end row level 2 -->
+	                  </div>
+	                  <!-- end span8 -->
+	                </div>  
+	              <!-- end row level1 -->
+	              </div>
+	              <!-- end post -->
+	              <%} %>	               
+		    	</div>
+		    </div>
+		    <!-- end tab content -->
+		  </div>          
+          
+                    
         </div>
         <!-- end span8  -->
           
@@ -298,17 +381,23 @@
 			      <div>
 			      <%
 			      	AvatorService avatorService = new AvatorService();
+			       	FollowService followService = new FollowService();
 			      	List<UserInfo> popusers = userService.getPopUsers(6);
 			      	for(UserInfo p : popusers){
+			      		if(user != null){
+			      			if(p.getId() == user.getId() || 
+			      			   followService.checkFollowingRelation(user.getId(), p.getId())) 
+			      				continue;
+			      		}	
 			      		Avator avator = avatorService.getAvatorOfUser(p.getId());
 			      		if(avator != null) {
 			      %>
 			      	<div class="avator">
 			      		<span>
-			      		<a href=""><img class="img-rounded" src="<%=request.getContextPath()%>/imgs?id=<%=avator.getAvatorId() %>&coll=avator_thumb" alt="" /></a>
+			      		<a href="#"><img class="img-rounded" src="<%=request.getContextPath()%>/imgs?id=<%=avator.getAvatorId() %>&coll=avator_thumb" alt="" /></a>
 			      		</span>
 			      		<span>
-			      		<a href="#" class="tag bluetag">+关注</a>
+			      		<a href="<%=request.getContextPath()%>/action/follow?followingid=<%=avator.getUid()%>" class="tag bluetag follow">+关注</a>
 			      		</span>	      		
 			      	</div>	
 			      <%} } %>	      				      				      	
@@ -393,6 +482,32 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/index.js"></script>    
     <script>
     $(document).ready(function(){
+    	$('.follow').click(function(){
+    		var link = $(this);    	
+    		if(!$(link).hasClass('followed')){
+        		$.post($(link).attr('href'),{'action':'follow'}, function(data){
+        			if('success' == data) {
+        				$(link).removeClass('bluetag');
+        				$(link).addClass('redtag followed');
+        				$(link).text('已关注');
+        			}
+        			
+        		});    			
+    		} else if($(link).hasClass('followed')) {
+    			$.post($(link).attr('href'), {'action':'undofollow'}, function(data){
+    				if('success' == data) {
+    					$(link).removeClass('redtag followed');
+    					$(link).addClass('bluetag');
+    					$(link).text('+关注');
+    				}
+    				
+    			});
+    		}
+
+    		return false;
+    		
+    	});
+    	
         $(".rslides").responsiveSlides({
             auto: false,
             pager: false,

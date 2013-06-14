@@ -132,41 +132,7 @@
         </div>
         <!-- end span8  -->
 
-        <div class="span4">
-          <div>
-            <div class="accordion">
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
-                    Collapsible Group Item #1
-                  </a>
-                </div>
-                <div id="collapseOne" class="accordion-body collapse in">
-                  <div class="accordion-inner">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <div class="accordion-inner">
-                    <i class="icon-tag"></i>&nbsp;&nbsp;sdf
-                    <a href="#" class="pull-right sub">订阅</a>                                    
-                  </div>
-                
-                </div>
-              </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle"  href="/u/space">
-                    <i class="icon-user"></i>&nbsp;&nbsp;我的游记
-                  </a>
-                </div>
-              </div>  
-
-
-            </div>            
-          </div>        
+        <div class="span4">        
         </div>        
       </div>
       <!-- end row -->
@@ -188,7 +154,7 @@
           },
           multiple: false,
           text: {
-            uploadButton: '<div><i class="icon-upload icon-white"></i> Test</div>'
+            uploadButton: '<div>添加图片</div>'
           },
           template: '<div class="qq-uploader clearfix">' +
 	          '<pre class="qq-upload-drop-area"><span>{dragZoneText}</span></pre>' +

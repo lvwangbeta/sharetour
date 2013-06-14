@@ -179,4 +179,14 @@
     <servlet-name>AccountSettingServlet</servlet-name>
     <url-pattern>/action/accountsetting</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FollowServlet</display-name>
+    <servlet-name>FollowServlet</servlet-name>
+    <servlet-class>com.sharetour.control.FollowServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FollowServlet</servlet-name>
+    <url-pattern>/action/follow</url-pattern>
+  </servlet-mapping>
 </web-app>

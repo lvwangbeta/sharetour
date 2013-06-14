@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('.liked').click(function(){
+	$('.liketag').click(function(){
 		var action;
 		var link = $(this);
 		if($(link).hasClass('liked')){

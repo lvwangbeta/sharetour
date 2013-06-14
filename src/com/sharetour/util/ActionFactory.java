@@ -7,6 +7,7 @@ import com.sharetour.control.AccountSettingAction;
 import com.sharetour.control.AlbumAction;
 import com.sharetour.control.AvatorAction;
 import com.sharetour.control.CommentAction;
+import com.sharetour.control.FollowAction;
 import com.sharetour.control.LikeAction;
 import com.sharetour.control.LoginAction;
 import com.sharetour.control.NewPostAction;
@@ -29,6 +30,7 @@ public class ActionFactory {
 		actions.put("album", new AlbumAction());
 		actions.put("avator", new AvatorAction());
 		actions.put("accountsetting", new AccountSettingAction());
+		actions.put("follow", new FollowAction());
 	}
 	public static Action getAction(String action){
 		return actions.get(action);
