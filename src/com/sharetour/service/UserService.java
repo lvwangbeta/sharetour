@@ -22,7 +22,7 @@ import com.sharetour.model.UserInfo;
  */
 public class UserService {
 	
-	private static final String DEFAULT_AVATOR = "51b42015140a4add23ec8772";
+	private static final String DEFAULT_AVATOR = "51bb2a557d00f3ac2dabf649";
 	private static Log log = LogFactory.getLog(UserService.class);
 	private UserDAO userdao = new UserDAO();
 	

@@ -32,7 +32,7 @@ public class NewPostAction implements Action{
 		post.setCtime(new Date());
 		post.setTags(tags);	
 		post.setSummary(new PostSummaryService().getSummary(content));
-		post.setCover(new CoverService().getCover(content));
+		post.setCover(new CoverService().getCover(request.getContextPath(), content));
 		PostService service = new PostService();
 		/*
 		 * check title content, field not empty
